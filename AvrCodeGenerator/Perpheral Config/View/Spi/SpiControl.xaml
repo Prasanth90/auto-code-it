@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="PeripheralConfig.View.Spi.SpiControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="350">
+    <UserControl.Resources>       
+        <Style x:Key="Stack" TargetType="StackPanel">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=SelectedSpiComMode, UpdateSourceTrigger=PropertyChanged}" Value="Master">
+                    <Setter Property="StackPanel.Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=SelectedSpiComMode, UpdateSourceTrigger=PropertyChanged}" Value="">
+                    <Setter Property="StackPanel.Visibility" Value="Hidden" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=SelectedSpiComMode, UpdateSourceTrigger=PropertyChanged}" Value="Slave">
+                    <Setter Property="StackPanel.Visibility" Value="Hidden" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+        <Grid>
+            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+                <DockPanel Margin="10,10,10,10" Height="Auto" Width="Auto" Name="PinsContainer" >
+                    <Grid>
+                        <GroupBox HorizontalAlignment="Left" Margin="5,5,5,5"  VerticalAlignment="Top" Width="Auto"  BorderBrush="#FFA79E9E">
+                            <GroupBox.Header>
+                            <StackPanel Grid.Row="2"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                <CheckBox  Content="Spi Enable"  IsChecked="{Binding Path=IsSpiEnabled, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                        </GroupBox.Header>
+                        <StackPanel IsEnabled="{Binding Path=IsSpiEnabled, UpdateSourceTrigger=PropertyChanged}">
+                            <StackPanel Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                <Label DockPanel.Dock="Left" Content="Spi Mode" Height="28" HorizontalAlignment="Left" Width="100" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                <ComboBox  ItemsSource="{Binding Path=SpiComModes, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedSpiComMode, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="70" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                <ComboBox  ItemsSource="{Binding Path=SpiModes, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedSpiMode, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            
+                            <StackPanel Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                <Label DockPanel.Dock="Left" Content="Spi Data Order" Height="28" HorizontalAlignment="Left" Width="100" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                <ComboBox  ItemsSource="{Binding Path=DataOrders, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedOrder, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="59" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Margin="5" Orientation="Horizontal">
+                                <Label  Content="Spi Interupt Level" Width="101" />
+                                <ComboBox  Margin="0,0,0,0"  ItemsSource="{Binding Path=SpiInteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="149" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource Stack}" Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                <Label DockPanel.Dock="Left" Content="Baud Rate" Height="28" HorizontalAlignment="Left" Width="100" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                <ComboBox  ItemsSource="{Binding Path=BaudRates, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedBaudRate, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            </StackPanel>
+
+                            <StackPanel Style="{StaticResource Stack}"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                <Label DockPanel.Dock="Left" Content="Chip Select Pin" Height="28" HorizontalAlignment="Left" Width="100" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                <ComboBox  ItemsSource="{Binding Path=Ports, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedCsPort, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                <ComboBox  ItemsSource="{Binding Path=Pins, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedCsPin, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </StackPanel>
+                      </GroupBox>
+                    </Grid>
+                    </DockPanel>
+                </ScrollViewer>
+         </Grid>
+</UserControl>
