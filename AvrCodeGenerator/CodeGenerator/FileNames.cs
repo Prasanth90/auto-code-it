@@ -13,6 +13,8 @@ namespace CodeGenerator
         public const string UsartSerialInit = "usart_serial_init.c";
         public const string MainFileName = "main.c";
         public const string PortInit = "PortConfig.c";
+        public const string SpiInit = "spi_init.c";
+        public const string SpiDefine = "spi_def.h";
 
         public static List<string> List
         {
@@ -25,7 +27,9 @@ namespace CodeGenerator
                         UsartSerialDefines,
                         UsartSerialInit,
                         MainFileName,
-                        PortInit
+                        PortInit,
+                        SpiInit,
+                        SpiDefine
                     };
             }
         }

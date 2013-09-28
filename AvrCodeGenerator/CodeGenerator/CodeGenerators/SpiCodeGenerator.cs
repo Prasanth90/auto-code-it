@@ -25,7 +25,7 @@ namespace CodeGenerator.CodeGenerators
                 Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref hashDefineContents);
                 codegenerationinfo.HashDefineBlock.Append(hashDefineContents);
 
-                string spiInitContents = GetSPIInitTemplate();
+                string spiInitContents = GetSpiInitTemplate();
                 replacemntDict = GetReplacementDict_SpiInit(spiModel);
                 Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref spiInitContents);
                 codegenerationinfo.CodeBlock.Append(spiInitContents);
@@ -52,14 +52,14 @@ namespace CodeGenerator.CodeGenerators
         }
 
 
-        private string GetSPIInitTemplate()
+        private string GetSpiInitTemplate()
         {
-            return string.Empty;
+            return FilesContentStore[FileNames.SpiInit];
         }
 
         private string GetSpiDefineTemplate()
         {
-            return string.Empty;
+            return FilesContentStore[FileNames.SpiDefine];
         }
 
         private Dictionary<string, string> GetReplacementDict_SPIDefines(SpiModel spiModel)
@@ -72,14 +72,22 @@ namespace CodeGenerator.CodeGenerators
                     {SpiConstants.CsPin, spiSettings.CsPin},
                     {SpiConstants.CsPort, spiSettings.CsPort},
                     {SpiConstants.Mode, spiSettings.SpiMode},
+                    {SpiConstants.SpiPort,GetSpiPort(spiModel.SpiName)}
                 };
             return replacementDict;
         }
 
+        private string GetSpiPort(string spiName)
+        {
+            var length = spiName.Length;
+            if(length>0)
+            return string.Format("PORT{0}", spiName[spiName.Length - 1]);
+            return string.Empty;
+        }
+
         private Dictionary<string, string> GetReplacementDict_SpiInit(SpiModel spiModel)
         {
-            var replacementDict = new Dictionary<string, string>();
-            return replacementDict;
+            return GetReplacementDict_SPIDefines(spiModel);
         }
 
         private string GetInteruptHandlerCode(SpiModel spiModel)

@@ -75,7 +75,8 @@
     <EmbeddedResource Include="Resources\usart_serial_def.h" />
     <EmbeddedResource Include="Resources\usart_serial_init.c" />
     <EmbeddedResource Include="Resources\main.c" />
-    <Content Include="Resources\XMLFile1.xml" />
+    <EmbeddedResource Include="Resources\spi_init.c" />
+    <EmbeddedResource Include="Resources\spi_def.h" />
     <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
