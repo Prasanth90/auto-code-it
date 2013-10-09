@@ -45,8 +45,8 @@
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding ChildrenPeripherals}">
                     <StackPanel Orientation="Horizontal">
-                        <Image  Margin="1" Width="10" Height="10" Source="{Binding Path=Icon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CustomImagePathConvertor}}"></Image>
-                        <Label Margin="1" Content="{Binding Name}" Background="LightGray" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" FontSize="9" FontWeight="Black"/>
+                        <Image  Margin="1" Width="12" Height="15" Source="{Binding Path=Icon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CustomImagePathConvertor}}"></Image>
+                        <Label Margin="1" Content="{Binding Name}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" FontSize="10" FontWeight="Black"/>
                     </StackPanel>                  
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>

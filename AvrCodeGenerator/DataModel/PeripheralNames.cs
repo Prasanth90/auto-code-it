@@ -7,12 +7,12 @@ namespace DataModel
 {
     public static class PeripheralNames
     {
-        public const string Port = "Ports";
+        public const string Port = "PORTS";
         public const string ADC = "ADCs";
         public const string DAC = "DACs";
-        public const string Timers = "Timers";
-        public const string Usarts = "Usarts";
-        public const string Spis = "Spis";
-        public const string AnalogComparator = "AnalogComparators";
+        public const string Timers = "TIMERS";
+        public const string Usarts = "USARTS";
+        public const string Spis = "SPIS";
+        public const string AnalogComparator = "ANALOG COMPARATORS";
     }
 }
