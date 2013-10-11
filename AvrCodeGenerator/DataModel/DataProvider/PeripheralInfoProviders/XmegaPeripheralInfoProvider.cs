@@ -335,6 +335,54 @@ namespace DataModel.DataProvider.PeripheralInfoProviders
                     "LSB First",
                 };
         }
+
+        public ObservableCollection<string> GetTimerClockSources()
+        {
+            return new ObservableCollection<string>()
+                {
+                    "TC_CLKSEL_OFF_gcC",
+                    "TC_CLKSEL_DIV1_gc",
+                    "TC_CLKSEL_DIV2_gc",
+                    "TC_CLKSEL_DIV4_gc",
+                    "TC_CLKSEL_DIV8_gc",
+                    "TC_CLKSEL_DIV64_gc",
+                    "TC_CLKSEL_DIV256_gc",
+                    "TC_CLKSEL_DIV1024_gc",
+                    "TC_CLKSEL_EVCH0_gc",
+                    "TC_CLKSEL_EVCH1_gc",
+                    "TC_CLKSEL_EVCH2_gc",
+                    "TC_CLKSEL_EVCH3_gc",
+                    "TC_CLKSEL_EVCH4_gc",
+                    "TC_CLKSEL_EVCH5_gc",
+                    "TC_CLKSEL_EVCH6_gc",
+                    "TC_CLKSEL_EVCH7_gc"
+
+                };
+        }
+
+        public ObservableCollection<string> GetTimerModes()
+        {
+            return new ObservableCollection<string>()
+                {
+                    "TC_WG_NORMAL",
+                    "TC_WG_FRQ",
+                    "TC_WG_SS",
+                    "TC_WG_DS_T",
+                    "TC_WG_DS_TB",
+                    "TC_WG_DS_B",
+                };
+        }
+
+        public ObservableCollection<string> GetTimerInteruptLevels()
+        {
+            return new ObservableCollection<string>()
+                {
+                    "TC_INT_LVL_OFF",
+                    "TC_INT_LVL_LO",
+                    "TC_INT_LVL_MED",
+                    "TC_INT_LVL_HI"
+                };
+        }
     }
 
     
