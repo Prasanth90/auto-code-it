@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
+using DataModel.PeripheralInfo;
 using PeripheralConfig.View.CodeWizard;
 
 namespace PeripheralConfig.ViewModel.PeripheralTreeViewModel

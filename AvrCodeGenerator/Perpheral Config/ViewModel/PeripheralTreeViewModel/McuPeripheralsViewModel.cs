@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using DataModel.PeripheralInfo;
 
 namespace PeripheralConfig.ViewModel.PeripheralTreeViewModel
 {
