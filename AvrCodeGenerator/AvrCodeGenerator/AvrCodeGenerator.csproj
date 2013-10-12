@@ -162,9 +162,9 @@
       <Project>{35E48402-19E9-4C01-93CC-5B578F4C7DA2}</Project>
       <Name>DataModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Perpheral Config\PeripheralConfig.csproj">
+    <ProjectReference Include="..\Perpheral Config\CodeWizard.Plugins.csproj">
       <Project>{3207E151-5738-42F1-8DE0-F0BAFB465C04}</Project>
-      <Name>PeripheralConfig</Name>
+      <Name>CodeWizard.Plugins</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
