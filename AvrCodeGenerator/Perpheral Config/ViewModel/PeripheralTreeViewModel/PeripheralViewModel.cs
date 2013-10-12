@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using PeripheralConfig.View.CodeWizard;
-using WpfApplication1;
 
 namespace PeripheralConfig.ViewModel.PeripheralTreeViewModel
 {

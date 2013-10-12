@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using WpfApplication1;
 
 namespace PeripheralConfig.ViewModel.PeripheralTreeViewModel
 {

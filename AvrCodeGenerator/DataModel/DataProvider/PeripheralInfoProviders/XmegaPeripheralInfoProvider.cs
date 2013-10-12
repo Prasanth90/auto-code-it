@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
-using WpfApplication1;
+using DataModel.PeripheralInfo;
 
 namespace DataModel.DataProvider.PeripheralInfoProviders
 {

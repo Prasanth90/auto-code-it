@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using DataModel.PortModel;
-using WpfApplication1;
 
 namespace DataModel.SPI
 {

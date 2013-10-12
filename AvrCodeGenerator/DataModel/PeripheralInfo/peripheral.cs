@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 
-namespace WpfApplication1
+namespace DataModel.PeripheralInfo
 {
     public class Peripheral : ObservableCollection<Peripheral>
     {
