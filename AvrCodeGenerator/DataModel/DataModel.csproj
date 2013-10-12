@@ -52,6 +52,7 @@
     <Compile Include="DataProvider\PeripheralInfoProviders\IPeripheralInfoProvider.cs" />
     <Compile Include="DataProvider\PeripheralInfoProvider.cs" />
     <Compile Include="DataProvider\PeripheralInfoProviders\XmegaPeripheralInfoProvider.cs" />
+    <Compile Include="ICodeWizardPlugin.cs" />
     <Compile Include="McuModel.cs" />
     <Compile Include="peripheral.cs" />
     <Compile Include="PeripheralNames.cs" />

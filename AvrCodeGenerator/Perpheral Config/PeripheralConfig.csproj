@@ -68,6 +68,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeWizardPlugins\IOPort.cs" />
+    <Compile Include="CodeWizardPlugins\Spi.cs" />
+    <Compile Include="CodeWizardPlugins\Timer.cs" />
+    <Compile Include="CodeWizardPlugins\Usart.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utils\CustomImagePathConvertor.cs" />
     <Compile Include="ViewModel\PeripheralTreeViewModel\McuPeripheralsViewModel.cs" />
@@ -102,7 +106,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="DataProvider\PerPheralInfoProvider.cs" />
     <Compile Include="ViewModel\IOPort\PortViewModel.cs" />
     <Compile Include="View\IOPort\IOPin\PinControl.xaml.cs">
       <DependentUpon>PinControl.xaml</DependentUpon>
@@ -163,25 +166,25 @@
     <Resource Include="Resources\help.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\argentina.png" />
-    <Content Include="Images\australia.gif" />
-    <Resource Include="Images\brazil.png" />
-    <Resource Include="Images\canada.png" />
-    <Resource Include="Images\china.png" />
-    <Resource Include="Images\Continent2.gif" />
-    <Resource Include="Images\continents.png" />
-    <Resource Include="Images\denmark.png" />
-    <Resource Include="Images\egypt.png" />
-    <Resource Include="Images\france.png" />
-    <Resource Include="Images\japan.png" />
-    <Resource Include="Images\mexico.png" />
-    <Resource Include="Images\pakistan.png" />
-    <Resource Include="Images\somalia.png" />
-    <Resource Include="Images\tree_logo.png" />
-    <Resource Include="Images\uganda.png" />
-    <Resource Include="Images\uk.png" />
-    <Resource Include="Images\uruguay.png" />
-    <Resource Include="Images\usa.png" />
+    <Resource Include="Resources\Images\argentina.png" />
+    <Content Include="Resources\Images\australia.gif" />
+    <Resource Include="Resources\Images\brazil.png" />
+    <Resource Include="Resources\Images\canada.png" />
+    <Resource Include="Resources\Images\china.png" />
+    <Resource Include="Resources\Images\Continent2.gif" />
+    <Resource Include="Resources\Images\continents.png" />
+    <Resource Include="Resources\Images\denmark.png" />
+    <Resource Include="Resources\Images\egypt.png" />
+    <Resource Include="Resources\Images\france.png" />
+    <Resource Include="Resources\Images\japan.png" />
+    <Resource Include="Resources\Images\mexico.png" />
+    <Resource Include="Resources\Images\pakistan.png" />
+    <Resource Include="Resources\Images\somalia.png" />
+    <Resource Include="Resources\Images\tree_logo.png" />
+    <Resource Include="Resources\Images\uganda.png" />
+    <Resource Include="Resources\Images\uk.png" />
+    <Resource Include="Resources\Images\uruguay.png" />
+    <Resource Include="Resources\Images\usa.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeGenerator\CodeGenerator.csproj">
@@ -196,6 +199,7 @@
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
