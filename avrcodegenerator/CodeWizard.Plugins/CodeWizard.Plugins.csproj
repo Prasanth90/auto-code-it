@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3207E151-5738-42F1-8DE0-F0BAFB465C04}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PeripheralConfig</RootNamespace>
+    <AssemblyName>PeripheralConfig</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\AvrCodeGenerator\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MahApps.Metro, Version=0.10.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net40\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeGeneration\CodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CodeGeneratorBase.cs" />
+    <Compile Include="CodeGeneration\CodeGenerators\PortCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CodeGenerators\SpiCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CodeGenerators\UartCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CreateRawInput.cs" />
+    <Compile Include="CodeGeneration\FileNames.cs" />
+    <Compile Include="CodeWizardPlugins\IOPortPin.cs" />
+    <Compile Include="CodeWizardPlugins\IOPorts.cs" />
+    <Compile Include="CodeWizardPlugins\Spi.cs" />
+    <Compile Include="CodeWizardPlugins\Timer.cs" />
+    <Compile Include="CodeWizardPlugins\Usart.cs" />
+    <Compile Include="Constants\PortConstants.cs" />
+    <Compile Include="Constants\SpiConstants.cs" />
+    <Compile Include="Constants\UsartConstants.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Utils\CustomImagePathConvertor.cs" />
+    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="ViewModel\PeripheralTreeViewModel\McuPeripheralsViewModel.cs" />
+    <Compile Include="ViewModel\PeripheralTreeViewModel\PeripheralViewModel.cs" />
+    <Compile Include="ViewModel\Spi\SpiViewModel.cs" />
+    <Compile Include="ViewModel\Usart\UsartViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\CodeWizard\CodeWizard.xaml.cs">
+      <DependentUpon>CodeWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PeripheralDisplay\PeriPheralTreeViewDisplay.xaml.cs">
+      <DependentUpon>PeriPheralTreeViewDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Spi\SpiControl.xaml.cs">
+      <DependentUpon>SpiControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Timers\Timer.xaml.cs">
+      <DependentUpon>Timer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usart\Usart.xaml.cs">
+      <DependentUpon>Usart.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CodeWizard\CodeWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IOPort\IOPin\PinControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="ViewModel\IOPort\PortViewModel.cs" />
+    <Compile Include="View\IOPort\IOPin\PinControl.xaml.cs">
+      <DependentUpon>PinControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\IOPort\IOPin\PinViewModel.cs" />
+    <Page Include="View\IOPort\PortControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PeripheralDisplay\PeriPheralTreeViewDisplay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Spi\SpiControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Timers\Timer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Usart\Usart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="View\IOPort\PortControl.xaml.cs">
+      <DependentUpon>PortControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Key.snk" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\help.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Templates\usart_serial_init.c" />
+    <EmbeddedResource Include="Resources\Templates\usart_serial_echo_app.c" />
+    <EmbeddedResource Include="Resources\Templates\usart_serial_def.h" />
+    <EmbeddedResource Include="Resources\Templates\usart_interupt_init.c" />
+    <EmbeddedResource Include="Resources\Templates\usart_interupt_handler.c" />
+    <EmbeddedResource Include="Resources\Templates\spi_init.c" />
+    <EmbeddedResource Include="Resources\Templates\spi_def.h" />
+    <EmbeddedResource Include="Resources\Templates\PortConfig.c" />
+    <EmbeddedResource Include="Resources\Templates\main.c" />
+    <Resource Include="Resources\Images\argentina.png" />
+    <Content Include="Resources\Images\australia.gif" />
+    <Resource Include="Resources\Images\brazil.png" />
+    <Resource Include="Resources\Images\canada.png" />
+    <Resource Include="Resources\Images\china.png" />
+    <Resource Include="Resources\Images\Continent2.gif" />
+    <Resource Include="Resources\Images\continents.png" />
+    <Resource Include="Resources\Images\denmark.png" />
+    <Resource Include="Resources\Images\egypt.png" />
+    <Resource Include="Resources\Images\france.png" />
+    <Resource Include="Resources\Images\japan.png" />
+    <Resource Include="Resources\Images\mexico.png" />
+    <Resource Include="Resources\Images\pakistan.png" />
+    <Resource Include="Resources\Images\somalia.png" />
+    <Resource Include="Resources\Images\tree_logo.png" />
+    <Resource Include="Resources\Images\uganda.png" />
+    <Resource Include="Resources\Images\uk.png" />
+    <Resource Include="Resources\Images\uruguay.png" />
+    <Resource Include="Resources\Images\usa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{35E48402-19E9-4C01-93CC-5B578F4C7DA2}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginManager\PluginManager.csproj">
+      <Project>{3B135584-A8A4-496E-B0A3-170DF2C5E886}</Project>
+      <Name>PluginManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
