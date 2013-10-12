@@ -163,9 +163,6 @@
     <Resource Include="Resources\help.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images1\software_chips.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\argentina.png" />
     <Content Include="Images\australia.gif" />
     <Resource Include="Images\brazil.png" />
