@@ -209,10 +209,6 @@
     <Resource Include="Resources\Images\usa.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeGenerator\CodeGenerator.csproj">
-      <Project>{8F832AED-18DD-4649-9892-1A65229F1ABB}</Project>
-      <Name>CodeGenerator</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
       <Project>{35E48402-19E9-4C01-93CC-5B578F4C7DA2}</Project>
       <Name>DataModel</Name>
