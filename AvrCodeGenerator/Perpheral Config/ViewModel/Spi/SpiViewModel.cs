@@ -10,9 +10,9 @@ namespace PeripheralConfig.ViewModel.Spi
 {
     public class SpiViewModel : ViewModelBase
     {
-        private readonly SpiModel _spiModel;
+        private readonly DataModel.SPI.Spi _spiModel;
 
-        public SpiViewModel(SpiModel spiModel)
+        public SpiViewModel(DataModel.SPI.Spi spiModel)
         {
             _spiModel = spiModel;
             SpiModes = McuModel.PeripheralInfoProvider.GetSupportedSpiModes();

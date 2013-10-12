@@ -10,16 +10,18 @@ namespace CodeGenerator.CodeGenerators
 {
     public class UartCodeGenerator : CodeGeneratorBase
     {
-        public UartCodeGenerator(McuModel mcuModel, FilesContentStore filesContentStore) : base(mcuModel,filesContentStore)
-        {
+        private readonly UsartModel _usartModel;
 
+        public UartCodeGenerator( UsartModel usartModel, FilesContentStore filesContentStore) : base(filesContentStore)
+        {
+            _usartModel = usartModel;
         }
 
         public override CodeBlock GetCode()
         {
             var codeBlock = new CodeBlock("USART");
             var codeGenerationInfos = new List<CodeGenerationInfo>();
-            foreach (var usartModel in McuModel.UsartModels)
+            foreach (var usartModel in _usartModel.Usarts)
             {
                 var codegenerationinfo = new CodeGenerationInfo(usartModel.UsartName);
                 string hashDefineContents = GetUsartDefineTemplate();
@@ -51,17 +53,17 @@ namespace CodeGenerator.CodeGenerators
             return codeBlock;
         }
 
-        private string GetselectedDemoAppTemplate(UsartModel usartModel)
+        private string GetselectedDemoAppTemplate(Usart usartModel)
         {
             return string.Empty;
         }
 
-        private string GetFunctionCallsBlock(UsartModel usartModel)
+        private string GetFunctionCallsBlock(Usart usartModel)
         {
             return string.Format("{0}_init();", usartModel.UsartName);
         }
 
-        private string GetFunctionDeclarationBlock(UsartModel usartModel)
+        private string GetFunctionDeclarationBlock(Usart usartModel)
         {
             return string.Format("void {0}_init(void);", usartModel.UsartName);
         }
@@ -76,7 +78,7 @@ namespace CodeGenerator.CodeGenerators
             return FilesContentStore[FileNames.UsartSerialDefines];
         }
 
-        private Dictionary<string, string> GetReplacementDict_UsartDefines(UsartModel usartModel)
+        private Dictionary<string, string> GetReplacementDict_UsartDefines(Usart usartModel)
         {
             var usartSettings = usartModel.UsartSettings;
             var replacementDict = new Dictionary<string, string>()
@@ -90,7 +92,7 @@ namespace CodeGenerator.CodeGenerators
             return replacementDict;
         }
 
-        private Dictionary<string, string> GetReplacementDict_UsartInit(UsartModel usartModel)
+        private Dictionary<string, string> GetReplacementDict_UsartInit(Usart usartModel)
         {
             var replacementDict = new Dictionary<string, string>()
                                 {
@@ -100,7 +102,7 @@ namespace CodeGenerator.CodeGenerators
             return replacementDict;
         }
 
-        private string GetInteruptInitCode(UsartModel usartModel)
+        private string GetInteruptInitCode(Usart usartModel)
         {
             var interuptCode = new StringBuilder();
             string template = GetInteruptInitTemplate();
@@ -142,7 +144,7 @@ namespace CodeGenerator.CodeGenerators
             return FilesContentStore[FileNames.UsartInteruptHandler];
         }
 
-        private string GetInteruptHandlerCode(UsartModel usartModel)
+        private string GetInteruptHandlerCode(Usart usartModel)
         {
             var interuptHandlerCode = new StringBuilder();
             string template = GetInteruptHandlerTemplate();

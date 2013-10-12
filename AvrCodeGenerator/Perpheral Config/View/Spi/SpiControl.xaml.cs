@@ -9,7 +9,7 @@ namespace PeripheralConfig.View.Spi
     /// </summary>
     public partial class SpiControl : UserControl
     {
-        public SpiControl(SpiModel spiModel)
+        public SpiControl(DataModel.SPI.Spi spiModel)
         {
             InitializeComponent();
             this.DataContext = new SpiViewModel(spiModel);

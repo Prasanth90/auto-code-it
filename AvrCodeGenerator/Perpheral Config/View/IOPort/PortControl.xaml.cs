@@ -13,17 +13,17 @@ namespace PeripheralConfig.View.IOPort
     public partial class PortControl : UserControl
     {
 
-        public PortControl(PortViewModel portViewModel)
+        public PortControl()
         {
             InitializeComponent();
-            Port.Header = portViewModel.Port.PortName;
-            foreach (var pin in portViewModel.Port.Pins)
-            {
-                var pincontrolViewModel = new PinViewModel(pin);
-                var pincontrol = new PinControl(pincontrolViewModel);
-                DockPanel.SetDock(pincontrol, Dock.Top);
-                PinsContainer.Children.Add(pincontrol);
-            }
+            //Port.Header = portViewModel.Port.PortName;
+            //foreach (var pin in portViewModel.Port.Pins)
+            //{
+            //    var pincontrolViewModel = new PinViewModel(pin);
+            //    var pincontrol = new PinControl(pincontrolViewModel);
+            //    DockPanel.SetDock(pincontrol, Dock.Top);
+            //    PinsContainer.Children.Add(pincontrol);
+            //}
         }
     }
 

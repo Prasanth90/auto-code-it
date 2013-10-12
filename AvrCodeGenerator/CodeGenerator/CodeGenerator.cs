@@ -1,37 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
-using CodeGenerator.CodeGeneratorUtils;
-using CodeGenerator.CodeGenerators;
 using CodeGenerator.Constants;
 using DataModel;
-using DataModel.UsarModel;
 
 namespace CodeGenerator
 {
     public class CodeGenerator
     {
-        private readonly McuModel _mcuModel;
         private readonly FilesContentStore _filesContentStore = new FilesContentStore();
        
-        public CodeGenerator(McuModel mcuModel )
+        public CodeGenerator()
         {
-            _mcuModel = mcuModel;
-             new CreateRawInput(_filesContentStore).LoadResourceFile();
+            new CreateRawInput(_filesContentStore).LoadResourceFile();
         }
 
         public string GetGeneratedCode()
         {
             List<CodeBlock> generatedCodes = new List<CodeBlock>();
-            List<ICodeGenerator> codeGenerators = new List<ICodeGenerator>
-                                                {
-                                                    new PortCodeGenerator(_mcuModel,_filesContentStore),
-                                                    new UartCodeGenerator(_mcuModel,_filesContentStore),
-                                                    new SpiCodeGenerator(_mcuModel,_filesContentStore)
-                                                };
-            foreach (var codeGenerator in codeGenerators)
+            var plugins = PluginManager.PluginManager.GeneralPlugins;
+            foreach (var plugin in plugins)
             {
-                generatedCodes.Add(codeGenerator.GetCode());
+                generatedCodes.Add(plugin.CodeGenerator().GetCode());
             }
             return GetCodeStream(generatedCodes);
         }

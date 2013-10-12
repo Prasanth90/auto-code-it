@@ -10,13 +10,18 @@ namespace CodeGenerator.CodeGenerators
 {
     public class PortCodeGenerator : CodeGeneratorBase
     {
-        public PortCodeGenerator(McuModel mcuModel, FilesContentStore filesContentStore) : base(mcuModel, filesContentStore) { }
+        private readonly IOPortModel _ioPortModel;
+
+        public PortCodeGenerator(IOPortModel ioPortModel, FilesContentStore filesContentStore) : base(filesContentStore)
+        {
+            _ioPortModel = ioPortModel;
+        }
 
         public override CodeBlock GetCode()
         {
             var codeBlock = new CodeBlock("IO Ports");
             var codeGenerationInfos = new List<CodeGenerationInfo>();
-            foreach (Port port in this.McuModel.IOPortModel.Ports)
+            foreach (Port port in _ioPortModel.Ports)
             {
                 var codegenerationinfo = new CodeGenerationInfo(port.PortName);
                 codegenerationinfo.CodeBlock.Append(string.Format("void {0}_init()", port.PortName));
@@ -100,7 +105,7 @@ namespace CodeGenerator.CodeGenerators
 
         private String GetPinConfigHashDefine(Port port, Pin pin)
         {
-            return CodeGeneratorUtils.CodeGeneratorUtils.GetHashDefine(string.Format("{0}_{1}",port.PortName, pin.PinName), string.Format("IOPORT_CREATE_PIN({0},{1})", port.PortName ,pin.PinNumber));
+            return Utils.Utils.GetHashDefine(string.Format("{0}_{1}",port.PortName, pin.PinName), string.Format("IOPORT_CREATE_PIN({0},{1})", port.PortName ,pin.PinNumber));
         }
 
         private string GetOutputConfigCode(Pin pin)

@@ -45,19 +45,19 @@ namespace PeripheralConfig.View.CodeWizard
 
         private void LoadControls()
         {
-            var ports = _mcuModel.IOPortModel.Ports;
-            foreach (Port port in ports)
-            {
-                _controlContainer.Add(port.PortName , new PortControl(new PortViewModel(port)));
-            }
-            foreach (UsartModel usartModel in _mcuModel.UsartModels)
-            {
-                _controlContainer.Add(usartModel.UsartName,new Usart.Usart(new UsartViewModel(usartModel)));
-            }
-            foreach (SpiModel spiModel in _mcuModel.SpiModels)
-            {
-                _controlContainer.Add(spiModel.SpiName , new SpiControl(spiModel));
-            }
+            //var ports = _mcuModel.IOPortModel.Ports;
+            //foreach (Port port in ports)
+            //{
+            //    _controlContainer.Add(port.PortName , new PortControl(new PortViewModel(port)));
+            //}
+            //foreach (UsartModel usartModel in _mcuModel.UsartModels)
+            //{
+            //    _controlContainer.Add(usartModel.UsartName,new Usart.Usart(new UsartViewModel(usartModel)));
+            //}
+            //foreach (SpiModel spiModel in _mcuModel.SpiModels)
+            //{
+            //    _controlContainer.Add(spiModel.SpiName , new SpiControl(spiModel));
+            //}
         }
 
         public McuPeripheralsViewModel McuPeripheralsViewModel
@@ -150,7 +150,7 @@ namespace PeripheralConfig.View.CodeWizard
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var codegen = new CodeGenerator.CodeGenerator(this._mcuModel);
+            var codegen = new CodeGenerator.CodeGenerator();
             string generatedCode =  codegen.GetGeneratedCode();
             using (var streamWriter = new StreamWriter(@"D:\testt.txt"))
             {

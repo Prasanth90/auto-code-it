@@ -14,5 +14,10 @@ namespace CodeGenerator.Utils
               fileContents =  fileContents.Replace(replacement.Key, replacement.Value);
             }
         }
+
+	    public static String GetHashDefine(string symbol, string value)
+	    {
+	        return String.Format("#define {0} {1}", symbol, value);
+	    }
 	}
 }

@@ -50,6 +50,7 @@
       <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net40\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -68,7 +69,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeWizardPlugins\IOPort.cs" />
+    <Compile Include="CodeWizardPlugins\IOPortPin.cs" />
+    <Compile Include="CodeWizardPlugins\IOPorts.cs" />
     <Compile Include="CodeWizardPlugins\Spi.cs" />
     <Compile Include="CodeWizardPlugins\Timer.cs" />
     <Compile Include="CodeWizardPlugins\Usart.cs" />
@@ -194,6 +196,10 @@
     <ProjectReference Include="..\DataModel\DataModel.csproj">
       <Project>{35E48402-19E9-4C01-93CC-5B578F4C7DA2}</Project>
       <Name>DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginManager\PluginManager.csproj">
+      <Project>{3B135584-A8A4-496E-B0A3-170DF2C5E886}</Project>
+      <Name>PluginManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

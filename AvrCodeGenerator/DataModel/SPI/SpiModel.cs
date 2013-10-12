@@ -1,13 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using DataModel.PortModel;
+using WpfApplication1;
 
 namespace DataModel.SPI
 {
     public class SpiModel
     {
-        public SpiModel(string spiName)
+
+        private ObservableCollection<Spi> _spis = GetSpiis();
+        public ObservableCollection<Spi> Spis
+        {
+            get { return _spis; }
+            set { _spis = value; }
+        }
+
+        private static ObservableCollection<Spi> GetSpiis()
+        {
+            var spilist = new ObservableCollection<Spi>();
+            var spis =  McuModel.PeripheralInfoProvider.GetSpis();
+            foreach (var spi in spis)
+            {
+                spilist.Add(new Spi(spi.Name));
+            }
+            return spilist;
+        }
+    }
+
+    public class Spi
+    {
+        public Spi(string spiName)
         {
             SpiName = spiName;
             SpiSettings = new SpiSettings();

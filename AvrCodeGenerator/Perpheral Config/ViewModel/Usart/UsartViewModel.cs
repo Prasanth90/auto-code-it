@@ -6,9 +6,9 @@ namespace PeripheralConfig.ViewModel.Usart
 {
     public class UsartViewModel : ViewModelBase
     {
-        private readonly UsartModel _usartModel;
+        private readonly DataModel.UsarModel.Usart _usartModel;
 
-        public UsartViewModel(UsartModel usartModel)
+        public UsartViewModel(DataModel.UsarModel.Usart usartModel)
         {
             _usartModel = usartModel;
             Modes = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedUsartModes());

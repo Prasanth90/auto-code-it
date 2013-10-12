@@ -7,17 +7,19 @@ namespace CodeGenerator.CodeGenerators
 {
     public class SpiCodeGenerator : CodeGeneratorBase
     {
-        public SpiCodeGenerator(McuModel mcuModel, FilesContentStore filesContentStore)
-            : base(mcuModel, filesContentStore)
-        {
+        private readonly SpiModel _spiModel;
 
+        public SpiCodeGenerator(SpiModel spiModel, FilesContentStore filesContentStore)
+            : base( filesContentStore)
+        {
+            _spiModel = spiModel;
         }
 
         public override CodeBlock GetCode()
         {
             var codeBlock = new CodeBlock("SPI");
             var codeGenerationInfos = new List<CodeGenerationInfo>();
-            foreach (var spiModel in McuModel.SpiModels)
+            foreach (var spiModel in _spiModel.Spis)
             {
                 var codegenerationinfo = new CodeGenerationInfo(spiModel.SpiName);
                 string hashDefineContents = GetSpiDefineTemplate();
@@ -41,12 +43,12 @@ namespace CodeGenerator.CodeGenerators
             return codeBlock;
         }
 
-        private string GetFunctionDeclarationBlock(SpiModel spiModel)
+        private string GetFunctionDeclarationBlock(Spi spiModel)
         {
             return string.Format("void {0}_init(void);", spiModel.SpiName);   
         }
 
-        private string GetFunctionCallsBlock(SpiModel spiModel)
+        private string GetFunctionCallsBlock(Spi spiModel)
         {
             return string.Format("{0}_init();", spiModel.SpiName);   
         }
@@ -62,7 +64,7 @@ namespace CodeGenerator.CodeGenerators
             return FilesContentStore[FileNames.SpiDefine];
         }
 
-        private Dictionary<string, string> GetReplacementDict_SPIDefines(SpiModel spiModel)
+        private Dictionary<string, string> GetReplacementDict_SPIDefines(Spi spiModel)
         {
             var spiSettings = spiModel.SpiSettings;
             var replacementDict = new Dictionary<string, string>()
@@ -85,12 +87,12 @@ namespace CodeGenerator.CodeGenerators
             return string.Empty;
         }
 
-        private Dictionary<string, string> GetReplacementDict_SpiInit(SpiModel spiModel)
+        private Dictionary<string, string> GetReplacementDict_SpiInit(Spi spiModel)
         {
             return GetReplacementDict_SPIDefines(spiModel);
         }
 
-        private string GetInteruptHandlerCode(SpiModel spiModel)
+        private string GetInteruptHandlerCode(Spi spiModel)
         {
             return string.Empty;
         }

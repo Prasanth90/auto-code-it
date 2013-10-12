@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using DataModel;
 
-namespace PeripheralConfig.CodeWizardPlugins
+namespace CodeGenerator
 {
-    public class IOPort : ICodeWizardPlugin
+    public  interface ICodeGenerator
     {
-        
+        CodeBlock GetCode();
     }
 }
