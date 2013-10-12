@@ -1,1 +1,0 @@
-﻿usart_set_$IntType$_interrupt_level($UsartName$_SERIAL_NAME,$InteruptLevel$);
