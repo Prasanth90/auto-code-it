@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using CodeGenerator;
-using CodeGenerator.Constants;
 using DataModel;
 using DataModel.SPI;
 using SpiConstants = PeripheralConfig.Constants.SpiConstants;

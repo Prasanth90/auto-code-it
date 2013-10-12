@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using CodeGenerator;
-using CodeGenerator.Constants;
 using DataModel;
 using MainFileConstants = PeripheralConfig.Constants.MainFileConstants;
 

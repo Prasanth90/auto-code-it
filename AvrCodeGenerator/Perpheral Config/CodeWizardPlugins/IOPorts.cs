@@ -16,6 +16,7 @@ namespace PeripheralConfig.CodeWizardPlugins
         public  Dictionary<string, UserControl> CreateUserControl(string name)
         {
             var portPinplugin = PluginManager.PluginManager.GetPlugins(CodeWizardPluginType.Reusable, CodeWizardPluginNames.PortPin);
+            _portPinPlugin = portPinplugin;
             var usercontrols = new Dictionary<string, UserControl>();
             var ioPortModel = new IOPortModel();
             foreach (var port in ioPortModel.Ports)

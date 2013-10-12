@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using CodeGenerator;
-using CodeGenerator.CodeGenerators;
 using DataModel;
 using DataModel.PortModel;
 using PeripheralConfig.View.IOPort.IOPin;

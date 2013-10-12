@@ -48,7 +48,7 @@ namespace PeripheralConfig.CodeGeneration
         private string ReadFileContent(string fileName)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "CodeGenerator.Resources." + fileName;
+            var resourceName = "PeripheralConfig.Resources.Templates" + fileName;
 
             using (var stream = assembly.GetManifestResourceStream(resourceName))
             {

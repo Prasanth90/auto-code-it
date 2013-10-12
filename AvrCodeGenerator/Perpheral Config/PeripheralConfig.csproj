@@ -179,15 +179,15 @@
     <Resource Include="Resources\help.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Resources\usart_serial_init.c" />
-    <EmbeddedResource Include="Resources\Resources\usart_serial_echo_app.c" />
-    <EmbeddedResource Include="Resources\Resources\usart_serial_def.h" />
-    <EmbeddedResource Include="Resources\Resources\usart_interupt_init.c" />
-    <EmbeddedResource Include="Resources\Resources\usart_interupt_handler.c" />
-    <EmbeddedResource Include="Resources\Resources\spi_init.c" />
-    <EmbeddedResource Include="Resources\Resources\spi_def.h" />
-    <EmbeddedResource Include="Resources\Resources\PortConfig.c" />
-    <EmbeddedResource Include="Resources\Resources\main.c" />
+    <EmbeddedResource Include="Resources\Templates\usart_serial_init.c" />
+    <EmbeddedResource Include="Resources\Templates\usart_serial_echo_app.c" />
+    <EmbeddedResource Include="Resources\Templates\usart_serial_def.h" />
+    <EmbeddedResource Include="Resources\Templates\usart_interupt_init.c" />
+    <EmbeddedResource Include="Resources\Templates\usart_interupt_handler.c" />
+    <EmbeddedResource Include="Resources\Templates\spi_init.c" />
+    <EmbeddedResource Include="Resources\Templates\spi_def.h" />
+    <EmbeddedResource Include="Resources\Templates\PortConfig.c" />
+    <EmbeddedResource Include="Resources\Templates\main.c" />
     <Resource Include="Resources\Images\argentina.png" />
     <Content Include="Resources\Images\australia.gif" />
     <Resource Include="Resources\Images\brazil.png" />

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CodeGenerator;
-using CodeGenerator.Constants;
 using DataModel;
 using DataModel.PortModel;
 
