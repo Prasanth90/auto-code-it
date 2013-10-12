@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvrCodeGenerator", "AvrCodeGenerator\AvrCodeGenerator.csproj", "{2786229A-7B08-49A5-A43C-5991196E5D60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeWizard.Plugins", "Perpheral Config\CodeWizard.Plugins.csproj", "{3207E151-5738-42F1-8DE0-F0BAFB465C04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeWizard.Plugins", "CodeWizard.Plugins\CodeWizard.Plugins.csproj", "{3207E151-5738-42F1-8DE0-F0BAFB465C04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{35E48402-19E9-4C01-93CC-5B578F4C7DA2}"
 EndProject
