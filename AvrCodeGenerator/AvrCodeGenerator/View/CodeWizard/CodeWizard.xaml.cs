@@ -1,24 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
 using System.IO;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
+using Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel;
 using DataModel;
-using DataModel.PortModel;
-using DataModel.SPI;
-using DataModel.UsarModel;
-using PeripheralConfig.View.IOPort;
-using PeripheralConfig.View.Spi;
-using PeripheralConfig.ViewModel.IOPort;
-using PeripheralConfig.ViewModel.PeripheralTreeViewModel;
-using PeripheralConfig.ViewModel.Spi;
-using PeripheralConfig.ViewModel.Usart;
 
-namespace PeripheralConfig.View.CodeWizard
+namespace Company.AvrCodeGenerator.View.CodeWizard
 {
     /// <summary>
     /// Interaction logic for CodeWizard.xaml
@@ -150,7 +138,7 @@ namespace PeripheralConfig.View.CodeWizard
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var codegen = new CodeGeneration.CodeGenerator();
+            var codegen = new PeripheralConfig.CodeGeneration.CodeGenerator();
             string generatedCode =  codegen.GetGeneratedCode();
             using (var streamWriter = new StreamWriter(@"D:\testt.txt"))
             {

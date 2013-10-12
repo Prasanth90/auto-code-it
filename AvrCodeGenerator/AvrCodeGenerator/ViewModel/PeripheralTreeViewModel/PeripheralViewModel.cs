@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Globalization;
 using DataModel.PeripheralInfo;
-using PeripheralConfig.View.CodeWizard;
 
-namespace PeripheralConfig.ViewModel.PeripheralTreeViewModel
+namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
 {
     public class PeripheralViewModel : INotifyPropertyChanged
     {

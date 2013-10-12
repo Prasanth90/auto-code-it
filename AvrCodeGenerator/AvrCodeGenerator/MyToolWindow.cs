@@ -6,9 +6,9 @@ using System.Data;
 using System.Windows;
 using System.Runtime.InteropServices;
 using System.Windows.Controls;
+using Company.AvrCodeGenerator.View.CodeWizard;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
-using PeripheralConfig.View.CodeWizard;
 
 namespace Company.AvrCodeGenerator
 {

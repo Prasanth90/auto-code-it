@@ -125,6 +125,14 @@
     <Compile Include="AvrCodeGeneratorPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PkgCmdID.cs" />
+    <Compile Include="ViewModel\PeripheralTreeViewModel\McuPeripheralsViewModel.cs" />
+    <Compile Include="ViewModel\PeripheralTreeViewModel\PeripheralViewModel.cs" />
+    <Compile Include="View\CodeWizard\CodeWizard.xaml.cs">
+      <DependentUpon>CodeWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PeripheralDisplay\PeriPheralTreeViewDisplay.xaml.cs">
+      <DependentUpon>PeriPheralTreeViewDisplay.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
@@ -167,6 +175,17 @@
       <Name>CodeWizard.Plugins</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\CodeWizard\CodeWizard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PeripheralDisplay\PeriPheralTreeViewDisplay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>

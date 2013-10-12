@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using MahApps.Metro.Controls;
+﻿using System.Windows.Controls;
 
-namespace PeripheralConfig.View.PeripheralDisplay
+namespace Company.AvrCodeGenerator.View.PeripheralDisplay
 {
     /// <summary>
     /// Interaction logic for PeriPheralTreeViewDisplay.xaml

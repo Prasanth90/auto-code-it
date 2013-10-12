@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using DataModel.PeripheralInfo;
 
-namespace PeripheralConfig.ViewModel.PeripheralTreeViewModel
+namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
 {
     public class McuPeripheralsViewModel
     {

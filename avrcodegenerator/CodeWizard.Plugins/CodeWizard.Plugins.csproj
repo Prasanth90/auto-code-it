@@ -87,17 +87,9 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utils\CustomImagePathConvertor.cs" />
     <Compile Include="Utils\Utils.cs" />
-    <Compile Include="ViewModel\PeripheralTreeViewModel\McuPeripheralsViewModel.cs" />
-    <Compile Include="ViewModel\PeripheralTreeViewModel\PeripheralViewModel.cs" />
     <Compile Include="ViewModel\Spi\SpiViewModel.cs" />
     <Compile Include="ViewModel\Usart\UsartViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\CodeWizard\CodeWizard.xaml.cs">
-      <DependentUpon>CodeWizard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PeripheralDisplay\PeriPheralTreeViewDisplay.xaml.cs">
-      <DependentUpon>PeriPheralTreeViewDisplay.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Spi\SpiControl.xaml.cs">
       <DependentUpon>SpiControl.xaml</DependentUpon>
     </Compile>
@@ -111,10 +103,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\CodeWizard\CodeWizard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\IOPort\IOPin\PinControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,10 +115,6 @@
     <Page Include="View\IOPort\PortControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PeripheralDisplay\PeriPheralTreeViewDisplay.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Spi\SpiControl.xaml">
       <Generator>MSBuild:Compile</Generator>
