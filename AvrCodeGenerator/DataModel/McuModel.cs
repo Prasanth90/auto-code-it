@@ -14,29 +14,6 @@ namespace DataModel
             PeripheralInfoProvider = new XmegaPeripheralInfoProvider(mcuName);
         }
 
-        //private ObservableCollection<SpiModel> GetSpiModels()
-        //{
-        //    var spiModels = new ObservableCollection<SpiModel>();
-        //    foreach (var spi in PeripheralInfoProvider.GetSpis())
-        //    {
-        //        spiModels.Add(new SpiModel(spi.Name));
-        //    }
-        //    return spiModels;
-        //}
-
-        //private ObservableCollection<UsartModel> GetUsartModels()
-        //{
-        //    var usarModels = new ObservableCollection<UsartModel>();
-        //    foreach (var usart in PeripheralInfoProvider.GetUsarts())
-        //    {
-        //        usarModels.Add(new UsartModel(usart.Name));
-        //    }
-        //    return usarModels;
-        //}
-
         public static XmegaPeripheralInfoProvider PeripheralInfoProvider { get; set; }
-        //public IOPortModel IOPortModel { get; set; }
-        //public ObservableCollection<UsartModel> UsartModels { get; set; }
-        //public ObservableCollection<SpiModel> SpiModels { get; set; } 
     }
 }
