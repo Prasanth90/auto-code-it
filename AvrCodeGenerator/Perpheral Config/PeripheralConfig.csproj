@@ -69,13 +69,24 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeGeneration\CodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CodeGeneratorBase.cs" />
+    <Compile Include="CodeGeneration\CodeGenerators\PortCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CodeGenerators\SpiCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CodeGenerators\UartCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CreateRawInput.cs" />
+    <Compile Include="CodeGeneration\FileNames.cs" />
     <Compile Include="CodeWizardPlugins\IOPortPin.cs" />
     <Compile Include="CodeWizardPlugins\IOPorts.cs" />
     <Compile Include="CodeWizardPlugins\Spi.cs" />
     <Compile Include="CodeWizardPlugins\Timer.cs" />
     <Compile Include="CodeWizardPlugins\Usart.cs" />
+    <Compile Include="Constants\PortConstants.cs" />
+    <Compile Include="Constants\SpiConstants.cs" />
+    <Compile Include="Constants\UsartConstants.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utils\CustomImagePathConvertor.cs" />
+    <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModel\PeripheralTreeViewModel\McuPeripheralsViewModel.cs" />
     <Compile Include="ViewModel\PeripheralTreeViewModel\PeripheralViewModel.cs" />
     <Compile Include="ViewModel\Spi\SpiViewModel.cs" />
@@ -168,6 +179,15 @@
     <Resource Include="Resources\help.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Resources\usart_serial_init.c" />
+    <EmbeddedResource Include="Resources\Resources\usart_serial_echo_app.c" />
+    <EmbeddedResource Include="Resources\Resources\usart_serial_def.h" />
+    <EmbeddedResource Include="Resources\Resources\usart_interupt_init.c" />
+    <EmbeddedResource Include="Resources\Resources\usart_interupt_handler.c" />
+    <EmbeddedResource Include="Resources\Resources\spi_init.c" />
+    <EmbeddedResource Include="Resources\Resources\spi_def.h" />
+    <EmbeddedResource Include="Resources\Resources\PortConfig.c" />
+    <EmbeddedResource Include="Resources\Resources\main.c" />
     <Resource Include="Resources\Images\argentina.png" />
     <Content Include="Resources\Images\australia.gif" />
     <Resource Include="Resources\Images\brazil.png" />

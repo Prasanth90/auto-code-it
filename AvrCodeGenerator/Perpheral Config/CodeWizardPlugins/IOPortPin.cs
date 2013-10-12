@@ -8,6 +8,9 @@ using DataModel;
 using DataModel.PortModel;
 using PeripheralConfig.View.IOPort.IOPin;
 using PeripheralConfig.ViewModel.IOPort.IOPin;
+using CreateRawInput = PeripheralConfig.CodeGeneration.CreateRawInput;
+using FilesContentStore = PeripheralConfig.CodeGeneration.FilesContentStore;
+using PortCodeGenerator = PeripheralConfig.CodeGeneration.CodeGenerators.PortCodeGenerator;
 
 namespace PeripheralConfig.CodeWizardPlugins
 {

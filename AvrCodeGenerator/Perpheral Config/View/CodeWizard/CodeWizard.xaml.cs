@@ -150,7 +150,7 @@ namespace PeripheralConfig.View.CodeWizard
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var codegen = new CodeGenerator.CodeGenerator();
+            var codegen = new CodeGeneration.CodeGenerator();
             string generatedCode =  codegen.GetGeneratedCode();
             using (var streamWriter = new StreamWriter(@"D:\testt.txt"))
             {

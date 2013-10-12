@@ -9,6 +9,9 @@ using CodeGenerator.CodeGenerators;
 using DataModel;
 using DataModel.SPI;
 using PeripheralConfig.View.Spi;
+using CreateRawInput = PeripheralConfig.CodeGeneration.CreateRawInput;
+using FilesContentStore = PeripheralConfig.CodeGeneration.FilesContentStore;
+using SpiCodeGenerator = PeripheralConfig.CodeGeneration.CodeGenerators.SpiCodeGenerator;
 
 namespace PeripheralConfig.CodeWizardPlugins
 {
