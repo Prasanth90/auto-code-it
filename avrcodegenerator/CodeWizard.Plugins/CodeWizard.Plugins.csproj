@@ -8,8 +8,8 @@
     <ProjectGuid>{3207E151-5738-42F1-8DE0-F0BAFB465C04}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PeripheralConfig</RootNamespace>
-    <AssemblyName>PeripheralConfig</AssemblyName>
+    <RootNamespace>CodeWizard.Plugins</RootNamespace>
+    <AssemblyName>CodeWizard.Plugins</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

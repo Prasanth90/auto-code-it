@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace DataModel.PeripheralInfo
+namespace CodeWizard.DataModel.PeripheralInfo
 {
     public class Peripheral : ObservableCollection<Peripheral>
     {

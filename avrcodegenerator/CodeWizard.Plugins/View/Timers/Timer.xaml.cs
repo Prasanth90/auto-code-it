@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace PeripheralConfig.View.Timers
+namespace CodeWizard.Plugins.View.Timers
 {
     /// <summary>
     /// Interaction logic for Timer.xaml

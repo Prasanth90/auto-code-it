@@ -1,4 +1,4 @@
-﻿namespace DataModel.PeripheralInfo
+﻿namespace CodeWizard.DataModel.PeripheralInfo
 {
     public static class PeripheralNames
     {

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 
-namespace PeripheralConfig.Utils
+namespace CodeWizard.Plugins.Utils
 {
     public class CustomImagePathConverter : IValueConverter
     {

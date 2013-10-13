@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PeripheralConfig.View.Spi.SpiControl"
+﻿<UserControl x:Class="CodeWizard.Plugins.View.Spi.SpiControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

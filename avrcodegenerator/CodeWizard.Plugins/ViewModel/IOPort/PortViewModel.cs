@@ -1,6 +1,6 @@
-﻿using DataModel.PortModel;
+﻿using CodeWizard.DataModel.PortModel;
 
-namespace PeripheralConfig.ViewModel.IOPort
+namespace CodeWizard.Plugins.ViewModel.IOPort
 {
     public class PortViewModel
     {

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
-using MainFileConstants = PeripheralConfig.Constants.MainFileConstants;
+using CodeWizard.DataModel.ICodeWizardPlugin;
+using CodeWizard.Plugins.Constants;
 
-namespace PeripheralConfig.CodeGeneration
+namespace CodeWizard.Plugins.CodeGeneration
 {
     public class CodeGenerator
     {
@@ -30,7 +29,7 @@ namespace PeripheralConfig.CodeGeneration
         {
             string mainCodeStream = _filesContentStore[FileNames.MainFileName];
             var replacementDict = GetReplacementDict_MainFile(generatedCodes);
-            global::PeripheralConfig.Utils.Utils.PerformReplacementInFileContents(replacementDict, ref mainCodeStream);
+            global::CodeWizard.Plugins.Utils.Utils.PerformReplacementInFileContents(replacementDict, ref mainCodeStream);
             return mainCodeStream;
         }
 

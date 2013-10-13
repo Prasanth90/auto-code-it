@@ -1,9 +1,7 @@
 ﻿using System.Text;
-using CodeGenerator;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.ICodeWizardPlugin;
 
-namespace PeripheralConfig.CodeGeneration
+namespace CodeWizard.Plugins.CodeGeneration
 {
     public abstract class CodeGeneratorBase : ICodeGenerator
     {

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:utils2="clr-namespace:PeripheralConfig.Utils;assembly=PeripheralConfig"
+             xmlns:utils3="clr-namespace:CodeWizard.Plugins.Utils;assembly=CodeWizard.Plugins"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
     <UserControl.Resources>
@@ -17,7 +17,7 @@
                 <ResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <utils2:CustomImagePathConverter x:Key="CustomImagePathConvertor"/>
+            <utils3:CustomImagePathConverter x:Key="CustomImagePathConvertor"/>
         </ResourceDictionary>
     
     

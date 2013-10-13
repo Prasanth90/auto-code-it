@@ -4,39 +4,51 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using CodeWizard.DataModel;
+using CodeWizard.DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.PeripheralInfo;
+using CodeWizard.PluginManager;
+using CodeWizard.Plugins.CodeGeneration;
 using Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
-using DataModel.PeripheralInfo;
 
 namespace Company.AvrCodeGenerator.View.CodeWizard
 {
     /// <summary>
-    /// Interaction logic for CodeWizard.xaml
+    /// Interaction logic for CodeWizardControl.xaml
     /// </summary>
-    public partial class CodeWizard : UserControl , INotifyPropertyChanged
+    public partial class CodeWizardControl : UserControl , INotifyPropertyChanged
     {
-        private readonly McuModel _mcuModel;
+        private McuModel _mcuModel;
         private McuPeripheralsViewModel _mcuPeripheralsViewModel;
+        private List<ICodeWizardPlugin> _plugins;
+        private readonly Dictionary<string,UserControl> _controlContainer =new Dictionary<string, UserControl>();
 
-        private Dictionary<string,UserControl> _controlContainer =new Dictionary<string, UserControl>();
-
-        public CodeWizard()
+        public CodeWizardControl()
         {
             InitializeComponent();
+            InitilaizePlugins();
+            InitilaizePeripheralView();
+            this.DataContext = this;
+        }
+
+        private void InitilaizePlugins()
+        {
             _mcuModel = new McuModel("xmega128a1");
-            var pluginManager = new PluginManager.PluginManager();
+            var pluginManager = new PluginManager();
+            _plugins = PluginManager.GeneralPlugins;
+        }
+
+        private void InitilaizePeripheralView()
+        {
             ObservableCollection<Peripheral> peripheralsInfo = GetPeripheralsInfo();
             McuPeripheralsViewModel = new McuPeripheralsViewModel(peripheralsInfo, TreeViewSelectionChanged);
-            this.DataContext = this;
-            LoadControls();
         }
 
         private ObservableCollection<Peripheral> GetPeripheralsInfo()
         {
-            List<ICodeWizardPlugin> plugins = PluginManager.PluginManager.GeneralPlugins;
+            
             ObservableCollection<Peripheral> peripherals = new ObservableCollection<Peripheral>();
-            foreach (var codeWizardPlugin in plugins)
+            foreach (var codeWizardPlugin in _plugins)
             {
                 var peripheral = GetPeripheral(codeWizardPlugin);
                 if (peripheral != null)
@@ -60,34 +72,19 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
         private ObservableCollection<Peripheral> GetChildItems(ICodeWizardPlugin codeWizardPlugin)
         {
             var peripherals = new ObservableCollection<Peripheral>();
-            var cildItems = codeWizardPlugin.CreateUserControl(codeWizardPlugin.GetPluginInfo().Name).Keys;
-            foreach (var cildItem in cildItems)
+            Dictionary<string, UserControl> controls = codeWizardPlugin.CreateUserControl(codeWizardPlugin.GetPluginInfo().Name);
+            foreach (KeyValuePair<string, UserControl> keyValuePair in controls)
             {
                 peripherals.Add(new Peripheral()
-                    {
-                        Icon = string.Empty,
-                        Name = cildItem
-                    });
-            }
+                {
+                    Icon = string.Empty,
+                    Name = keyValuePair.Key
+                });
+                _controlContainer.Add(keyValuePair.Key, keyValuePair.Value);
+            }   
             return peripherals;
         }
 
-        private void LoadControls()
-        {
-            //var ports = _mcuModel.IOPortModel.Ports;
-            //foreach (Port port in ports)
-            //{
-            //    _controlContainer.Add(port.PortName , new PortControl(new PortViewModel(port)));
-            //}
-            //foreach (UsartModel usartModel in _mcuModel.UsartModels)
-            //{
-            //    _controlContainer.Add(usartModel.UsartName,new Usart.Usart(new UsartViewModel(usartModel)));
-            //}
-            //foreach (SpiModel spiModel in _mcuModel.SpiModels)
-            //{
-            //    _controlContainer.Add(spiModel.SpiName , new SpiControl(spiModel));
-            //}
-        }
 
         public McuPeripheralsViewModel McuPeripheralsViewModel
         {
@@ -137,7 +134,7 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var codegen = new PeripheralConfig.CodeGeneration.CodeGenerator();
+            var codegen = new CodeGenerator();
             string generatedCode =  codegen.GetGeneratedCode();
             using (var streamWriter = new StreamWriter(@"D:\testt.txt"))
             {

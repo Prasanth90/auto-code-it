@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using CodeGenerator;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
-using DataModel.PortModel;
-using PeripheralConfig.View.IOPort.IOPin;
-using PeripheralConfig.ViewModel.IOPort.IOPin;
-using CreateRawInput = PeripheralConfig.CodeGeneration.CreateRawInput;
-using FilesContentStore = PeripheralConfig.CodeGeneration.FilesContentStore;
-using PortCodeGenerator = PeripheralConfig.CodeGeneration.CodeGenerators.PortCodeGenerator;
+using CodeWizard.DataModel;
+using CodeWizard.DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.PortModel;
+using CodeWizard.Plugins.CodeGeneration;
+using CodeWizard.Plugins.CodeGeneration.CodeGenerators;
+using CodeWizard.Plugins.View.IOPort.IOPin;
+using CodeWizard.Plugins.ViewModel.IOPort.IOPin;
 
-namespace PeripheralConfig.CodeWizardPlugins
+namespace CodeWizard.Plugins.CodeWizardPlugins
 {
     [Export(typeof(ICodeWizardPlugin))]
     [ExportMetadata(CodeWizardPluginType.Reusable, CodeWizardPluginNames.PortPin)]

@@ -127,8 +127,8 @@
     <Compile Include="PkgCmdID.cs" />
     <Compile Include="ViewModel\PeripheralTreeViewModel\McuPeripheralsViewModel.cs" />
     <Compile Include="ViewModel\PeripheralTreeViewModel\PeripheralViewModel.cs" />
-    <Compile Include="View\CodeWizard\CodeWizard.xaml.cs">
-      <DependentUpon>CodeWizard.xaml</DependentUpon>
+    <Compile Include="View\CodeWizard\CodeWizardControl.xaml.cs">
+      <DependentUpon>CodeWizardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PeripheralDisplay\PeriPheralTreeViewDisplay.xaml.cs">
       <DependentUpon>PeriPheralTreeViewDisplay.xaml</DependentUpon>
@@ -180,7 +180,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\CodeWizard\CodeWizard.xaml">
+    <Page Include="View\CodeWizard\CodeWizardControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using CodeGenerator;
 
-namespace PeripheralConfig.CodeGeneration
+namespace CodeWizard.Plugins.CodeGeneration
 {
 
     /// <summary>
@@ -48,7 +47,7 @@ namespace PeripheralConfig.CodeGeneration
         private string ReadFileContent(string fileName)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "PeripheralConfig.Resources.Templates" + fileName;
+            var resourceName = "CodeWizard.Plugins.Resources.Templates." + fileName;
 
             using (var stream = assembly.GetManifestResourceStream(resourceName))
             {

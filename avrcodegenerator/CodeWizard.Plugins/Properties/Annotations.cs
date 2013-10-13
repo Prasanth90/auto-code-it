@@ -15,9 +15,8 @@
  */
 
 using System;
-using System.ComponentModel;
 
-namespace PeripheralConfig.Annotations
+namespace CodeWizard.Plugins.Properties
 {
   /// <summary>
   /// Indicates that marked element should be localized or not.

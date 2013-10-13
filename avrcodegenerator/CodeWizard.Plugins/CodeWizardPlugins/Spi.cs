@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using CodeGenerator;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
-using DataModel.SPI;
-using PeripheralConfig.View.Spi;
-using CreateRawInput = PeripheralConfig.CodeGeneration.CreateRawInput;
-using FilesContentStore = PeripheralConfig.CodeGeneration.FilesContentStore;
-using SpiCodeGenerator = PeripheralConfig.CodeGeneration.CodeGenerators.SpiCodeGenerator;
+using CodeWizard.DataModel;
+using CodeWizard.DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.SPI;
+using CodeWizard.Plugins.CodeGeneration;
+using CodeWizard.Plugins.CodeGeneration.CodeGenerators;
+using CodeWizard.Plugins.View.Spi;
 
-namespace PeripheralConfig.CodeWizardPlugins
+namespace CodeWizard.Plugins.CodeWizardPlugins
 {
     [Export(typeof(ICodeWizardPlugin))]
     [ExportMetadata(CodeWizardPluginType.General, CodeWizardPluginNames.Spi)]

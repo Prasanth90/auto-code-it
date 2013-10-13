@@ -1,14 +1,13 @@
 ﻿using System.Collections.ObjectModel;
-using DataModel;
-using DataModel.UsarModel;
+using CodeWizard.DataModel;
 
-namespace PeripheralConfig.ViewModel.Usart
+namespace CodeWizard.Plugins.ViewModel.Usart
 {
     public class UsartViewModel : ViewModelBase
     {
-        private readonly DataModel.UsarModel.Usart _usartModel;
+        private readonly CodeWizard.DataModel.UsarModel.Usart _usartModel;
 
-        public UsartViewModel(DataModel.UsarModel.Usart usartModel)
+        public UsartViewModel(CodeWizard.DataModel.UsarModel.Usart usartModel)
         {
             _usartModel = usartModel;
             Modes = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedUsartModes());

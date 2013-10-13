@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Media;
 
-namespace DataModel.PeripheralInfo
+namespace CodeWizard.DataModel.PeripheralInfo
 {
     public class PeripheralInfo : ObservableCollection<PeripheralInfo>
     {

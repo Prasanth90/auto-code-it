@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using DataModel;
-using DataModel.SPI;
+using CodeWizard.DataModel;
 
-namespace PeripheralConfig.ViewModel.Spi
+namespace CodeWizard.Plugins.ViewModel.Spi
 {
     public class SpiViewModel : ViewModelBase
     {
-        private readonly DataModel.SPI.Spi _spiModel;
+        private readonly CodeWizard.DataModel.SPI.Spi _spiModel;
 
-        public SpiViewModel(DataModel.SPI.Spi spiModel)
+        public SpiViewModel(CodeWizard.DataModel.SPI.Spi spiModel)
         {
             _spiModel = spiModel;
             SpiModes = McuModel.PeripheralInfoProvider.GetSupportedSpiModes();

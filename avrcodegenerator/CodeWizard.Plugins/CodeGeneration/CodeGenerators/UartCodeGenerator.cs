@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
-using DataModel.UsarModel;
-using UsartConstants = PeripheralConfig.Constants.UsartConstants;
+using CodeWizard.DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.UsarModel;
+using CodeWizard.Plugins.Constants;
 
-namespace PeripheralConfig.CodeGeneration.CodeGenerators
+namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
 {
     public class UartCodeGenerator : CodeGeneratorBase
     {

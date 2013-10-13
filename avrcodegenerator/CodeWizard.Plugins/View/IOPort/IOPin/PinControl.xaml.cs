@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using PeripheralConfig.ViewModel.IOPort.IOPin;
+using CodeWizard.Plugins.ViewModel.IOPort.IOPin;
 
-namespace PeripheralConfig.View.IOPort.IOPin
+namespace CodeWizard.Plugins.View.IOPort.IOPin
 {
     /// <summary>
     /// Interaction logic for IOPortConfigControl.xaml

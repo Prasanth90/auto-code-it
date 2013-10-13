@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PeripheralConfig.CodeGeneration
+namespace CodeWizard.Plugins.CodeGeneration
 {
     public class FileNames
     {

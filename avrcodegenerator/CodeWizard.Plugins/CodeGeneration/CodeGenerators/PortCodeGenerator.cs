@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
-using DataModel.PortModel;
+using CodeWizard.DataModel;
+using CodeWizard.DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.PortModel;
 
-namespace PeripheralConfig.CodeGeneration.CodeGenerators
+namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
 {
     public class PortCodeGenerator : CodeGeneratorBase
     {

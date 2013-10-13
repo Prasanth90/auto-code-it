@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using DataModel.PeripheralInfo;
+using CodeWizard.DataModel.PeripheralInfo;
 
-namespace DataModel.DataProvider.PeripheralInfoProviders
+namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
 {
     public interface IPeripheralInfoProvider
     {

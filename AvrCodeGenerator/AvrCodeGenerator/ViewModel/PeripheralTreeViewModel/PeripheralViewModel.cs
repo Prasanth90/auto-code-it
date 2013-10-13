@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using DataModel.PeripheralInfo;
+using CodeWizard.DataModel.PeripheralInfo;
 
 namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
 {

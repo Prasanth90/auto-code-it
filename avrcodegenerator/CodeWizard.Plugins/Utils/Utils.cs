@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PeripheralConfig.Utils
+namespace CodeWizard.Plugins.Utils
 {
 	public static class Utils
 	{

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
-using DataModel.SPI;
-using SpiConstants = PeripheralConfig.Constants.SpiConstants;
+using CodeWizard.DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.SPI;
+using CodeWizard.Plugins.Constants;
 
-namespace PeripheralConfig.CodeGeneration.CodeGenerators
+namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
 {
     public class SpiCodeGenerator : CodeGeneratorBase
     {

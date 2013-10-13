@@ -8,8 +8,8 @@
     <ProjectGuid>{35E48402-19E9-4C01-93CC-5B578F4C7DA2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataModel</RootNamespace>
-    <AssemblyName>DataModel</AssemblyName>
+    <RootNamespace>CodeWizard.DataModel</RootNamespace>
+    <AssemblyName>CodeWizard.DataModel</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

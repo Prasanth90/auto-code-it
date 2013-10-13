@@ -1,11 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using DataModel.DataProvider;
-using DataModel.DataProvider.PeripheralInfoProviders;
-using DataModel.PortModel;
-using DataModel.SPI;
-using DataModel.UsarModel;
+﻿using CodeWizard.DataModel.DataProvider.PeripheralInfoProviders;
 
-namespace DataModel
+namespace CodeWizard.DataModel
 {
     public class McuModel
     {

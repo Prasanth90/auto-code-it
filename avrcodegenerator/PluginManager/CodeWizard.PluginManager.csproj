@@ -8,8 +8,8 @@
     <ProjectGuid>{3B135584-A8A4-496E-B0A3-170DF2C5E886}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PluginManager</RootNamespace>
-    <AssemblyName>PluginManager</AssemblyName>
+    <RootNamespace>CodeWizard.PluginManager</RootNamespace>
+    <AssemblyName>CodeWizard.PluginManager</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,7 +45,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataModel\DataModel.csproj">
+    <ProjectReference Include="..\DataModel\CodeWizard.DataModel.csproj">
       <Project>{35E48402-19E9-4C01-93CC-5B578F4C7DA2}</Project>
       <Name>DataModel</Name>
     </ProjectReference>

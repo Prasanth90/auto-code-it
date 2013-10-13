@@ -5,12 +5,10 @@ using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using DataModel;
-using DataModel.DataProvider.PeripheralInfoProviders;
-using DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel;
+using CodeWizard.DataModel.ICodeWizardPlugin;
 
-namespace PluginManager
+namespace CodeWizard.PluginManager
 {
     public class PluginManager
     {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
-using CodeGenerator;
 
-namespace DataModel.ICodeWizardPlugin
+namespace CodeWizard.DataModel.ICodeWizardPlugin
 {
     public interface ICodeWizardPlugin
     {

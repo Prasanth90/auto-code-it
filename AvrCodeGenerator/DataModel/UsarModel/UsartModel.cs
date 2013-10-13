@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using DataModel.SPI;
+﻿using System.Collections.ObjectModel;
 
-namespace DataModel.UsarModel
+namespace CodeWizard.DataModel.UsarModel
 {
 
     public class UsartModel

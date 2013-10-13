@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using CodeGenerator;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
-using DataModel.UsarModel;
-using CreateRawInput = PeripheralConfig.CodeGeneration.CreateRawInput;
-using FilesContentStore = PeripheralConfig.CodeGeneration.FilesContentStore;
-using UartCodeGenerator = PeripheralConfig.CodeGeneration.CodeGenerators.UartCodeGenerator;
+using CodeWizard.DataModel;
+using CodeWizard.DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.UsarModel;
+using CodeWizard.Plugins.CodeGeneration;
+using CodeWizard.Plugins.CodeGeneration.CodeGenerators;
+using CodeWizard.Plugins.View.Usart;
 
-namespace PeripheralConfig.CodeWizardPlugins
+namespace CodeWizard.Plugins.CodeWizardPlugins
 {
     [Export(typeof(ICodeWizardPlugin))]
     [ExportMetadata(CodeWizardPluginType.General, CodeWizardPluginNames.Usart)]
@@ -32,7 +31,7 @@ namespace PeripheralConfig.CodeWizardPlugins
             _usartModel = usartModel;
             foreach (var usart in usartModel.Usarts)
             {
-                userControls.Add(usart.UsartName, new View.Usart.UsartControl(usart));
+                userControls.Add(usart.UsartName, new UsartControl(usart));
             }
             return userControls;
         }

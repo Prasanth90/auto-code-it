@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 
-namespace PeripheralConfig.ViewModel
+namespace CodeWizard.Plugins.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

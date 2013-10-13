@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using CodeGenerator;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
-using DataModel.PortModel;
-using PeripheralConfig.View.IOPort;
+using CodeWizard.DataModel;
+using CodeWizard.DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.PortModel;
+using CodeWizard.Plugins.View.IOPort;
 
-namespace PeripheralConfig.CodeWizardPlugins
+namespace CodeWizard.Plugins.CodeWizardPlugins
 {
     [Export(typeof(ICodeWizardPlugin))]
     [ExportMetadata(CodeWizardPluginType.General, CodeWizardPluginNames.Port)]
@@ -32,11 +31,13 @@ namespace PeripheralConfig.CodeWizardPlugins
             foreach (var port in ioPortModel.Ports)
             {
                 var portControl = new PortControl();
+                portControl.Port.Header = port.PortName;
                 foreach (var pin in port.Pins)
                 {
                     var pinControl =portPinplugin.CreateUserControl(string.Format("{0},{1}", port.PortName, pin.PinName));
                     if (pinControl != null)
                     {
+                        DockPanel.SetDock(pinControl[pin.PinName], Dock.Top);
                         portControl.PinsContainer.Children.Add(pinControl[pin.PinName]);
                     }
                 }

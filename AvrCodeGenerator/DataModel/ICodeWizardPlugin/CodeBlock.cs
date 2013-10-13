@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace DataModel.ICodeWizardPlugin
+namespace CodeWizard.DataModel.ICodeWizardPlugin
 {
     public class CodeBlock
     {

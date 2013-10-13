@@ -1,4 +1,4 @@
-﻿namespace PeripheralConfig.Constants
+﻿namespace CodeWizard.Plugins.Constants
 {
 	public class SpiConstants
 	{

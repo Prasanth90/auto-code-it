@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DataModel.DataProvider.PeripheralInfoProviders;
+﻿using CodeWizard.DataModel.DataProvider.PeripheralInfoProviders;
 
-namespace DataModel.DataProvider
+namespace CodeWizard.DataModel.DataProvider
 {
     public class PeripheralInfoProvider
     {

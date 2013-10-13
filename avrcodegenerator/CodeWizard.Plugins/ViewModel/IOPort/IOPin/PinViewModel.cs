@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Collections.ObjectModel;
-using DataModel;
-using DataModel.PortModel;
+using CodeWizard.DataModel;
+using CodeWizard.DataModel.PortModel;
 
-namespace PeripheralConfig.ViewModel.IOPort.IOPin
+namespace CodeWizard.Plugins.ViewModel.IOPort.IOPin
 {
     public class PinViewModel : INotifyPropertyChanged
     {

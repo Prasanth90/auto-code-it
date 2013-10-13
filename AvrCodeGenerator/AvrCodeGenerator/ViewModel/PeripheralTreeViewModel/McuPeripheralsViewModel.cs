@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using DataModel.PeripheralInfo;
+using CodeWizard.DataModel.PeripheralInfo;
 
 namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
 {

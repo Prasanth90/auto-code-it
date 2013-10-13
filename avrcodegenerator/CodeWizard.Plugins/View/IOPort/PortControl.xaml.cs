@@ -1,9 +1,6 @@
 ﻿using System.Windows.Controls;
-using PeripheralConfig.View.IOPort.IOPin;
-using PeripheralConfig.ViewModel.IOPort;
-using PeripheralConfig.ViewModel.IOPort.IOPin;
 
-namespace PeripheralConfig.View.IOPort
+namespace CodeWizard.Plugins.View.IOPort
 {
 
 

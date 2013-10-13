@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Controls;
-using CodeGenerator;
-using DataModel;
-using DataModel.ICodeWizardPlugin;
+using CodeWizard.DataModel.ICodeWizardPlugin;
 
-namespace PeripheralConfig.CodeWizardPlugins
+namespace CodeWizard.Plugins.CodeWizardPlugins
 {
     class Timer : ICodeWizardPlugin
     {

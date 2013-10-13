@@ -1,4 +1,4 @@
-﻿namespace DataModel.UsarModel
+﻿namespace CodeWizard.DataModel.UsarModel
 {
     public class UsartSettings
     {

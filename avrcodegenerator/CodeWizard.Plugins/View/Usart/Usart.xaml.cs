@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
-using DataModel.UsarModel;
-using PeripheralConfig.ViewModel.Usart;
+using CodeWizard.Plugins.ViewModel.Usart;
 
-namespace PeripheralConfig.View.Usart
+namespace CodeWizard.Plugins.View.Usart
 {
     /// <summary>
     /// Interaction logic for Usart.xaml
     /// </summary>
     public partial class UsartControl : UserControl
     {
-        public UsartControl(DataModel.UsarModel.Usart usartModel)
+        public UsartControl(CodeWizard.DataModel.UsarModel.Usart usartModel)
         {
             InitializeComponent();
             this.DataContext = new UsartViewModel(usartModel);
