@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using CodeGenerator;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
 using DataModel.UsarModel;
 using CreateRawInput = PeripheralConfig.CodeGeneration.CreateRawInput;
 using FilesContentStore = PeripheralConfig.CodeGeneration.FilesContentStore;
@@ -15,6 +16,15 @@ namespace PeripheralConfig.CodeWizardPlugins
     public class Usart : ICodeWizardPlugin
     {
         private UsartModel _usartModel;
+        public PluginInfo GetPluginInfo()
+        {
+            return new PluginInfo()
+            {
+                Icon = "somalia",
+                Name = CodeWizardPluginNames.Usart
+            };
+        }
+
         public Dictionary<string, UserControl> CreateUserControl(string name)
         {
             var userControls = new Dictionary<string, UserControl>();

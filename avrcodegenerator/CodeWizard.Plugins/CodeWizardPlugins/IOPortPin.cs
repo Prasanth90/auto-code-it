@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using CodeGenerator;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
 using DataModel.PortModel;
 using PeripheralConfig.View.IOPort.IOPin;
 using PeripheralConfig.ViewModel.IOPort.IOPin;
@@ -21,6 +22,15 @@ namespace PeripheralConfig.CodeWizardPlugins
         public IOPortPin()
         {
             _ioPortModel = new IOPortModel();
+        }
+
+        public PluginInfo GetPluginInfo()
+        {
+            return new PluginInfo()
+                {
+                    Icon = "usa",
+                    Name = CodeWizardPluginNames.PortPin
+                };
         }
 
         public Dictionary<string, UserControl> CreateUserControl(string name)

@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using CodeGenerator;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
 using DataModel.SPI;
 using PeripheralConfig.View.Spi;
 using CreateRawInput = PeripheralConfig.CodeGeneration.CreateRawInput;
@@ -16,6 +17,15 @@ namespace PeripheralConfig.CodeWizardPlugins
     public class Spi : ICodeWizardPlugin
     {
         private SpiModel _spiModel;
+        public PluginInfo GetPluginInfo()
+        {
+            return new PluginInfo()
+            {
+                Icon = "brazil",
+                Name = CodeWizardPluginNames.Spi
+            };
+        }
+
         public Dictionary<string, UserControl> CreateUserControl(string name)
         {
             var userControls = new Dictionary<string, UserControl>();

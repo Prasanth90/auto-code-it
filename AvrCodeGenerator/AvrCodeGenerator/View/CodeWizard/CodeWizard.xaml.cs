@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
+using DataModel.PeripheralInfo;
 
 namespace Company.AvrCodeGenerator.View.CodeWizard
 {
@@ -22,13 +25,50 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
         {
             InitializeComponent();
             _mcuModel = new McuModel("xmega128a1");
-            var peripheralsInfo = McuModel.PeripheralInfoProvider.PeripheralsInfo;
+            ObservableCollection<Peripheral> peripheralsInfo = GetPeripheralsInfo();
             McuPeripheralsViewModel = new McuPeripheralsViewModel(peripheralsInfo, TreeViewSelectionChanged);
             this.DataContext = this;
             LoadControls();
-            
-            //var control = new Usart.Usart(new UsartViewModel(_mcuModel.UsartModels.FirstOrDefault()));
-            //HostControl.Children.Add(control);
+        }
+
+        private ObservableCollection<Peripheral> GetPeripheralsInfo()
+        {
+            List<ICodeWizardPlugin> plugins = PluginManager.PluginManager.GeneralPlugins;
+            ObservableCollection<Peripheral> peripherals = new ObservableCollection<Peripheral>();
+            foreach (var codeWizardPlugin in plugins)
+            {
+                var peripheral = GetPeripheral(codeWizardPlugin);
+                if (peripheral != null)
+                {
+                    peripherals.Add(peripheral);
+                }
+            }
+            return peripherals;
+        }
+
+        private Peripheral GetPeripheral(ICodeWizardPlugin codeWizardPlugin)
+        {
+            return new Peripheral()
+                {
+                    Icon = codeWizardPlugin.GetPluginInfo().Icon,
+                    Name = codeWizardPlugin.GetPluginInfo().Name,
+                    ChildPeripherals = GetChildItems(codeWizardPlugin)
+                };
+        }
+
+        private ObservableCollection<Peripheral> GetChildItems(ICodeWizardPlugin codeWizardPlugin)
+        {
+            var peripherals = new ObservableCollection<Peripheral>();
+            var cildItems = codeWizardPlugin.CreateUserControl(codeWizardPlugin.GetPluginInfo().Name).Keys;
+            foreach (var cildItem in cildItems)
+            {
+                peripherals.Add(new Peripheral()
+                    {
+                        Icon = string.Empty,
+                        Name = cildItem
+                    });
+            }
+            return peripherals;
         }
 
         private void LoadControls()
@@ -71,8 +111,6 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
         {
             HostControl.Children.Clear();
             HostControl.Children.Add(control);
-            //PageTransitionControl.ShowPage(control);
-           // transitioning.Content = control;
         }
 
         private void TreeViewSelectionChanged(PeripheralViewModel peripheralViewModel)
@@ -86,46 +124,6 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
             }
         }
 
-        //private UIElement GetControl(string parentPeripheralName, string childPeripheralName)
-        //{
-        //    switch (parentPeripheralName)
-        //    {
-        //        case PeripheralNames.Port:
-        //            var ports = _mcuModel.IOPortModel.Ports;
-        //            foreach (Port port in ports)
-        //            {
-        //                if (port.PortName.Equals(childPeripheralName))
-        //                {
-        //                    return new PortControl(new PortViewModel(port));
-        //                }
-        //            }
-        //            break;
-
-        //       case PeripheralNames.Spis:
-        //            var spis = _mcuModel.SpiModels;
-        //            foreach (SpiModel spi in spis)
-        //            {
-        //                if (spi.SpiName.Equals(childPeripheralName))
-        //                {
-        //                    return new SpiControl(spi);
-        //                }
-        //            }
-        //            break;
-
-        //       case PeripheralNames.Usarts:
-        //            var usarts = _mcuModel.UsartModels;
-        //            foreach (UsartModel usart in usarts)
-        //            {
-        //                if (usart.UsartName.Equals(childPeripheralName))
-        //                {
-        //                    return new Usart.Usart(new UsartViewModel(usart));
-        //                }
-        //            }
-        //            break;
-
-        //    }
-        //    return null;
-        //}
 
         private UserControl GetControl(string parentPeripheralName, string childPeripheralName)
         {

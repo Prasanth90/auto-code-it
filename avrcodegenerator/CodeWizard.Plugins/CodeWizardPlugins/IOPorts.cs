@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using CodeGenerator;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
 using DataModel.PortModel;
 using PeripheralConfig.View.IOPort;
 
@@ -13,6 +14,15 @@ namespace PeripheralConfig.CodeWizardPlugins
     public class IOPorts : ICodeWizardPlugin
     {
         private ICodeWizardPlugin _portPinPlugin;
+        public PluginInfo GetPluginInfo()
+        {
+            return new PluginInfo()
+            {
+                Icon = "china",
+                Name = CodeWizardPluginNames.Port
+            };
+        }
+
         public  Dictionary<string, UserControl> CreateUserControl(string name)
         {
             var portPinplugin = PluginManager.PluginManager.GetPlugins(CodeWizardPluginType.Reusable, CodeWizardPluginNames.PortPin);

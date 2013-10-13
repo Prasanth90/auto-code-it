@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using DataModel;
 using DataModel.DataProvider.PeripheralInfoProviders;
+using DataModel.ICodeWizardPlugin;
 
 namespace PluginManager
 {
@@ -30,7 +31,7 @@ namespace PluginManager
                         object value;
                         if (modulePlugin.Metadata.TryGetValue(CodeWizardPluginType.General, out value))
                         {
-                            plugins.Add(modulePlugin.Value);
+                            plugins.Add( modulePlugin.Value);
                         }
                     }
                     return plugins;
