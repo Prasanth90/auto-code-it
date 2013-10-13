@@ -25,6 +25,7 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
         {
             InitializeComponent();
             _mcuModel = new McuModel("xmega128a1");
+            var pluginManager = new PluginManager.PluginManager();
             ObservableCollection<Peripheral> peripheralsInfo = GetPeripheralsInfo();
             McuPeripheralsViewModel = new McuPeripheralsViewModel(peripheralsInfo, TreeViewSelectionChanged);
             this.DataContext = this;

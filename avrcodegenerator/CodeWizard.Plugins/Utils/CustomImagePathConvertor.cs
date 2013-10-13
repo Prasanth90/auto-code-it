@@ -13,7 +13,7 @@ namespace PeripheralConfig.Utils
         public object Convert(object value, Type targetType, object parameter,
                                         System.Globalization.CultureInfo culture)
         {
-            return "../../Images/" + GetImageName(value.ToString());
+            return "../Resources/Images/" + GetImageName(value.ToString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter,

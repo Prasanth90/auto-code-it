@@ -48,37 +48,10 @@ namespace PeripheralConfig.CodeGeneration.CodeGenerators
         private StringBuilder GetPinConfigCodeBlock(Port port, Pin pin)
         {
             var codeblock = new StringBuilder();
-           // codeblock.Append(GetCommentSection(string.Format("Configures Pin {0} of {1}",pin.PinNumber,port.PortName)));
             string pinInitContents = GetPinInitTemplate();
             var replacemntDict = GetReplacementDict_Init(pin,port);
             Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref pinInitContents);
             codeblock.Append(pinInitContents);
-
-
-
-            //if (pin.SelectedDirection != null)
-            //{
-            //    codeblock.Append(Resources.PinDirectionCode.Replace(Constants.Constants.PinName,pin.PinName).Replace(Constants.Constants.PinDirection,pin.SelectedDirection));
-            //    codeblock.AppendLine();
-            //}
-
-            //if (pin.SelectedOutputValue != null)
-            //{
-            //    codeblock.Append(Resources.PinOutputValueCode.Replace(Constants.Constants.PinName, pin.PinName).Replace(Constants.Constants.PinOutputValue, pin.SelectedOutputValue));
-            //    codeblock.AppendLine();
-            //}
-
-            //if (pin.SelectedInputSenseMode != null)
-            //{
-            //    codeblock.Append(Resources.PinInputSenseModeCode.Replace(Constants.Constants.PinName, pin.PinName).Replace(Constants.Constants.PinSenseMode, pin.SelectedInputSenseMode));
-            //    codeblock.AppendLine();
-            //}
-            //var outputconfigCode = GetOutputConfigCode(pin);
-            //if (!string.IsNullOrEmpty(outputconfigCode))
-            //{
-            //    codeblock.Append(Resources.PinOutputPullConfigCode.Replace(Constants.Constants.PinName, pin.PinName).Replace(Constants.Constants.PinOutputMode,outputconfigCode));
-            //    codeblock.AppendLine();
-            //}
             return codeblock;
 
         }

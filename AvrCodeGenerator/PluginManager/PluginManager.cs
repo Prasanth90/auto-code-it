@@ -42,7 +42,6 @@ namespace PluginManager
 
         public PluginManager()
         {
-            McuModel.PeripheralInfoProvider = new XmegaPeripheralInfoProvider("xmega128a1");
             AssembleComponents();
         }
 
@@ -74,6 +73,8 @@ namespace PluginManager
 
                 // Composable parts are created here i.e. the Import and Export components assembles here
                 container.ComposeParts(this);
+
+                ModulePlugins = Plugins;
             }
             catch (Exception ex)
             {
