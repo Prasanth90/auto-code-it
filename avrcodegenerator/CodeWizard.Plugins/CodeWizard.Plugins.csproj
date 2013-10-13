@@ -193,13 +193,13 @@
     <Resource Include="Resources\Images\usa.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataModel\DataModel.csproj">
+    <ProjectReference Include="..\DataModel\CodeWizard.DataModel.csproj">
       <Project>{35E48402-19E9-4C01-93CC-5B578F4C7DA2}</Project>
-      <Name>DataModel</Name>
+      <Name>CodeWizard.DataModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PluginManager\PluginManager.csproj">
+    <ProjectReference Include="..\PluginManager\CodeWizard.PluginManager.csproj">
       <Project>{3B135584-A8A4-496E-B0A3-170DF2C5E886}</Project>
-      <Name>PluginManager</Name>
+      <Name>CodeWizard.PluginManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

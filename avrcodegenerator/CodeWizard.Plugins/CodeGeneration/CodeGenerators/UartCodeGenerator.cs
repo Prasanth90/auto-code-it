@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
 using DataModel.UsarModel;
 using UsartConstants = PeripheralConfig.Constants.UsartConstants;
 
@@ -30,7 +31,7 @@ namespace PeripheralConfig.CodeGeneration.CodeGenerators
                 string usartInitContents = GetUsartInitTemplate();
                 replacemntDict = GetReplacementDict_UsartInit(usartModel);
                 Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref usartInitContents);
-                codegenerationinfo.CodeBlock.Append(usartInitContents);
+                codegenerationinfo.SourceCodeBlock.Append(usartInitContents);
 
                 string interuptHandlerContents = GetInteruptHandlerCode(usartModel);
                 codegenerationinfo.InteruptHandlerBlock.Append(interuptHandlerContents);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
 using DataModel.PortModel;
 
 namespace PeripheralConfig.CodeGeneration.CodeGenerators
@@ -23,20 +24,20 @@ namespace PeripheralConfig.CodeGeneration.CodeGenerators
             foreach (Port port in _ioPortModel.Ports)
             {
                 var codegenerationinfo = new CodeGenerationInfo(port.PortName);
-                codegenerationinfo.CodeBlock.Append(string.Format("void {0}_init()", port.PortName));
-                codegenerationinfo.CodeBlock.AppendLine();
-                codegenerationinfo.CodeBlock.Append("{");
-                codegenerationinfo.CodeBlock.AppendLine();
+                codegenerationinfo.SourceCodeBlock.Append(string.Format("void {0}_init()", port.PortName));
+                codegenerationinfo.SourceCodeBlock.AppendLine();
+                codegenerationinfo.SourceCodeBlock.Append("{");
+                codegenerationinfo.SourceCodeBlock.AppendLine();
                 foreach (Pin pin in port.Pins.Where(pin => pin.HasUserConfigured))
                 {
-                    codegenerationinfo.CodeBlock.Append(GetPinConfigCodeBlock(port, pin));
-                    codegenerationinfo.CodeBlock.AppendLine();
+                    codegenerationinfo.SourceCodeBlock.Append(GetPinConfigCodeBlock(port, pin));
+                    codegenerationinfo.SourceCodeBlock.AppendLine();
                     codegenerationinfo.HashDefineBlock.Append(GetPinConfigHashDefine(port, pin));
                     codegenerationinfo.HashDefineBlock.AppendLine();
                     
                 }
-                codegenerationinfo.CodeBlock.Append("}");
-                codegenerationinfo.CodeBlock.AppendLine();
+                codegenerationinfo.SourceCodeBlock.Append("}");
+                codegenerationinfo.SourceCodeBlock.AppendLine();
                 codegenerationinfo.FunctionCallsBlock.Append(GetFunctionCallsBlock(port));
                 codegenerationinfo.FunctionDeclarationBlock.Append(GetFunctionDeclarationBlock(port));
                 codeGenerationInfos.Add(codegenerationinfo);

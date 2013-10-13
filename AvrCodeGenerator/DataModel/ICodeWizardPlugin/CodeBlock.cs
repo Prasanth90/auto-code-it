@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 
-namespace DataModel
+namespace DataModel.ICodeWizardPlugin
 {
     public class CodeBlock
     {
@@ -21,7 +19,7 @@ namespace DataModel
     {
         public CodeGenerationInfo(string pheripheralName)
         {
-            CodeBlock = new StringBuilder();
+            SourceCodeBlock = new StringBuilder();
             HashDefineBlock = new StringBuilder();
             InteruptHandlerBlock = new StringBuilder();
             FunctionCallsBlock = new StringBuilder();
@@ -29,7 +27,7 @@ namespace DataModel
             PeripheralName = pheripheralName;
         }
         public string PeripheralName { get; set; }
-        public StringBuilder CodeBlock { get; set; }
+        public StringBuilder SourceCodeBlock { get; set; }
         public StringBuilder HashDefineBlock { get; set; }
         public StringBuilder InteruptHandlerBlock { get; set; }
         public StringBuilder FunctionCallsBlock { get; set; }

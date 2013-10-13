@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using CodeGenerator;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
 
 namespace PeripheralConfig.CodeGeneration
 {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
 using MainFileConstants = PeripheralConfig.Constants.MainFileConstants;
 
 namespace PeripheralConfig.CodeGeneration
@@ -47,7 +48,7 @@ namespace PeripheralConfig.CodeGeneration
                 {
                     AppendString(codeGenerationInfo.HashDefineBlock, hashDefineBlock);
                     AppendString(codeGenerationInfo.InteruptHandlerBlock, interuptHandler);
-                    AppendString(codeGenerationInfo.CodeBlock, functionDefine);
+                    AppendString(codeGenerationInfo.SourceCodeBlock, functionDefine);
                     AppendString(codeGenerationInfo.FunctionCallsBlock, functionCalls);
                     AppendString(codeGenerationInfo.FunctionDeclarationBlock, functionDeclaration);
                 }
@@ -84,7 +85,7 @@ namespace PeripheralConfig.CodeGeneration
                     builder.AppendLine();
                     builder.Append(codeGenerationInfo.HashDefineBlock);
                     builder.AppendLine();
-                    builder.Append(codeGenerationInfo.CodeBlock);
+                    builder.Append(codeGenerationInfo.SourceCodeBlock);
                     builder.AppendLine();
                     builder.Append(codeGenerationInfo.InteruptHandlerBlock);
                     builder.AppendLine();

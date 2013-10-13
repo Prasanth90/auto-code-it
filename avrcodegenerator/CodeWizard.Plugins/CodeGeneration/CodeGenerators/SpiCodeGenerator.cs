@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DataModel;
+using DataModel.ICodeWizardPlugin;
 using DataModel.SPI;
 using SpiConstants = PeripheralConfig.Constants.SpiConstants;
 
@@ -30,7 +31,7 @@ namespace PeripheralConfig.CodeGeneration.CodeGenerators
                 string spiInitContents = GetSpiInitTemplate();
                 replacemntDict = GetReplacementDict_SpiInit(spiModel);
                 Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref spiInitContents);
-                codegenerationinfo.CodeBlock.Append(spiInitContents);
+                codegenerationinfo.SourceCodeBlock.Append(spiInitContents);
 
                 string interuptHandlerContents = GetInteruptHandlerCode(spiModel);
                 codegenerationinfo.InteruptHandlerBlock.Append(interuptHandlerContents);
