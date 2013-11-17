@@ -6,9 +6,9 @@ namespace CodeWizard.Plugins.View.Timers
     /// <summary>
     /// Interaction logic for Timer.xaml
     /// </summary>
-    public partial class Timer : UserControl
+    public partial class TimerControl : UserControl
     {
-        public Timer(CodeWizard.DataModel.Timer.Timer timer)
+        public TimerControl(CodeWizard.DataModel.Timer.Timer timer)
         {
             InitializeComponent();
             this.DataContext = new TimerViewModel(timer);

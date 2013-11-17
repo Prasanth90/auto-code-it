@@ -34,7 +34,7 @@ namespace CodeWizard.Plugins.CodeWizardPlugins
              _timerModel = timerModel;
              foreach (var timer in timerModel.Timers)
              {
-                 userControls.Add(timer.TimerName, new View.Timers.Timer(timer));
+                 userControls.Add(timer.TimerName, new View.Timers.TimerControl(timer));
              }
              return userControls;
         }
