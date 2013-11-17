@@ -12,5 +12,6 @@
         public const string Port = "PORT";
         public const string Spi = "SPI";
         public const string Usart = "USART";
+        public const string Timer = "TIMER";
     }
 }

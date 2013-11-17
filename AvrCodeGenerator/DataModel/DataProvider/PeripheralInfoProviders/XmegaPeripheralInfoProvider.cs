@@ -267,12 +267,12 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
                 {
                      new Peripheral()
                         {
-                            Name = "TIMER0",
+                            Name = "TCC0",
                             Icon = "denmark"
                         },
                         new Peripheral()
                         {
-                            Name = "TIMER1",
+                            Name = "TCC1",
                             Icon = "denmark"
                         }
                 };
@@ -381,6 +381,38 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
                     "TC_INT_LVL_MED",
                     "TC_INT_LVL_HI"
                 };
+        }
+
+        public ObservableCollection<string> GetTimerEventSources()
+        {
+            return new ObservableCollection<string>()
+            {
+                "TC_EVSEL_OFF_gc",
+                "TC_EVSEL_CH0_gc",
+                "TC_EVSEL_CH1_gc",
+                "TC_EVSEL_CH2_gc",
+                "TC_EVSEL_CH3_gc",
+                "TC_EVSEL_CH4_gc",
+                "TC_EVSEL_CH5_gc",
+                "TC_EVSEL_CH6_gc",
+                "TC_EVSEL_CH7_gc",
+            };
+
+        }
+
+        public ObservableCollection<string> GetTimerEventActions()
+        {
+             return new ObservableCollection<string>()
+            {
+                "TC_EVACT_OFF_gc",
+                "TC_EVACT_CAPT_gc",
+                "TC_EVACT_UPDOWN_gc",
+                "TC_EVACT_QDEC_gc",
+                "TC_EVACT_RESTART_gc",
+                "TC_EVACT_FRQ_gc",
+                "TC_EVACT_PW_gc",
+            };
+
         }
     }
 

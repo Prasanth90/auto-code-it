@@ -73,6 +73,7 @@
     <Compile Include="CodeGeneration\CodeGeneratorBase.cs" />
     <Compile Include="CodeGeneration\CodeGenerators\PortCodeGenerator.cs" />
     <Compile Include="CodeGeneration\CodeGenerators\SpiCodeGenerator.cs" />
+    <Compile Include="CodeGeneration\CodeGenerators\TimerCodeGenerator.cs" />
     <Compile Include="CodeGeneration\CodeGenerators\UartCodeGenerator.cs" />
     <Compile Include="CodeGeneration\CreateRawInput.cs" />
     <Compile Include="CodeGeneration\FileNames.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Utils\CustomImagePathConvertor.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModel\Spi\SpiViewModel.cs" />
+    <Compile Include="ViewModel\Timer\TimerViewModel.cs" />
     <Compile Include="ViewModel\Usart\UsartViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Spi\SpiControl.xaml.cs">
