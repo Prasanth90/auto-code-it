@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="450">
+             d:DesignHeight="700" d:DesignWidth="450">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </UserControl.Resources>
@@ -14,7 +14,7 @@
                 <Grid>
                     <GroupBox    HorizontalAlignment="Left" Margin="5,5,5,5"  VerticalAlignment="Top" Width="Auto"  BorderBrush="#FFA79E9E">
                         <GroupBox.Header>
-                            <StackPanel Grid.Row="0"  Margin="2,2,0,0" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                            <StackPanel  Margin="2,2,0,0" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
                                 <Label Content="Timer Settings -"></Label>
                                 <Label DockPanel.Dock="Left" Content="Clock Source" Height="28" HorizontalAlignment="Left" Width="80" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                 <ComboBox   Height="28" Width="175" VerticalAlignment="Top" ItemsSource="{Binding Path=Modes, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedMode, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"/>
@@ -28,43 +28,57 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <GroupBox Margin="5"  Header="Common Settings" BorderBrush="#FFA79E9E">
-                                <StackPanel>
 
-                                    <StackPanel Grid.Row="2"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                        <Label DockPanel.Dock="Left" Content="Timer Mode" Height="28" HorizontalAlignment="Left" Width="100" Margin="0,0,0,0"  VerticalAlignment="Top" />
-                                        <ComboBox  ItemsSource="{Binding Path=TimerModes, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedTimerMode, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="180" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                                    </StackPanel>
-                                    <StackPanel>
-                                    <StackPanel Grid.Row="2"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                            <GroupBox Grid.Row="0"  Margin="5"  Header="Common Settings" BorderBrush="#FFA79E9E">
+                                <StackPanel>
+                                    <StackPanel   Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
                                         <Label DockPanel.Dock="Left" Content="Period value" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=Period,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
-                                    <StackPanel Grid.Row="2"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                    <StackPanel  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
                                         <Label DockPanel.Dock="Left" Content="Timer Count Register" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=Count,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
-                                    <StackPanel Grid.Row="2"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                        <Label DockPanel.Dock="Left" Content="Compare/Capture Channel A" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                    <StackPanel  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <CheckBox DockPanel.Dock="Left" Content="Compare/Capture Channel A" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=CCAValue,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
-                                    <StackPanel Grid.Row="2"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                        <Label DockPanel.Dock="Left" Content="Compare/Capture Channel B" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                    <StackPanel   Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <CheckBox DockPanel.Dock="Left" Content="Compare/Capture Channel B" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=CCBValue,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
-                                    <StackPanel Grid.Row="2"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                        <Label DockPanel.Dock="Left" Content="Compare/Capture Channel C" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                    <StackPanel   Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <CheckBox DockPanel.Dock="Left" Content="Compare/Capture Channel C" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=CCCValue,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
-                                    <StackPanel Grid.Row="2"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                        <Label DockPanel.Dock="Left" Content="Compare/Capture Channel D" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                    <StackPanel   Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <CheckBox DockPanel.Dock="Left" Content="Compare/Capture Channel D" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=CCDValue,UpdateSourceTrigger=PropertyChanged}"/>
-                                    </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
 
-                            <GroupBox Grid.Row="3" Header="Interupt Setttings" BorderBrush="#FFA79E9E">
+                            <GroupBox Margin="5" Grid.Row="1"  >
+                                <GroupBox.Header>
+                                    <StackPanel  Margin="2,2,0,0" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <Label Content="Timer Mode Settings :"></Label>
+                                        <Label DockPanel.Dock="Left" Content="Mode" Height="28" HorizontalAlignment="Left" Width="40" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                        <ComboBox  ItemsSource="{Binding Path=TimerModes, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedTimerMode, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                    </StackPanel>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <StackPanel   Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <Label DockPanel.Dock="Left" Content="Event Source" Height="28" HorizontalAlignment="Left" Width="80" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                        <ComboBox  ItemsSource="{Binding Path=EventSources, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedEventSource, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <Label DockPanel.Dock="Left" Content="Event Action" Height="28" HorizontalAlignment="Left" Width="80" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                        <ComboBox  ItemsSource="{Binding Path=EventActions, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedEventAction, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+
+
+
+                            <GroupBox Grid.Row="2" Header="Interupt Setttings" BorderBrush="#FFA79E9E">
                                 <StackPanel Margin="5">
                                     <StackPanel Margin="5" Orientation="Horizontal">
                                         <CheckBox  Content="Overflow Interrupt" Width="120" IsChecked="{Binding Path=OverflowIntEnabled, UpdateSourceTrigger=PropertyChanged}"/>
@@ -76,7 +90,7 @@
                                     </StackPanel>
                                     <StackPanel Margin="5" Orientation="Horizontal">
                                         <CheckBox  Content="CCB Interrupt" Width="120" IsChecked="{Binding Path=CCBIntEnabled, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <ComboBox  Margin="5,0,0,0"  Visibility="{Binding Path=CCBIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedDreInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <ComboBox  Margin="5,0,0,0"  Visibility="{Binding Path=CCBIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedDreInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" />
                                     </StackPanel>
                                     <StackPanel Margin="5" Orientation="Horizontal">
                                         <CheckBox  Content="CCC Interrupt" Width="120" IsChecked="{Binding Path=CCCIntEnabled, UpdateSourceTrigger=PropertyChanged}"/>

@@ -163,6 +163,9 @@
     <Resource Include="Resources\help.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Templates\timer_ch_init.c" />
+    <Content Include="Resources\Templates\timer_ch_init_funccall.c" />
+    <Content Include="Resources\Templates\timer_init.c" />
     <EmbeddedResource Include="Resources\Templates\usart_serial_init.c" />
     <EmbeddedResource Include="Resources\Templates\usart_serial_echo_app.c" />
     <EmbeddedResource Include="Resources\Templates\usart_serial_def.h" />
