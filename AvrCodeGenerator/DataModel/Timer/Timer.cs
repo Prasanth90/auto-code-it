@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1
+﻿namespace CodeWizard.DataModel.Timer
 {
     public class Timer
     {
@@ -8,8 +8,8 @@
             TimerSettings = new TimerSettings();
             if (timerName.EndsWith("1"))
             {
-                TimerSettings.CCCChannel = null;
-                TimerSettings.CCDChannel = null;
+                TimerSettings.CCCChannel.IsAvailable = false;
+                TimerSettings.CCDChannel.IsAvailable = false;
             }
         }
         public string TimerName { get; set; }

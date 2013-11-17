@@ -1,27 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace ClassLibrary1
+namespace CodeWizard.DataModel.Timer
 {
     public class TimerModel
     {
         public TimerModel()
         {
-            Timers = GetTimers();
+            Timers =  GetTimers();
         }
         public ObservableCollection<Timer> Timers { get; set; } 
 
         public static ObservableCollection<Timer> GetTimers()
         {
             var timers = new ObservableCollection<Timer>();
-            var timerNames = new List<string>()
-                                      {
-                                          "TCC0",
-                                          "TCC1"
-                                      };
-            foreach (var timerName in timerNames)
+            var timerPherpherals = McuModel.PeripheralInfoProvider.GetTimers();
+            foreach (var timerPherpheral in timerPherpherals)
             {
-                timers.Add(new Timer(timerName));
+                timers.Add(new Timer(timerPherpheral.Name));
             }
             return timers;
         }

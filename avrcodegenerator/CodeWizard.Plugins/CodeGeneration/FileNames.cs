@@ -13,6 +13,10 @@ namespace CodeWizard.Plugins.CodeGeneration
         public const string SpiInit = "spi_init.c";
         public const string SpiDefine = "spi_def.h";
 
+        public const string TimerInit = "timer_init.c";
+        public const string TimerChannelInit = "timer_ch_init.c";
+        public const string TimerChannelInitFuncCall = "timer_ch_init_funccall.c";
+
         public static List<string> List
         {
             get
@@ -26,7 +30,10 @@ namespace CodeWizard.Plugins.CodeGeneration
                         MainFileName,
                         PortInit,
                         SpiInit,
-                        SpiDefine
+                        SpiDefine,
+                        TimerInit,
+                        TimerChannelInit,
+                        TimerChannelInitFuncCall
                     };
             }
         }

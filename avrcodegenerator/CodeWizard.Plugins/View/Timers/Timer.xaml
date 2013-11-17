@@ -15,9 +15,9 @@
                     <GroupBox    HorizontalAlignment="Left" Margin="5,5,5,5"  VerticalAlignment="Top" Width="Auto"  BorderBrush="#FFA79E9E">
                         <GroupBox.Header>
                             <StackPanel  Margin="2,2,0,0" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                <Label Content="Timer Settings -"></Label>
+                                <Label Content="{Binding Path=TimerName,UpdateSourceTrigger=PropertyChanged}"></Label>
                                 <Label DockPanel.Dock="Left" Content="Clock Source" Height="28" HorizontalAlignment="Left" Width="80" Margin="0,0,0,0"  VerticalAlignment="Top" />
-                                <ComboBox   Height="28" Width="175" VerticalAlignment="Top" ItemsSource="{Binding Path=Modes, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedMode, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"/>
+                                <ComboBox   Height="28" Width="175" VerticalAlignment="Top" ItemsSource="{Binding Path=ClockSources, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedClockSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </GroupBox.Header>
                         <Grid Margin="5">
@@ -39,20 +39,20 @@
                                         <Label DockPanel.Dock="Left" Content="Timer Count Register" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=Count,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
-                                    <StackPanel  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                        <CheckBox DockPanel.Dock="Left" Content="Compare/Capture Channel A" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                    <StackPanel Visibility="{Binding Path=IsCCAAvailable, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <CheckBox DockPanel.Dock="Left" IsChecked="{Binding Path=IsCCAEnabled, UpdateSourceTrigger=PropertyChanged}" Content="Compare/Capture Channel A" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=CCAValue,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
-                                    <StackPanel   Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                        <CheckBox DockPanel.Dock="Left" Content="Compare/Capture Channel B" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                    <StackPanel Visibility="{Binding Path=IsCCBAvailable, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <CheckBox DockPanel.Dock="Left" IsChecked="{Binding Path=IsCCBEnabled, UpdateSourceTrigger=PropertyChanged}" Content="Compare/Capture Channel B" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=CCBValue,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
-                                    <StackPanel   Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                        <CheckBox DockPanel.Dock="Left" Content="Compare/Capture Channel C" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                    <StackPanel  Visibility="{Binding Path=IsCCCAvailable, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <CheckBox DockPanel.Dock="Left" IsChecked="{Binding Path=IsCCCEnabled, UpdateSourceTrigger=PropertyChanged}" Content="Compare/Capture Channel C" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=CCCValue,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
-                                    <StackPanel   Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                        <CheckBox DockPanel.Dock="Left" Content="Compare/Capture Channel D" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
+                                    <StackPanel  Visibility="{Binding Path=IsCCDAvailable, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <CheckBox DockPanel.Dock="Left" IsChecked="{Binding Path=IsCCDEnabled, UpdateSourceTrigger=PropertyChanged}" Content="Compare/Capture Channel D" Height="28" HorizontalAlignment="Left" Width="180" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                         <TextBox  Width="50" Text="{Binding Path=CCDValue,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
                                 </StackPanel>
@@ -82,23 +82,23 @@
                                 <StackPanel Margin="5">
                                     <StackPanel Margin="5" Orientation="Horizontal">
                                         <CheckBox  Content="Overflow Interrupt" Width="120" IsChecked="{Binding Path=OverflowIntEnabled, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <ComboBox  Margin="5,0,0,0" Visibility="{Binding Path=OverflowCompleteIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedRxInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <ComboBox  Margin="5,0,0,0" Visibility="{Binding Path=OverflowIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedOvfInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                                     </StackPanel>
-                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                    <StackPanel Visibility="{Binding Path=IsCCAAvailable, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" Margin="5" Orientation="Horizontal">
                                         <CheckBox  Content="CCA Interrupt" Width="120" IsChecked="{Binding Path=CCAIntEnabled, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <ComboBox  Margin="5,0,0,0" Visibility="{Binding Path=CCAIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedTxInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <ComboBox  Margin="5,0,0,0" Visibility="{Binding Path=CCAIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedCCAInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                                     </StackPanel>
-                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                    <StackPanel Visibility="{Binding Path=IsCCBAvailable, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" Margin="5" Orientation="Horizontal">
                                         <CheckBox  Content="CCB Interrupt" Width="120" IsChecked="{Binding Path=CCBIntEnabled, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <ComboBox  Margin="5,0,0,0"  Visibility="{Binding Path=CCBIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedDreInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" />
+                                        <ComboBox  Margin="5,0,0,0"  Visibility="{Binding Path=CCBIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedCCBInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" />
                                     </StackPanel>
-                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                    <StackPanel Visibility="{Binding Path=IsCCCAvailable, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" Margin="5" Orientation="Horizontal">
                                         <CheckBox  Content="CCC Interrupt" Width="120" IsChecked="{Binding Path=CCCIntEnabled, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <ComboBox  Margin="5,0,0,0"  Visibility="{Binding Path=CCCIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedDreInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <ComboBox  Margin="5,0,0,0"  Visibility="{Binding Path=CCCIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedCCCInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                                     </StackPanel>
-                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                    <StackPanel Visibility="{Binding Path=IsCCDAvailable, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" Margin="5" Orientation="Horizontal">
                                         <CheckBox  Content="CCD Interrupt" Width="120" IsChecked="{Binding Path=CCDIntEnabled, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <ComboBox  Margin="5,0,0,0"  Visibility="{Binding Path=CCDIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedDreInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        <ComboBox  Margin="5,0,0,0"  Visibility="{Binding Path=CCDIntEnabled, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=InteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedCCDInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
