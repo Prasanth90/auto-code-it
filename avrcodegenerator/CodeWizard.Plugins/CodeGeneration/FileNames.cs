@@ -36,7 +36,8 @@ namespace CodeWizard.Plugins.CodeGeneration
                         TimerInit,
                         TimerChannelInit,
                         TimerChannelInitFuncCall,
-                        TimerChannelInteruppt
+                        TimerChannelInteruppt,
+                        TimerInteruptHandler,
                     };
             }
         }
