@@ -10,7 +10,8 @@ namespace CodeWizard.Plugins.Constants
         public const string TimerName = "$TimerName$";
         public const string SelectedWaveFormMode = "$SelectedWavwformMode$";
         public const string TimerPeriod = "$TimerPeriod$";
-        public const string TimerChannelInit = "$TimerChannelsInit$";
+        public const string TimerChannelsInitFunCall = "$TimerChannelsInitFunCall$";
+        public const string TimerChannelsInitFunDefine = "$TimerChannelsInitFuncDefine$";
         public const string SelectedTimerChannel = "$SelectedTimerChannel$";
         public const string SelectedTimerChannelEnable = "$SelectedTimerChannelEnable$";
         public const string ChannelPeriod = "$ChannelPeriod$";

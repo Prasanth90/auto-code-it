@@ -4,11 +4,11 @@
     {
         public TimerSettings()
         {
-            CCAChannel = new TimerChannel();
-            CCBChannel = new TimerChannel();
-            CCCChannel = new TimerChannel();
-            CCDChannel = new TimerChannel();
-            OverFlowInterupt = new TimerInterupt();
+            CCAChannel = new TimerChannel("CCA","cca");
+            CCBChannel = new TimerChannel("CCB", "ccb");
+            CCCChannel = new TimerChannel("CCC", "ccc");
+            CCDChannel = new TimerChannel("CCD", "ccd");
+            OverFlowInterupt = new TimerInterupt("overflow");
         }
 
         public bool IsTimerEnabled { get; set;}
@@ -27,17 +27,25 @@
     }
     public class TimerInterupt
     {
+        public TimerInterupt(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; set; }
         public bool IsEnabled { get; set; }
         public string Callback { get; set; }
         public string Level { get; set; }
     }
     public class TimerChannel
     {
-        public TimerChannel()
+        public TimerChannel(string name, string interruptName)
         {
-            ChannelInterupt = new TimerInterupt();
+            Name = name;
+            ChannelInterupt = new TimerInterupt(interruptName);
             IsAvailable = true;
         }
+        public string Name { get; set; }
         public bool IsAvailable { get; set; }
         public bool IsEnabled { get; set; }
         public string ChannelValue { get; set; }

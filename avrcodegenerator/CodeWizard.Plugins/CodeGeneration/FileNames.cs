@@ -16,6 +16,8 @@ namespace CodeWizard.Plugins.CodeGeneration
         public const string TimerInit = "timer_init.c";
         public const string TimerChannelInit = "timer_ch_init.c";
         public const string TimerChannelInitFuncCall = "timer_ch_init_funccall.c";
+        public const string TimerChannelInteruppt = "timerchannel_interrupt.c";
+        public const string TimerInteruptHandler = "timer_interupt_handler.c";
 
         public static List<string> List
         {
@@ -33,7 +35,8 @@ namespace CodeWizard.Plugins.CodeGeneration
                         SpiDefine,
                         TimerInit,
                         TimerChannelInit,
-                        TimerChannelInitFuncCall
+                        TimerChannelInitFuncCall,
+                        TimerChannelInteruppt
                     };
             }
         }
