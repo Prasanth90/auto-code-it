@@ -167,10 +167,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Templates\timer_interupt_handler.c" />
-    <Content Include="Resources\Templates\timerchannel_interrupt.c" />
+    <EmbeddedResource Include="Resources\Templates\timerchannel_interrupt.c" />
     <EmbeddedResource Include="Resources\Templates\timer_ch_init.c" />
-    <Content Include="Resources\Templates\timer_ch_init_funccall.c" />
-    <Content Include="Resources\Templates\timer_init.c" />
+    <EmbeddedResource Include="Resources\Templates\timer_ch_init_funccall.c" />
+    <EmbeddedResource Include="Resources\Templates\timer_init.c" />
     <EmbeddedResource Include="Resources\Templates\usart_serial_init.c" />
     <EmbeddedResource Include="Resources\Templates\usart_serial_echo_app.c" />
     <EmbeddedResource Include="Resources\Templates\usart_serial_def.h" />

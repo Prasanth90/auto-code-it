@@ -1,1 +1,1 @@
-$TimerName$_channel_$SelectedTimerChannel$_init()
+$TimerName$_channel_$SelectedTimerChannel$_init();

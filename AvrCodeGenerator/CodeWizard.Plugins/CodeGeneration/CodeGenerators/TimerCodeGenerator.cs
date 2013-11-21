@@ -25,6 +25,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             var codeGenerationInfos = new List<CodeGenerationInfo>();
             foreach (Timer timer in _timerModel.Timers)
             {
+                _funcDeclarationBlock = new StringBuilder();
                 var codegenerationinfo = new CodeGenerationInfo(timer.TimerName);
                 codeGenerationInfos.Add(codegenerationinfo);
 
