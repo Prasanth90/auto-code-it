@@ -84,6 +84,7 @@
     <Compile Include="CodeWizardPlugins\Usart.cs" />
     <Compile Include="Constants\PortConstants.cs" />
     <Compile Include="Constants\SpiConstants.cs" />
+    <Compile Include="Constants\TimerConstants.cs" />
     <Compile Include="Constants\UsartConstants.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utils\CustomImagePathConvertor.cs" />
@@ -165,7 +166,8 @@
     <Resource Include="Resources\help.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Templates\timer_ch_init.c" />
+    <Content Include="Resources\Templates\timerchannel_interrupt.c" />
+    <EmbeddedResource Include="Resources\Templates\timer_ch_init.c" />
     <Content Include="Resources\Templates\timer_ch_init_funccall.c" />
     <Content Include="Resources\Templates\timer_init.c" />
     <EmbeddedResource Include="Resources\Templates\usart_serial_init.c" />
