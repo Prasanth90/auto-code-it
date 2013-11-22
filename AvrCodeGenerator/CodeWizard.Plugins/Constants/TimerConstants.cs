@@ -19,5 +19,6 @@ namespace CodeWizard.Plugins.Constants
         public const string InterruptName = "$InterruptName$";
         public const string InteruptLevel = "$InteruptLevel$";
         public const string CallBackFunctionName = "$CallBackFunctionName$";
+        public const string SelectedClockSource = "$SelectedClockSource$";
     }
 }

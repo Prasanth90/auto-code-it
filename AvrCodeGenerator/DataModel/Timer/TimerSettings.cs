@@ -4,10 +4,10 @@
     {
         public TimerSettings()
         {
-            CCAChannel = new TimerChannel("CCA","cca");
-            CCBChannel = new TimerChannel("CCB", "ccb");
-            CCCChannel = new TimerChannel("CCC", "ccc");
-            CCDChannel = new TimerChannel("CCD", "ccd");
+            CCAChannel = new TimerChannel("TC_CCA","cca");
+            CCBChannel = new TimerChannel("TC_CCB", "ccb");
+            CCCChannel = new TimerChannel("TC_CCC", "ccc");
+            CCDChannel = new TimerChannel("TC_CCD", "ccd");
             OverFlowInterupt = new TimerInterupt("overflow");
         }
 

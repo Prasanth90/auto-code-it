@@ -58,6 +58,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                                 {
                                     {TimerConstants.TimerName, timer.TimerName},
                                     {TimerConstants.TimerPeriod,timer.TimerSettings.PeriodValue },
+                                    {TimerConstants.SelectedClockSource,timer.TimerSettings.TimerClockSource },
                                     {TimerConstants.SelectedWaveFormMode,timer.TimerSettings.TimerMode },
                                     {TimerConstants.TimerChannelsInitFunCall,GetTimerChInitFuncCall(timer) },
                                     {TimerConstants.TimerChannelsInitFunDefine,GetTimerChInitFuncDefines(timer) },
@@ -153,7 +154,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                                     {TimerConstants.TimerName, timer.TimerName},
                                     {TimerConstants.SelectedTimerChannel,timerChannel.Name },
                                     {TimerConstants.ChannelPeriod, timerChannel.ChannelValue },
-                                    {TimerConstants.SelectedTimerChannelEnable,"" },
+                                    {TimerConstants.SelectedTimerChannelEnable,string.Format("{0}_{1}EN_bm",timer.TimerName,timerChannel.Name) },
                                     {TimerConstants.TimerChannelInterrupt,GetTimerChInterruptInit(timer,timerChannel) },
                                 };
             return replacementDict;
