@@ -45,6 +45,7 @@
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding ChildrenPeripherals}">
                     <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Path=IsModuleEnabled,UpdateSourceTrigger=PropertyChanged}"/>
                         <Image  Margin="1" Width="12" Height="15" Source="{Binding Path=Icon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CustomImagePathConvertor}}"></Image>
                         <Label Margin="1" Content="{Binding Name}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" FontSize="10" FontWeight="Black"/>
                     </StackPanel>                  

@@ -14,6 +14,7 @@ namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
         private bool _isExpanded;
         private PeripheralViewModel _parent;
         private ObservableCollection<PeripheralViewModel> _childrenPeripherals;
+        private bool _isModuleEnabled;
 
         public PeripheralViewModel(Peripheral peripheral, PeripheralViewModel parent, Action<PeripheralViewModel> selectionChanged)
         {
@@ -38,6 +39,16 @@ namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
         public string Name
         {
             get { return _peripheral.Name; }
+        }
+
+        public bool IsModuleEnabled
+        {
+            get { return _peripheral.IsEnabled; }
+            set
+            {
+                _peripheral.IsEnabled = value;
+                this.OnPropertyChanged("IsModuleEnabled");
+            }
         }
 
         public ObservableCollection<PeripheralViewModel> ChildrenPeripherals

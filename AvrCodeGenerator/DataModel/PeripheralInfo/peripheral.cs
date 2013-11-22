@@ -15,6 +15,8 @@ namespace CodeWizard.DataModel.PeripheralInfo
 
         public string Icon { get; set; }
 
+        public bool IsEnabled { get; set; }
+
         public ObservableCollection<Peripheral> ChildPeripherals
         {
             get { return _childPeripherals; }
