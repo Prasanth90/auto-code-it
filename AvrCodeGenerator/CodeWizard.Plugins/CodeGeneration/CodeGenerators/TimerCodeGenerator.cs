@@ -60,10 +60,20 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                                     {TimerConstants.TimerPeriod,timer.TimerSettings.PeriodValue },
                                     {TimerConstants.SelectedClockSource,timer.TimerSettings.TimerClockSource },
                                     {TimerConstants.SelectedWaveFormMode,timer.TimerSettings.TimerMode },
+                                    {TimerConstants.SelectedModeInit, GetTimerModeInit(timer) },
                                     {TimerConstants.TimerChannelsInitFunCall,GetTimerChInitFuncCall(timer) },
                                     {TimerConstants.TimerChannelsInitFunDefine,GetTimerChInitFuncDefines(timer) },
                                 };
             return replacementDict;
+        }
+
+        private string GetTimerModeInit(Timer timer)
+        {
+            var template = FilesContentStore[FileNames.TimerModeInitFile];
+            template = template.Replace(TimerConstants.TimerName, timer.TimerName);
+            template = template.Replace(TimerConstants.SelectedEventAcction, timer.TimerSettings.SelectedEventAction);
+            template = template.Replace(TimerConstants.SelectedEventSource, timer.TimerSettings.SelectedEventSource);
+            return template;
         }
 
         private string GetTimerChInitFuncCall(Timer timer)
