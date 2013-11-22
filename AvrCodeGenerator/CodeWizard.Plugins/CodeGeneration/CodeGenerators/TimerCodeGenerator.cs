@@ -58,6 +58,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                                 {
                                     {TimerConstants.TimerName, timer.TimerName},
                                     {TimerConstants.TimerPeriod,timer.TimerSettings.PeriodValue },
+                                    {TimerConstants.TimerCount,timer.TimerSettings.Count },
                                     {TimerConstants.SelectedClockSource,timer.TimerSettings.TimerClockSource },
                                     {TimerConstants.SelectedWaveFormMode,timer.TimerSettings.TimerMode },
                                     {TimerConstants.SelectedModeInit, GetTimerModeInit(timer) },
