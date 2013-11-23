@@ -17,30 +17,33 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             _ioPortModel = ioPortModel;
         }
 
-        public override CodeBlock GetCode()
+        public override CodeBlock GetCode(List<string> enabledModules)
         {
             var codeBlock = new CodeBlock("IO Ports");
             var codeGenerationInfos = new List<CodeGenerationInfo>();
             foreach (Port port in _ioPortModel.Ports)
             {
-                var codegenerationinfo = new CodeGenerationInfo(port.PortName);
-                codegenerationinfo.SourceCodeBlock.Append(string.Format("void {0}_init()", port.PortName));
-                codegenerationinfo.SourceCodeBlock.AppendLine();
-                codegenerationinfo.SourceCodeBlock.Append("{");
-                codegenerationinfo.SourceCodeBlock.AppendLine();
-                foreach (Pin pin in port.Pins.Where(pin => pin.HasUserConfigured))
+                if (enabledModules.Contains(port.PortName))
                 {
-                    codegenerationinfo.SourceCodeBlock.Append(GetPinConfigCodeBlock(port, pin));
+                    var codegenerationinfo = new CodeGenerationInfo(port.PortName);
+                    codegenerationinfo.SourceCodeBlock.Append(string.Format("void {0}_init()", port.PortName));
                     codegenerationinfo.SourceCodeBlock.AppendLine();
-                    codegenerationinfo.HashDefineBlock.Append(GetPinConfigHashDefine(port, pin));
-                    codegenerationinfo.HashDefineBlock.AppendLine();
-                    
+                    codegenerationinfo.SourceCodeBlock.Append("{");
+                    codegenerationinfo.SourceCodeBlock.AppendLine();
+                    foreach (Pin pin in port.Pins.Where(pin => pin.HasUserConfigured))
+                    {
+                        codegenerationinfo.SourceCodeBlock.Append(GetPinConfigCodeBlock(port, pin));
+                        codegenerationinfo.SourceCodeBlock.AppendLine();
+                        codegenerationinfo.HashDefineBlock.Append(GetPinConfigHashDefine(port, pin));
+                        codegenerationinfo.HashDefineBlock.AppendLine();
+
+                    }
+                    codegenerationinfo.SourceCodeBlock.Append("}");
+                    codegenerationinfo.SourceCodeBlock.AppendLine();
+                    codegenerationinfo.FunctionCallsBlock.Append(GetFunctionCallsBlock(port));
+                    codegenerationinfo.FunctionDeclarationBlock.Append(GetFunctionDeclarationBlock(port));
+                    codeGenerationInfos.Add(codegenerationinfo);
                 }
-                codegenerationinfo.SourceCodeBlock.Append("}");
-                codegenerationinfo.SourceCodeBlock.AppendLine();
-                codegenerationinfo.FunctionCallsBlock.Append(GetFunctionCallsBlock(port));
-                codegenerationinfo.FunctionDeclarationBlock.Append(GetFunctionDeclarationBlock(port));
-                codeGenerationInfos.Add(codegenerationinfo);
             }
             codeBlock.CodeGenerationInfos = codeGenerationInfos;
             return codeBlock;

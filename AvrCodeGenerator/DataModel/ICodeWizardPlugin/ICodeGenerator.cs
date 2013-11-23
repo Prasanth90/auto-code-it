@@ -1,7 +1,9 @@
-﻿namespace CodeWizard.DataModel.ICodeWizardPlugin
+﻿using System.Collections.Generic;
+
+namespace CodeWizard.DataModel.ICodeWizardPlugin
 {
     public  interface ICodeGenerator
     {
-        CodeBlock GetCode();
+        CodeBlock GetCode(List<string> enabledModules);
     }
 }

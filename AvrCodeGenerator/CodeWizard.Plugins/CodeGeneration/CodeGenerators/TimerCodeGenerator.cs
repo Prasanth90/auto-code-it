@@ -19,26 +19,29 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             _timerModel = timerModel;
         }
 
-        public override CodeBlock GetCode()
+        public override CodeBlock GetCode(List<string> enabledModules)
         {
             var codeBlock = new CodeBlock("TIMER");
             var codeGenerationInfos = new List<CodeGenerationInfo>();
             foreach (Timer timer in _timerModel.Timers)
             {
-                _funcDeclarationBlock = new StringBuilder();
-                var codegenerationinfo = new CodeGenerationInfo(timer.TimerName);
-                codeGenerationInfos.Add(codegenerationinfo);
+                if (enabledModules.Contains(timer.TimerName))
+                {
+                    _funcDeclarationBlock = new StringBuilder();
+                    var codegenerationinfo = new CodeGenerationInfo(timer.TimerName);
+                    codeGenerationInfos.Add(codegenerationinfo);
 
-                var timerInitContnets = GetTimerSourceContents(timer);
-                codegenerationinfo.SourceCodeBlock.Append(timerInitContnets);
+                    var timerInitContnets = GetTimerSourceContents(timer);
+                    codegenerationinfo.SourceCodeBlock.Append(timerInitContnets);
 
-                codegenerationinfo.FunctionCallsBlock.Append(timer.TimerName+ "_init();");
-                _funcDeclarationBlock.Append("void " + timer.TimerName + "_init();");
+                    codegenerationinfo.FunctionCallsBlock.Append(timer.TimerName + "_init();");
+                    _funcDeclarationBlock.Append("void " + timer.TimerName + "_init();");
 
-                codegenerationinfo.FunctionDeclarationBlock.Append(_funcDeclarationBlock);
+                    codegenerationinfo.FunctionDeclarationBlock.Append(_funcDeclarationBlock);
 
-                UpdateInteruptHandlerContents(timer.TimerSettings.OverFlowInterupt,"overflow");
-                codegenerationinfo.InteruptHandlerBlock.Append(_interruptHandlerBlock);
+                    UpdateInteruptHandlerContents(timer.TimerSettings.OverFlowInterupt, "overflow");
+                    codegenerationinfo.InteruptHandlerBlock.Append(_interruptHandlerBlock);
+                }
             }
             codeBlock.CodeGenerationInfos = codeGenerationInfos;
             return codeBlock;
@@ -57,8 +60,8 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             var replacementDict = new Dictionary<string, string>()
                                 {
                                     {TimerConstants.TimerName, timer.TimerName},
-                                    {TimerConstants.TimerPeriod,timer.TimerSettings.PeriodValue },
-                                    {TimerConstants.TimerCount,timer.TimerSettings.Count },
+                                    {TimerConstants.TimerPeriod,timer.TimerSettings.PeriodValue.ToString() },
+                                    {TimerConstants.TimerCount,timer.TimerSettings.Count.ToString() },
                                     {TimerConstants.SelectedClockSource,timer.TimerSettings.TimerClockSource },
                                     {TimerConstants.SelectedWaveFormMode,timer.TimerSettings.TimerMode },
                                     {TimerConstants.SelectedModeInit, GetTimerModeInit(timer) },
@@ -164,7 +167,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                                 {
                                     {TimerConstants.TimerName, timer.TimerName},
                                     {TimerConstants.SelectedTimerChannel,timerChannel.Name },
-                                    {TimerConstants.ChannelPeriod, timerChannel.ChannelValue },
+                                    {TimerConstants.ChannelPeriod, timerChannel.ChannelValue.ToString() },
                                     {TimerConstants.SelectedTimerChannelEnable,string.Format("{0}_{1}EN_bm",timer.TimerName,timerChannel.Name) },
                                     {TimerConstants.TimerChannelInterrupt,GetTimerChInterruptInit(timer,timerChannel) },
                                 };

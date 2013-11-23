@@ -15,12 +15,7 @@ namespace CodeWizard.Plugins.ViewModel.Timer
 
         public TimerViewModel(DataModel.Timer.Timer timer)
         {
-            _timer = timer;
-            ClockSources = McuModel.PeripheralInfoProvider.GetTimerClockSources();
-            TimerModes = McuModel.PeripheralInfoProvider.GetTimerModes();
-            InteruptLevels = McuModel.PeripheralInfoProvider.GetTimerInteruptLevels();
-            EventActions = McuModel.PeripheralInfoProvider.GetTimerEventActions();
-            EventSources = McuModel.PeripheralInfoProvider.GetTimerEventSources();
+            _timer = timer;        
         }
 
         public string TimerName
@@ -35,7 +30,11 @@ namespace CodeWizard.Plugins.ViewModel.Timer
             set { _timer.TimerSettings.IsTimerEnabled = value; }
         }
 
-        public ObservableCollection<string> ClockSources { get; set; }
+        public ObservableCollection<string> ClockSources
+        {
+            get { return _timer.TimerSettings.ClockSources; }
+            set { _timer.TimerSettings.ClockSources = value; }
+        }
 
         public string SelectedClockSource
         {
@@ -43,13 +42,13 @@ namespace CodeWizard.Plugins.ViewModel.Timer
             set { _timer.TimerSettings.TimerClockSource = value; }
         }
 
-        public string Period
+        public int Period
         {
             get { return _timer.TimerSettings.PeriodValue; }
             set { _timer.TimerSettings.PeriodValue = value; }
         }
 
-        public string Count
+        public int Count
         {
             get { return _timer.TimerSettings.Count ; }
             set { _timer.TimerSettings.Count = value; }
@@ -79,31 +78,35 @@ namespace CodeWizard.Plugins.ViewModel.Timer
             set { _timer.TimerSettings.CCDChannel.IsAvailable = value; }
         }
 
-        public string CCAValue
+        public int CCAValue
         {
             get { return _timer.TimerSettings.CCAChannel.ChannelValue; }
             set { _timer.TimerSettings.CCAChannel.ChannelValue = value; }
         }
 
-        public string CCBValue
+        public int CCBValue
         {
             get { return _timer.TimerSettings.CCBChannel.ChannelValue; }
             set { _timer.TimerSettings.CCBChannel.ChannelValue = value; }
         }
 
-        public string CCCValue
+        public int CCCValue
         {
             get { return _timer.TimerSettings.CCCChannel.ChannelValue; }
             set { _timer.TimerSettings.CCCChannel.ChannelValue = value; }
         }
 
-        public string CCDValue
+        public int CCDValue
         {
             get { return _timer.TimerSettings.CCDChannel.ChannelValue; }
             set { _timer.TimerSettings.CCDChannel.ChannelValue = value; }
         }
 
-        public ObservableCollection<string> TimerModes { get; set; }
+        public ObservableCollection<string> TimerModes
+        {
+            get { return _timer.TimerSettings.TimerModes; }
+            set { _timer.TimerSettings.TimerModes = value; }
+        }
 
         public string SelectedTimerMode
         {
@@ -111,7 +114,11 @@ namespace CodeWizard.Plugins.ViewModel.Timer
             set { _timer.TimerSettings.TimerMode = value; }
         }
 
-        public ObservableCollection<string> EventSources { get; set; }
+        public ObservableCollection<string> EventSources
+        {
+            get { return _timer.TimerSettings.EventSources; }
+            set { _timer.TimerSettings.EventSources = value; }
+        }
 
         public string SelectedEventSource
         {
@@ -119,7 +126,11 @@ namespace CodeWizard.Plugins.ViewModel.Timer
             set { _timer.TimerSettings.SelectedEventSource = value; }
         }
 
-        public ObservableCollection<string> EventActions { get; set; }
+        public ObservableCollection<string> EventActions
+        {
+            get { return _timer.TimerSettings.EventActions; }
+            set { _timer.TimerSettings.EventActions = value; }
+        }
 
         public string SelectedEventAction
         {
@@ -184,7 +195,11 @@ namespace CodeWizard.Plugins.ViewModel.Timer
             set { _timer.TimerSettings.CCDChannel.ChannelInterupt.IsEnabled = value; }
         }
 
-        public ObservableCollection<string> InteruptLevels { get; set; }
+        public ObservableCollection<string> InteruptLevels
+        {
+            get { return _timer.TimerSettings.InteruptLevels; }
+            set { _timer.TimerSettings.InteruptLevels = value; }
+        }
 
         public string SelectedOvfInteruptLevel
         {

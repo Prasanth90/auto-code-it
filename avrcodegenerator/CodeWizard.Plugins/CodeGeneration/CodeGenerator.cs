@@ -14,13 +14,13 @@ namespace CodeWizard.Plugins.CodeGeneration
             new CreateRawInput(_filesContentStore).LoadResourceFile();
         }
 
-        public string GetGeneratedCode()
+        public string GetGeneratedCode(List<string> enabledModules)
         {
             List<CodeBlock> generatedCodes = new List<CodeBlock>();
             var plugins = PluginManager.PluginManager.GeneralPlugins;
             foreach (var plugin in plugins)
             {
-                generatedCodes.Add(plugin.CodeGenerator().GetCode());
+                generatedCodes.Add(plugin.CodeGenerator().GetCode(enabledModules));
             }
             return GetCodeStream(generatedCodes);
         }

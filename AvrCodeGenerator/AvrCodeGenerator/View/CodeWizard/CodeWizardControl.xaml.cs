@@ -135,11 +135,29 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var codegen = new CodeGenerator();
-            string generatedCode =  codegen.GetGeneratedCode();
+            var enabledModules = GetEnabledModules();
+            string generatedCode =  codegen.GetGeneratedCode(enabledModules);
             using (var streamWriter = new StreamWriter(@"D:\testt.txt"))
             {
                 streamWriter.Write(generatedCode);              
             }
+        }
+
+        private List<string> GetEnabledModules()
+        {
+            var enabledModules = new List<string>();
+            var phViewModel = McuPeripheralsViewModel.PeripheralViewModels;
+            foreach (var peripheralViewModel in phViewModel)
+            {
+                foreach (var childrenPeripheral in peripheralViewModel.ChildrenPeripherals)
+                {
+                    if (childrenPeripheral.IsModuleEnabled)
+                    {
+                        enabledModules.Add(childrenPeripheral.Name);
+                    }
+                }
+            }
+            return enabledModules;
         }
     }
 }

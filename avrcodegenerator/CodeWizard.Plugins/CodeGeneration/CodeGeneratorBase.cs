@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using CodeWizard.DataModel.ICodeWizardPlugin;
 
 namespace CodeWizard.Plugins.CodeGeneration
@@ -14,7 +15,7 @@ namespace CodeWizard.Plugins.CodeGeneration
             FilesContentStore = filesContentStore;
         }
 
-        public abstract CodeBlock GetCode();
+        public abstract CodeBlock GetCode(List<string> enabledModules);
         
 
         protected StringBuilder GetCommentSection(string message)

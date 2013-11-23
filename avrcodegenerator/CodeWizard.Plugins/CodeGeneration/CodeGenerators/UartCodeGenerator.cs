@@ -15,32 +15,35 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             _usartModel = usartModel;
         }
 
-        public override CodeBlock GetCode()
+        public override CodeBlock GetCode(List<string> enabledModules)
         {
             var codeBlock = new CodeBlock("USART");
             var codeGenerationInfos = new List<CodeGenerationInfo>();
             foreach (var usartModel in _usartModel.Usarts)
             {
-                var codegenerationinfo = new CodeGenerationInfo(usartModel.UsartName);
-                string hashDefineContents = GetUsartDefineTemplate();
-                var replacemntDict = GetReplacementDict_UsartDefines(usartModel);
-                Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref hashDefineContents);
-                codegenerationinfo.HashDefineBlock.Append(hashDefineContents);
+                if (enabledModules.Contains(usartModel.UsartName))
+                {
+                    var codegenerationinfo = new CodeGenerationInfo(usartModel.UsartName);
+                    string hashDefineContents = GetUsartDefineTemplate();
+                    var replacemntDict = GetReplacementDict_UsartDefines(usartModel);
+                    Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref hashDefineContents);
+                    codegenerationinfo.HashDefineBlock.Append(hashDefineContents);
 
-                string usartInitContents = GetUsartInitTemplate();
-                replacemntDict = GetReplacementDict_UsartInit(usartModel);
-                Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref usartInitContents);
-                codegenerationinfo.SourceCodeBlock.Append(usartInitContents);
+                    string usartInitContents = GetUsartInitTemplate();
+                    replacemntDict = GetReplacementDict_UsartInit(usartModel);
+                    Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref usartInitContents);
+                    codegenerationinfo.SourceCodeBlock.Append(usartInitContents);
 
-                string interuptHandlerContents = GetInteruptHandlerCode(usartModel);
-                codegenerationinfo.InteruptHandlerBlock.Append(interuptHandlerContents);
+                    string interuptHandlerContents = GetInteruptHandlerCode(usartModel);
+                    codegenerationinfo.InteruptHandlerBlock.Append(interuptHandlerContents);
 
-                codegenerationinfo.FunctionCallsBlock.Append(GetFunctionCallsBlock(usartModel));
-                codegenerationinfo.FunctionDeclarationBlock.Append(GetFunctionDeclarationBlock(usartModel));
+                    codegenerationinfo.FunctionCallsBlock.Append(GetFunctionCallsBlock(usartModel));
+                    codegenerationinfo.FunctionDeclarationBlock.Append(GetFunctionDeclarationBlock(usartModel));
 
-                codeGenerationInfos.Add(codegenerationinfo);
+                    codeGenerationInfos.Add(codegenerationinfo);
+                }
 
-                
+
 
                 //string demoAppContents = GetselectedDemoAppTemplate(usartModel);
                 //demoAppContents = demoAppContents.Replace(UsartConstants.UsartSerialInit, usartInitContents);

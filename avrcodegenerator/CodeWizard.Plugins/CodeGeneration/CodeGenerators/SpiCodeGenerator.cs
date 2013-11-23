@@ -15,29 +15,32 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             _spiModel = spiModel;
         }
 
-        public override CodeBlock GetCode()
+        public override CodeBlock GetCode(List<string> enabledModules)
         {
             var codeBlock = new CodeBlock("SPI");
             var codeGenerationInfos = new List<CodeGenerationInfo>();
             foreach (var spiModel in _spiModel.Spis)
             {
-                var codegenerationinfo = new CodeGenerationInfo(spiModel.SpiName);
-                string hashDefineContents = GetSpiDefineTemplate();
-                var replacemntDict = GetReplacementDict_SPIDefines(spiModel);
-                Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref hashDefineContents);
-                codegenerationinfo.HashDefineBlock.Append(hashDefineContents);
+                if (enabledModules.Contains(spiModel.SpiName))
+                {
+                    var codegenerationinfo = new CodeGenerationInfo(spiModel.SpiName);
+                    string hashDefineContents = GetSpiDefineTemplate();
+                    var replacemntDict = GetReplacementDict_SPIDefines(spiModel);
+                    Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref hashDefineContents);
+                    codegenerationinfo.HashDefineBlock.Append(hashDefineContents);
 
-                string spiInitContents = GetSpiInitTemplate();
-                replacemntDict = GetReplacementDict_SpiInit(spiModel);
-                Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref spiInitContents);
-                codegenerationinfo.SourceCodeBlock.Append(spiInitContents);
+                    string spiInitContents = GetSpiInitTemplate();
+                    replacemntDict = GetReplacementDict_SpiInit(spiModel);
+                    Utils.Utils.PerformReplacementInFileContents(replacemntDict, ref spiInitContents);
+                    codegenerationinfo.SourceCodeBlock.Append(spiInitContents);
 
-                string interuptHandlerContents = GetInteruptHandlerCode(spiModel);
-                codegenerationinfo.InteruptHandlerBlock.Append(interuptHandlerContents);
+                    string interuptHandlerContents = GetInteruptHandlerCode(spiModel);
+                    codegenerationinfo.InteruptHandlerBlock.Append(interuptHandlerContents);
 
-                codegenerationinfo.FunctionCallsBlock.Append(GetFunctionCallsBlock(spiModel));
-                codegenerationinfo.FunctionDeclarationBlock.Append(GetFunctionDeclarationBlock(spiModel));
-                codeGenerationInfos.Add(codegenerationinfo);
+                    codegenerationinfo.FunctionCallsBlock.Append(GetFunctionCallsBlock(spiModel));
+                    codegenerationinfo.FunctionDeclarationBlock.Append(GetFunctionDeclarationBlock(spiModel));
+                    codeGenerationInfos.Add(codegenerationinfo);
+                }
             }
             codeBlock.CodeGenerationInfos = codeGenerationInfos;
             return codeBlock;
