@@ -7,15 +7,9 @@ namespace CodeWizard.Plugins.ViewModel.Spi
     public class SpiViewModel : ViewModelBase
     {
         private readonly CodeWizard.DataModel.SPI.Spi _spiModel;
-
         public SpiViewModel(CodeWizard.DataModel.SPI.Spi spiModel)
         {
             _spiModel = spiModel;
-            SpiModes = McuModel.PeripheralInfoProvider.GetSupportedSpiModes();
-            SpiComModes = McuModel.PeripheralInfoProvider.GetSupportedSpiComModes();
-            BaudRates = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedBaudRates());
-            DataOrders = McuModel.PeripheralInfoProvider.GetSupportedDataOrders();
-            SpiInteruptLevels = McuModel.PeripheralInfoProvider.GetSupportedSpiInteruptLevels();
             Ports = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPorts().Select(p => p.Name));
             Pins = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPinsList());
         }
@@ -30,15 +24,35 @@ namespace CodeWizard.Plugins.ViewModel.Spi
             }
         }
 
-        public ObservableCollection<string> SpiModes { get; set; }
+        public ObservableCollection<string> SpiModes
+        {
+            get { return _spiModel.SpiSettings.SpiModes; }
+            set { _spiModel.SpiSettings.SpiModes = value; }
+        }
 
-        public ObservableCollection<string> SpiComModes { get; set; }
+        public ObservableCollection<string> SpiComModes
+        {
+            get { return _spiModel.SpiSettings.SpiComModes; }
+            set { _spiModel.SpiSettings.SpiComModes = value; }
+        }
 
-        public ObservableCollection<string> BaudRates { get; set; }
+        public ObservableCollection<string> BaudRates
+        {
+            get { return _spiModel.SpiSettings.BaudRates; }
+            set { _spiModel.SpiSettings.BaudRates = value; }
+        }
 
-        public ObservableCollection<string> DataOrders { get; set; }
+        public ObservableCollection<string> DataOrders
+        {
+            get { return _spiModel.SpiSettings.DataOrders; }
+            set { _spiModel.SpiSettings.DataOrders = value; }
+        }
 
-        public ObservableCollection<string> SpiInteruptLevels { get; set; }
+        public ObservableCollection<string> SpiInteruptLevels
+        {
+            get { return _spiModel.SpiSettings.SpiInteruptLevels; }
+            set { _spiModel.SpiSettings.SpiInteruptLevels = value; }
+        }
 
         public string SelectedSpiMode
         {
