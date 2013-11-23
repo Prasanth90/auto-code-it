@@ -1,7 +1,39 @@
-﻿namespace CodeWizard.DataModel.UsarModel
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+
+namespace CodeWizard.DataModel.UsarModel
 {
     public class UsartSettings
     {
+
+        public UsartSettings()
+        {
+            Modes = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedUsartModes());
+            DataBitLengths = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedUsartCharLengths());
+            BaudRates = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedBaudRates());
+            ParityModes = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedParityModes());
+            InteruptLevels = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedUsartIntLevels());
+            SelectedMode = Modes.FirstOrDefault();
+            SelectedDataBitLength = DataBitLengths.FirstOrDefault();
+            SelectedBaudRate = BaudRates.FirstOrDefault();
+            SelectedParityMode = ParityModes.FirstOrDefault();
+            SelectedRxInteruptLevel = InteruptLevels[1];         
+            SelectedTxInteruptLevel = InteruptLevels[1];
+            SelectedDreInteruptLevel = InteruptLevels[1];
+        }
+
+        public ObservableCollection<string> Modes { get; set; }
+
+        public ObservableCollection<string> DataBitLengths { get; set; }
+
+        public ObservableCollection<string> BaudRates { get; set; }
+
+        public ObservableCollection<string> ParityModes { get; set; }
+
+        public ObservableCollection<string> InteruptLevels { get; set; }
+
+        public ObservableCollection<string> Demos { get; set; }
+
         public string SelectedMode
         {
             get;

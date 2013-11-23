@@ -10,54 +10,44 @@ namespace CodeWizard.Plugins.ViewModel.Usart
         public UsartViewModel(CodeWizard.DataModel.UsarModel.Usart usartModel)
         {
             _usartModel = usartModel;
-            Modes = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedUsartModes());
-            DataBitLengths = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedUsartCharLengths());
-            BaudRates = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedBaudRates());
-            ParityModes = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedParityModes());
-            InteruptLevels = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedUsartIntLevels());
             Demos = new ObservableCollection<string>();
         }
 
-        private ObservableCollection<string> _modes;
-        private ObservableCollection<string> _dataBitLengths;
-        private ObservableCollection<string> _baudRates;
-        private ObservableCollection<string> _parityModes;
-        private ObservableCollection<string> _interuptLevels;
         private ObservableCollection<string> _demos;
         public ObservableCollection<string> Modes
         {
-            get { return _modes; }
+            get { return _usartModel.UsartSettings.Modes; }
             set
             {
-                _modes = value;
+                _usartModel.UsartSettings.Modes = value;
             }
         }
 
         public ObservableCollection<string> DataBitLengths
         {
-            get { return _dataBitLengths; }
+            get { return _usartModel.UsartSettings.DataBitLengths; }
             set
             {
-                _dataBitLengths = value;
+                _usartModel.UsartSettings.DataBitLengths = value;
             }
         }
 
         public ObservableCollection<string> BaudRates
         {
-            get { return _baudRates; }
-            set { _baudRates = value; }
+            get { return _usartModel.UsartSettings.BaudRates; }
+            set { _usartModel.UsartSettings.BaudRates = value; }
         }
 
         public ObservableCollection<string> ParityModes
         {
-            get { return _parityModes; }
-            set { _parityModes = value; }
+            get { return _usartModel.UsartSettings.ParityModes; }
+            set { _usartModel.UsartSettings.ParityModes = value; }
         }
 
         public ObservableCollection<string> InteruptLevels
         {
-            get { return _interuptLevels; }
-            set { _interuptLevels = value; }
+            get { return _usartModel.UsartSettings.InteruptLevels; }
+            set { _usartModel.UsartSettings.InteruptLevels = value; }
         }
 
         public ObservableCollection<string> Demos
