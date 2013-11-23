@@ -32,8 +32,6 @@ namespace CodeWizard.DataModel.SPI
             SpiSettings = new SpiSettings();
         }
 
-        public bool IsEnabled { get; set; }
-
         public string SpiName { get; private set; }
 
         public SpiSettings SpiSettings { get; set; }

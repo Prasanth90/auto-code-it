@@ -30,7 +30,7 @@
                     <GroupBox    HorizontalAlignment="Left" Margin="5,5,5,5"  VerticalAlignment="Top" Width="Auto"  BorderBrush="#FFA79E9E">
                         <GroupBox.Header>
                             <StackPanel Grid.Row="0"  Margin="2,2,0,0" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                <Label Content="Usart Settings -"></Label>
+                                <Label Content="{Binding Path=UsartName,UpdateSourceTrigger=PropertyChanged}"></Label>
                                 <Label DockPanel.Dock="Left" Content="Mode" Height="28" HorizontalAlignment="Left" Width="40" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                 <ComboBox   Height="28" Width="175" VerticalAlignment="Top" ItemsSource="{Binding Path=Modes, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedMode, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"/>
                             </StackPanel>

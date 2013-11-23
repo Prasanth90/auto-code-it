@@ -13,14 +13,9 @@ namespace CodeWizard.Plugins.ViewModel.Spi
             _spiModel = spiModel;
         }
 
-        public bool IsSpiEnabled
+        public string SpiName
         {
-            get { return _spiModel.IsEnabled; }
-            set
-            {
-                _spiModel.IsEnabled = value;
-                OnPropertyChanged("IsSpiEnabled");
-            }
+            get { return _spiModel.SpiName; }
         }
 
         public ObservableCollection<string> SpiModes

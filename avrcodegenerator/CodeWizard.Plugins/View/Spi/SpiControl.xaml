@@ -24,13 +24,8 @@
             <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
                 <DockPanel Margin="10,10,10,10" Height="Auto" Width="Auto" Name="PinsContainer" >
                     <Grid>
-                        <GroupBox HorizontalAlignment="Left" Margin="5,5,5,5"  VerticalAlignment="Top" Width="Auto"  BorderBrush="#FFA79E9E">
-                            <GroupBox.Header>
-                            <StackPanel Grid.Row="2"  Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
-                                <CheckBox  Content="Spi Enable"  IsChecked="{Binding Path=IsSpiEnabled, UpdateSourceTrigger=PropertyChanged}"/>
-                            </StackPanel>
-                        </GroupBox.Header>
-                        <StackPanel IsEnabled="{Binding Path=IsSpiEnabled, UpdateSourceTrigger=PropertyChanged}">
+                        <GroupBox Header="{Binding Path=SpiName,UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="5,5,5,5"  VerticalAlignment="Top" Width="Auto"  BorderBrush="#FFA79E9E">
+                        <StackPanel >
                             <StackPanel Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
                                 <Label DockPanel.Dock="Left" Content="Spi Mode" Height="28" HorizontalAlignment="Left" Width="100" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                 <ComboBox  ItemsSource="{Binding Path=SpiComModes, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedSpiComMode, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="70" VerticalAlignment="Top" HorizontalAlignment="Left"/>

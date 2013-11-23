@@ -13,6 +13,11 @@ namespace CodeWizard.Plugins.ViewModel.Usart
             Demos = new ObservableCollection<string>();
         }
 
+        public string UsartName
+        {
+            get { return _usartModel.UsartName; }
+        }
+
         private ObservableCollection<string> _demos;
         public ObservableCollection<string> Modes
         {
