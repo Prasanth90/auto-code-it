@@ -12,13 +12,21 @@ namespace CodeWizard.DataModel.SPI
             BaudRates = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetSupportedBaudRates());
             DataOrders = McuModel.PeripheralInfoProvider.GetSupportedDataOrders();
             SpiInteruptLevels = McuModel.PeripheralInfoProvider.GetSupportedSpiInteruptLevels();
+            Ports = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPorts().Select(p => p.Name));
+            Pins = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPinsList());
 
             BaudRate = BaudRates.FirstOrDefault();
             SpiMode = SpiModes.FirstOrDefault();
             SpiComMode = SpiComModes.FirstOrDefault();
             DataOrder = DataOrders.FirstOrDefault();
             InterruptLevel = SpiInteruptLevels.FirstOrDefault();
+            CsPort = Ports.FirstOrDefault();
+            CsPin = Pins.FirstOrDefault();
         }
+
+        public ObservableCollection<string> Ports { get; set; }
+
+        public ObservableCollection<string> Pins { get; set; }
 
         public string BaudRate { get; set; }
 

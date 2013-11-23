@@ -7,11 +7,10 @@ namespace CodeWizard.Plugins.ViewModel.Spi
     public class SpiViewModel : ViewModelBase
     {
         private readonly CodeWizard.DataModel.SPI.Spi _spiModel;
+
         public SpiViewModel(CodeWizard.DataModel.SPI.Spi spiModel)
         {
             _spiModel = spiModel;
-            Ports = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPorts().Select(p => p.Name));
-            Pins = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPinsList());
         }
 
         public bool IsSpiEnabled
@@ -104,9 +103,17 @@ namespace CodeWizard.Plugins.ViewModel.Spi
             }
         }
 
-        public ObservableCollection<string> Ports { get; set; }
+        public ObservableCollection<string> Ports
+        {
+            get { return _spiModel.SpiSettings.Ports; }
+            set { _spiModel.SpiSettings.Ports = value; }
+        }
 
-        public ObservableCollection<string> Pins { get; set; }
+        public ObservableCollection<string> Pins
+        {
+            get { return _spiModel.SpiSettings.Pins; }
+            set { _spiModel.SpiSettings.Pins = value; }
+        }
 
         public string SelectedCsPort
         {
