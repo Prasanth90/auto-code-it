@@ -8,10 +8,6 @@ namespace CodeWizard.Plugins.ViewModel.IOPort.IOPin
     public class PinViewModel : INotifyPropertyChanged
     {
         private readonly Pin _pin;
-        private ObservableCollection<string> _directions = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPinDirections());
-        private ObservableCollection<string> _outputValues = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPinOutputValues());
-        private ObservableCollection<string> _outputPullConfigValues = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetOuputPullConfigs());
-        private ObservableCollection<string> _inputSenseModes = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetInputSenseModes());
 
         public PinViewModel(Pin pin)
         {
@@ -30,26 +26,26 @@ namespace CodeWizard.Plugins.ViewModel.IOPort.IOPin
 
         public ObservableCollection<string> Directions
         {
-            get { return _directions; }
-            set { _directions = value; }
+            get { return _pin.Directions; }
+            set { _pin.Directions = value; }
         }
 
         public ObservableCollection<string> OutputValues
         {
-            get { return _outputValues; }
-            set { _outputValues = value; }
+            get { return _pin.OutputValues; }
+            set { _pin.OutputValues = value; }
         }
 
         public ObservableCollection<string> OutputPullConfigValues
         {
-            get { return _outputPullConfigValues; }
-            set { _outputPullConfigValues = value; }
+            get { return _pin.OutputPullConfigValues; }
+            set { _pin.OutputPullConfigValues = value; }
         }
 
         public ObservableCollection<string> InputSenseModes
         {
-            get { return _inputSenseModes; }
-            set { _inputSenseModes = value; }
+            get { return _pin.InputSenseModes; }
+            set { _pin.InputSenseModes = value; }
         }
 
         public string SelectedDirection

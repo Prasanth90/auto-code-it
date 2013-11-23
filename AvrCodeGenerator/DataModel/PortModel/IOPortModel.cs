@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace CodeWizard.DataModel.PortModel
@@ -41,6 +42,25 @@ namespace CodeWizard.DataModel.PortModel
 
     public class Pin
     {
+        public Pin()
+        {
+            Directions = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPinDirections());
+            OutputValues = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetPinOutputValues());
+            OutputPullConfigValues = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetOuputPullConfigs());
+            InputSenseModes = new ObservableCollection<string>(McuModel.PeripheralInfoProvider.GetInputSenseModes());
+            SelectedDirection = Directions.LastOrDefault();
+            SelectedOutputValue = OutputValues.FirstOrDefault();
+            SelectedInputSenseMode = InputSenseModes.FirstOrDefault();
+            SelectedOutputPullConfig = OutputPullConfigValues[3];
+        }
+
+        public ObservableCollection<string> Directions { get; set; }
+
+        public ObservableCollection<string> OutputValues { get; set; }
+
+        public ObservableCollection<string> OutputPullConfigValues { get; set; }
+
+        public ObservableCollection<string> InputSenseModes { get; set; }
 
         public bool HasUserConfigured { get; set; }
 
