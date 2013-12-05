@@ -24,6 +24,16 @@ namespace CodeWizard.Plugins.ViewModel.IOPort.IOPin
             }
         }
 
+        public bool IsEnabled
+        {
+            get { return _pin.HasUserConfigured; }
+            set
+            {
+                _pin.HasUserConfigured = value;
+                this.OnPropertyChanged("IsEnabled");
+            }
+        }
+
         public ObservableCollection<string> Directions
         {
             get { return _pin.Directions; }
@@ -112,7 +122,6 @@ namespace CodeWizard.Plugins.ViewModel.IOPort.IOPin
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            _pin.HasUserConfigured = true;
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
             {

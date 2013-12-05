@@ -28,6 +28,30 @@ namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
                     list);
         }
 
+        public bool IsCheckBoxVisible
+        {
+            get
+            {
+                if (_parent != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public bool IsImageVisible
+        {
+            get
+            {
+                if (_parent == null)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
         public string Icon
         {
             get { return _peripheral.Icon; }

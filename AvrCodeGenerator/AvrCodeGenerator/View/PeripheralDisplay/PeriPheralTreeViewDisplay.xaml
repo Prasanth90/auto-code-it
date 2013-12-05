@@ -8,6 +8,8 @@
              d:DesignHeight="300" d:DesignWidth="300" >
     <UserControl.Resources>
         <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+            <utils3:CustomImagePathConverter x:Key="CustomImagePathConvertor"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MahApps.Metro;component/Styles/Colours.xaml" />
                 <ResourceDictionary Source="/MahApps.Metro;component/Styles/Fonts.xaml" />
@@ -16,8 +18,7 @@
                 <ResourceDictionary Source="/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
                 <ResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-            <utils3:CustomImagePathConverter x:Key="CustomImagePathConvertor"/>
+            </ResourceDictionary.MergedDictionaries>  
         </ResourceDictionary>
     
     
@@ -45,8 +46,8 @@
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding ChildrenPeripherals}">
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding Path=IsModuleEnabled,UpdateSourceTrigger=PropertyChanged}"/>
-                        <Image  Margin="1" Width="12" Height="15" Source="{Binding Path=Icon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CustomImagePathConvertor}}"></Image>
+                        <CheckBox Margin="1,5,0,0" Visibility="{Binding Path=IsCheckBoxVisible, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" IsChecked="{Binding Path=IsModuleEnabled,UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image  Margin="1" Width="12"  Height="15" Visibility="{Binding Path=IsImageVisible, Converter={StaticResource BoolToVis},UpdateSourceTrigger=PropertyChanged}" Source="{Binding Path=Icon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CustomImagePathConvertor}}"></Image>
                         <Label Margin="1" Content="{Binding Name}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" FontSize="10" FontWeight="Black"/>
                     </StackPanel>                  
                 </HierarchicalDataTemplate>

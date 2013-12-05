@@ -19,8 +19,14 @@
           
     </UserControl.Resources>
     <Grid >
-        <GroupBox Header="{Binding Path=PinName, UpdateSourceTrigger=PropertyChanged}"  Height="115"  HorizontalAlignment="Left" Margin="5,5,0,0"  VerticalAlignment="Top" Width="660"  BorderBrush="#FFA79E9E">
-            <Grid>
+        <GroupBox   Height="115"  HorizontalAlignment="Left" Margin="5,5,0,0"  VerticalAlignment="Top" Width="660"  BorderBrush="#FFA79E9E">
+            <GroupBox.Header>
+                <StackPanel Grid.Row="0"  Margin="2,2,0,0" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                    <CheckBox Margin="0,5,0,0"  IsChecked="{Binding Path=IsEnabled,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                    <Label Content="{Binding Path=PinName, UpdateSourceTrigger=PropertyChanged}"></Label>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid IsEnabled="{Binding Path=IsEnabled, UpdateSourceTrigger=PropertyChanged}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />

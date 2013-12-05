@@ -137,7 +137,7 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
             var codegen = new CodeGenerator();
             var enabledModules = GetEnabledModules();
             string generatedCode =  codegen.GetGeneratedCode(enabledModules);
-            using (var streamWriter = new StreamWriter(@"D:\testt.txt"))
+            using (var streamWriter = new StreamWriter(@"E:\testt.txt"))
             {
                 streamWriter.Write(generatedCode);              
             }
