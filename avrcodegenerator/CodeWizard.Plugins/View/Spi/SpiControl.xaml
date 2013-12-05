@@ -32,14 +32,14 @@
                                 <ComboBox  ItemsSource="{Binding Path=SpiModes, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedSpiMode, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                             </StackPanel>
                             
-                            <StackPanel Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+                            <!--<StackPanel Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
                                 <Label DockPanel.Dock="Left" Content="Spi Data Order" Height="28" HorizontalAlignment="Left" Width="100" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                 <ComboBox  ItemsSource="{Binding Path=DataOrders, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedOrder, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="59" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                             </StackPanel>
                             <StackPanel Margin="5" Orientation="Horizontal">
                                 <Label  Content="Spi Interupt Level" Width="101" />
                                 <ComboBox  Margin="0,0,0,0"  ItemsSource="{Binding Path=SpiInteruptLevels, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedInteruptLevel, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="149" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                            </StackPanel>
+                            </StackPanel>-->
                             <StackPanel Style="{StaticResource Stack}" Margin="5" DockPanel.Dock="Left" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
                                 <Label DockPanel.Dock="Left" Content="Baud Rate" Height="28" HorizontalAlignment="Left" Width="100" Margin="0,0,0,0"  VerticalAlignment="Top" />
                                 <ComboBox  ItemsSource="{Binding Path=BaudRates, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedBaudRate, UpdateSourceTrigger=PropertyChanged}"  Height="28" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>

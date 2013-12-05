@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Collections.ObjectModel;
+using Atmel.Studio.Services.Device;
 using CodeWizard.DataModel;
 using CodeWizard.DataModel.PortModel;
+using Microsoft.VisualStudio.Shell;
 
 namespace CodeWizard.Plugins.ViewModel.IOPort.IOPin
 {
@@ -29,6 +31,7 @@ namespace CodeWizard.Plugins.ViewModel.IOPort.IOPin
             get { return _pin.HasUserConfigured; }
             set
             {
+
                 _pin.HasUserConfigured = value;
                 this.OnPropertyChanged("IsEnabled");
             }

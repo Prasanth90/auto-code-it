@@ -141,6 +141,7 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
             {
                 streamWriter.Write(generatedCode);              
             }
+            CodeContainer.Text = generatedCode;
         }
 
         private List<string> GetEnabledModules()

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Atmel.Studio.Services.Device;
 using CodeWizard.DataModel.PeripheralInfo;
+using Microsoft.VisualStudio.Shell;
 
 namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
 {
@@ -8,11 +10,26 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
     {
         public ObservableCollection<Peripheral> PeripheralsInfo;
 
+        
+
         public string McuName { get; set; }
 
         public XmegaPeripheralInfoProvider(string mcuName)
         {
             McuName = mcuName;
+            var deviceservice = Package.GetGlobalService(typeof(SDeviceInfoService)) as IDeviceInfoService;
+            if (deviceservice != null)
+            {
+                var deviceInfo = deviceservice.GetDeviceFromName("ATXmega128A1");
+                foreach (var peripheral in deviceInfo.Peripherals)
+                {
+                    if (peripheral.Caption.Contains(""))
+                    {
+
+                    }
+                }
+
+            }
             PeripheralsInfo = GetPerpheralInfo();
         }
 
@@ -213,6 +230,7 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
 
         public ObservableCollection<Peripheral> GetSpis()
         {
+            
             var pheriperals = new ObservableCollection<Peripheral>
                 {
                     new Peripheral()

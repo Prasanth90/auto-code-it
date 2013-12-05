@@ -11,6 +11,8 @@ namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
 
         public McuPeripheralsViewModel(ObservableCollection<Peripheral> peripherals, Action<PeripheralViewModel> treeViewSelectionCahnged)
         {
+
+            
             _treeViewSelectionCahnged = treeViewSelectionCahnged;
             foreach (var peripheral in peripherals)
             {
