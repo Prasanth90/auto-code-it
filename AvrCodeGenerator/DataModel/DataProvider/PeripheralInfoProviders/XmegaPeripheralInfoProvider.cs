@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
+using Atmel.Studio.Services;
 using Atmel.Studio.Services.Device;
 using CodeWizard.DataModel.PeripheralInfo;
 using Microsoft.VisualStudio.Shell;
@@ -10,8 +12,8 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
     {
         public ObservableCollection<Peripheral> PeripheralsInfo;
 
-        
 
+        private readonly Regex _portRegex = new Regex(@"^PORT[A-Z]$");
         public string McuName { get; set; }
 
         public XmegaPeripheralInfoProvider(string mcuName)
@@ -189,56 +191,121 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
 
         public ObservableCollection<Peripheral> GetPorts()
         {
-            var pheriperals = new ObservableCollection<Peripheral>
-                {
-                    new Peripheral()
-                        {
-                            Name = "PORTA",
-                        },
-                            new Peripheral()
-                        {
-                            Name = "PORTB"
-                        },
-                           new Peripheral()
-                        {
-                            Name = "PORTC"
-                        },
-                            new Peripheral()
-                        {
-                            Name = "PORTD"
-                        },
-                             new Peripheral()
-                        {
-                            Name = "PORTE"
-                        },
-                };
+            //var pheriperals = new ObservableCollection<Peripheral>
+            //    {
+            //        new Peripheral()
+            //            {
+            //                Name = "PORTA",
+            //            },
+            //                new Peripheral()
+            //            {
+            //                Name = "PORTB"
+            //            },
+            //               new Peripheral()
+            //            {
+            //                Name = "PORTC"
+            //            },
+            //                new Peripheral()
+            //            {
+            //                Name = "PORTD"
+            //            },
+            //                 new Peripheral()
+            //            {
+            //                Name = "PORTE"
+            //            },
+            //    };
+            var pheriperals = new ObservableCollection<Peripheral>();
+            var ports = GetGpioPort();
+            foreach (var port in ports)
+            {
+                pheriperals.Add(new Peripheral()
+                                    {
+                                        Name = port,
+                                    });
+            }
             return pheriperals;
         }
 
         public ObservableCollection<Peripheral> GetUsarts()
         {
-            var pheriperals = new ObservableCollection<Peripheral>
+
+            var availableUsarts = new List<string>();
+            var service = ATServiceProvider.DeviceService;
+            if (service != null)
+            {
+                IDevice deviceInfo = service.GetDeviceFromName("ATXmega128A1");
+
+                foreach (var perpheral in deviceInfo.Peripherals)
                 {
-                    new Peripheral()
+                    if (perpheral.Caption.Contains("Universal Asynchronous Receiver-Transmitter"))
+                    {
+                        availableUsarts.Add(perpheral.Name);
+                    }
+                }
+            }
+
+            var pheriperals = new ObservableCollection<Peripheral>();
+
+            foreach (var availableUsart in availableUsarts)
+            {
+               pheriperals.Add( new Peripheral()
                         {
-                            Name = "USARTC0",
+                            Name = availableUsart,
                             Icon = "denmark"
-                        },
-                };
+                        });
+            }
+
+           
             return pheriperals;
+        }
+
+
+        public IList<string> GetGpioPort()
+        {
+            var availablePorts = new List<string>();
+            var service = ATServiceProvider.DeviceService;
+            if (service != null)
+            {
+                IDevice deviceInfo = service.GetDeviceFromName("ATXmega128A1");
+                foreach (var perpheral in deviceInfo.Peripherals)
+                {
+                    if (perpheral.Caption.Contains("Port Configuration") && _portRegex.IsMatch(perpheral.Name))
+                    {
+                        availablePorts.Add(perpheral.Name);
+                    }
+                }
+            }
+            return availablePorts;
         }
 
         public ObservableCollection<Peripheral> GetSpis()
         {
-            
-            var pheriperals = new ObservableCollection<Peripheral>
+            var availableSpis = new List<string>();
+            var service = ATServiceProvider.DeviceService;
+            if (service != null)
+            {
+                IDevice deviceInfo =
+                    service.GetDeviceFromName("ATXmega128A1");
+
+                foreach (var perpheral in deviceInfo.Peripherals)
                 {
-                    new Peripheral()
-                        {
-                            Name = "SPIC",
-                            Icon = "denmark"
-                        },
-                };
+                    if (perpheral.Caption.Contains("Serial Peripheral Interface"))
+                    {
+                        availableSpis.Add(perpheral.Name);
+                    }
+                }
+            }
+            var pheriperals = new ObservableCollection<Peripheral>();
+
+            foreach (var availableSpi in availableSpis)
+            {
+                pheriperals.Add(new Peripheral()
+                {
+                    Name = availableSpi,
+                    Icon = "denmark"
+                });
+            }
+           
             return pheriperals;
         }
 
