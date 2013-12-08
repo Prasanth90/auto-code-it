@@ -1,15 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Atmel.Studio.Services;
 using CodeWizard.DataModel;
 using CodeWizard.DataModel.ICodeWizardPlugin;
 using CodeWizard.DataModel.PeripheralInfo;
 using CodeWizard.PluginManager;
 using CodeWizard.Plugins.CodeGeneration;
 using Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel;
+using Microsoft.VisualStudio.PlatformUI;
 
 namespace Company.AvrCodeGenerator.View.CodeWizard
 {
@@ -19,28 +25,86 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
     public partial class CodeWizardControl : UserControl , INotifyPropertyChanged
     {
         private McuModel _mcuModel;
+        private ObservableCollection<string> _deviceNames;
+        private DialogWindow _dialog = new DialogWindow()
+                                        {
+                                            Width = 300,
+                                            Height = 200
+                                        };
+
         private McuPeripheralsViewModel _mcuPeripheralsViewModel;
         private List<ICodeWizardPlugin> _plugins;
-        private readonly Dictionary<string,UserControl> _controlContainer =new Dictionary<string, UserControl>();
+        private  Dictionary<string,UserControl> _controlContainer =new Dictionary<string, UserControl>();
+        private string _selectedDevice = string.Empty;
+        private ObservableCollection<Peripheral> _peripheralsInfo;
+        private ObservableCollection<string> _devices;
 
         public CodeWizardControl()
         {
             InitializeComponent();
-            InitilaizePlugins();
-            InitilaizePeripheralView();
             this.DataContext = this;
+            Devices = new ObservableCollection<string>()
+                {
+                    "ATxmega128A1"
+                };
+        }
+
+
+        private void Initialize()
+        {
+            _controlContainer = new Dictionary<string, UserControl>();
+            InitilaizePlugins();
+            _peripheralsInfo = GetPeripheralsInfo();
+            InitilaizePeripheralView(_peripheralsInfo);
+        }
+
+        public ObservableCollection<string> Devices
+        {
+            get { return _devices; }
+            set
+            {
+                _devices = value;
+                OnPropertyChanged("Devices");
+            }
+        }
+
+        private void LoadDevices()
+        {
+            _deviceNames = new ObservableCollection<string>();
+            var service = ATServiceProvider.DeviceService;
+            if (service != null)
+            {
+
+                var devices = service.GetDevices();
+                foreach (var device in devices)
+                {
+                    if (device.Family.ToLower().Contains("xmega"))
+                        _deviceNames.Add(device.Name);
+                }
+            }
+            Devices = _deviceNames;
+        }
+
+        public string SelectedDevice
+        {
+            get { return _selectedDevice; }
+            set
+            {
+                _selectedDevice = value;
+                OnPropertyChanged("SelectedDevice");
+                Initialize();
+            }
         }
 
         private void InitilaizePlugins()
         {
-            _mcuModel = new McuModel("xmega128a1");
+            _mcuModel = new McuModel(SelectedDevice);
             var pluginManager = new PluginManager();
             _plugins = PluginManager.GeneralPlugins;
         }
 
-        private void InitilaizePeripheralView()
-        {
-            ObservableCollection<Peripheral> peripheralsInfo = GetPeripheralsInfo();
+        private void InitilaizePeripheralView(ObservableCollection<Peripheral> peripheralsInfo)
+        {         
             McuPeripheralsViewModel = new McuPeripheralsViewModel(peripheralsInfo, TreeViewSelectionChanged);
         }
 
@@ -65,23 +129,25 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
                 {
                     Icon = codeWizardPlugin.GetPluginInfo().Icon,
                     Name = codeWizardPlugin.GetPluginInfo().Name,
-                    ChildPeripherals = GetChildItems(codeWizardPlugin)
+                     ChildPeripherals = GetChildItems(codeWizardPlugin)
                 };
         }
 
         private ObservableCollection<Peripheral> GetChildItems(ICodeWizardPlugin codeWizardPlugin)
         {
-            var peripherals = new ObservableCollection<Peripheral>();
-            Dictionary<string, UserControl> controls = codeWizardPlugin.CreateUserControl(codeWizardPlugin.GetPluginInfo().Name);
+            var peripherals = new ObservableCollection<Peripheral>();           
+            Dictionary<string, UserControl> controls =
+                codeWizardPlugin.CreateUserControl(codeWizardPlugin.GetPluginInfo().Name);
             foreach (KeyValuePair<string, UserControl> keyValuePair in controls)
             {
                 peripherals.Add(new Peripheral()
-                {
-                    Icon = string.Empty,
-                    Name = keyValuePair.Key
-                });
+                    {
+                        Icon = string.Empty,
+                        Name = keyValuePair.Key
+                    });
                 _controlContainer.Add(keyValuePair.Key, keyValuePair.Value);
-            }   
+            }
+               
             return peripherals;
         }
 
@@ -107,8 +173,9 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
 
         private void SetControl(UserControl control)
         {
-            HostControl.Children.Clear();
+             HostControl.Children.Clear();
             HostControl.Children.Add(control);
+
         }
 
         private void TreeViewSelectionChanged(PeripheralViewModel peripheralViewModel)
@@ -116,9 +183,7 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
             if (peripheralViewModel.Parent != null)
             {
                 var uiControl =   GetControl(peripheralViewModel.Parent.Name,peripheralViewModel.Name);
-                if (uiControl != null) 
-                SetControl(uiControl);
-                
+                SetControl(uiControl);                
             }
         }
 
@@ -159,6 +224,13 @@ namespace Company.AvrCodeGenerator.View.CodeWizard
                 }
             }
             return enabledModules;
+        }
+
+        private void CodeWizardControl_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Task.Factory.StartNew(LoadDevices);
+
+
         }
     }
 }

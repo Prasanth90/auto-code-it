@@ -14,6 +14,7 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
 
 
         private readonly Regex _portRegex = new Regex(@"^PORT[A-Z]$");
+        private readonly Regex _timerRegex = new Regex(@"^TC[A-Z][0-1]$");
         public string McuName { get; set; }
 
         public XmegaPeripheralInfoProvider(string mcuName)
@@ -22,7 +23,7 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
             var deviceservice = Package.GetGlobalService(typeof(SDeviceInfoService)) as IDeviceInfoService;
             if (deviceservice != null)
             {
-                var deviceInfo = deviceservice.GetDeviceFromName("ATXmega128A1");
+                var deviceInfo = deviceservice.GetDeviceFromName(McuName);
                 foreach (var peripheral in deviceInfo.Peripherals)
                 {
                     if (peripheral.Caption.Contains(""))
@@ -191,29 +192,6 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
 
         public ObservableCollection<Peripheral> GetPorts()
         {
-            //var pheriperals = new ObservableCollection<Peripheral>
-            //    {
-            //        new Peripheral()
-            //            {
-            //                Name = "PORTA",
-            //            },
-            //                new Peripheral()
-            //            {
-            //                Name = "PORTB"
-            //            },
-            //               new Peripheral()
-            //            {
-            //                Name = "PORTC"
-            //            },
-            //                new Peripheral()
-            //            {
-            //                Name = "PORTD"
-            //            },
-            //                 new Peripheral()
-            //            {
-            //                Name = "PORTE"
-            //            },
-            //    };
             var pheriperals = new ObservableCollection<Peripheral>();
             var ports = GetGpioPort();
             foreach (var port in ports)
@@ -233,7 +211,7 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
             var service = ATServiceProvider.DeviceService;
             if (service != null)
             {
-                IDevice deviceInfo = service.GetDeviceFromName("ATXmega128A1");
+                IDevice deviceInfo = service.GetDeviceFromName(McuName);
 
                 foreach (var perpheral in deviceInfo.Peripherals)
                 {
@@ -259,6 +237,33 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
             return pheriperals;
         }
 
+        public ObservableCollection<Peripheral> GetTimers()
+        {
+            var availabletimers = new List<string>();
+            var service = ATServiceProvider.DeviceService;
+            if (service != null)
+            {
+                IDevice deviceInfo = service.GetDeviceFromName(McuName);
+                foreach (var perpheral in deviceInfo.Peripherals)
+                {
+                    if (perpheral.Caption.Contains("Timer/Counter") && _timerRegex.IsMatch(perpheral.Name))
+                    {
+                        availabletimers.Add(perpheral.Name);
+                    }
+                }
+            }
+            var timerpheriperals = new ObservableCollection<Peripheral>();
+            foreach (var availabletimer in availabletimers)
+            {
+                timerpheriperals.Add(new Peripheral()
+                    {
+                        Name = availabletimer,
+                        Icon = "denmark"
+                    });
+            }
+            return timerpheriperals;
+        }
+
 
         public IList<string> GetGpioPort()
         {
@@ -266,7 +271,7 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
             var service = ATServiceProvider.DeviceService;
             if (service != null)
             {
-                IDevice deviceInfo = service.GetDeviceFromName("ATXmega128A1");
+                IDevice deviceInfo = service.GetDeviceFromName(McuName);
                 foreach (var perpheral in deviceInfo.Peripherals)
                 {
                     if (perpheral.Caption.Contains("Port Configuration") && _portRegex.IsMatch(perpheral.Name))
@@ -285,7 +290,7 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
             if (service != null)
             {
                 IDevice deviceInfo =
-                    service.GetDeviceFromName("ATXmega128A1");
+                    service.GetDeviceFromName(McuName);
 
                 foreach (var perpheral in deviceInfo.Peripherals)
                 {
@@ -346,23 +351,6 @@ namespace CodeWizard.DataModel.DataProvider.PeripheralInfoProviders
             return pheriperals;
         }
 
-        public ObservableCollection<Peripheral> GetTimers()
-        {
-            var pheriperals = new ObservableCollection<Peripheral>
-                {
-                     new Peripheral()
-                        {
-                            Name = "TCC0",
-                            Icon = "denmark"
-                        },
-                        new Peripheral()
-                        {
-                            Name = "TCC1",
-                            Icon = "denmark"
-                        }
-                };
-            return pheriperals;
-        }
 
         public ObservableCollection<Peripheral> GetAnalogComparators()
         {
