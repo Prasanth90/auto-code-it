@@ -8,6 +8,7 @@ namespace Company.AvrCodeGenerator.Actions
 {
     public interface ICodeGenerationAction
     {
+        string StatusMessage();
         void Run();
     }
 }

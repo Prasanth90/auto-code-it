@@ -20,6 +20,13 @@ namespace Company.AvrCodeGenerator.Actions
             _dte = Package.GetGlobalService(typeof (EnvDTE.DTE)) as EnvDTE.DTE;
         }
 
+
+
+        public string StatusMessage()
+        {
+           return "Creating Project";
+        }
+
         public void Run()
         {
             CreateProject("AvrGcc.AutomationConfiguration", () => CreateProjectWithSolution(Globals.AvrGccTemplateFileName, Globals.AvrGccProjectLanguageName), _projectData.Device);

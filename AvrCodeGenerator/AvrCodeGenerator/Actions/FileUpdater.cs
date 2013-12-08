@@ -18,6 +18,11 @@ namespace Company.AvrCodeGenerator.Actions
             _codeWizardViewModel = codeWizardViewModel;
         }
 
+        public string StatusMessage()
+        {
+           return "Updating Main File";
+        }
+
         public void Run()
         {
             var codegen = new CodeGenerator();

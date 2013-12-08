@@ -13,7 +13,8 @@ namespace Company.AvrCodeGenerator.Actions
         private readonly ProjectData _projectData;
         private readonly CodeWizardViewModel _codeWizardViewModel;
         private const string ContentId = "Atmel.ASF";
-        private readonly List<string> _moduleIdList = new List<string>(); 
+        private readonly List<string> _moduleIdList = new List<string>();
+        private string Status;
 
         public AsfModuleAdder(ProjectData projectData, CodeWizardViewModel codeWizardViewModel)
         {
@@ -25,6 +26,12 @@ namespace Company.AvrCodeGenerator.Actions
             {
                 _moduleIdList.AddRange(codeWizardPlugin.CodeGenerator().GetAsfModuleIds(enabledModules));
             }
+        }
+
+
+        public string StatusMessage()
+        {
+           return "Adding Asf Modules";
         }
 
         public void Run()
