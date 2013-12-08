@@ -19,6 +19,7 @@ namespace CodeWizard.Plugins.CodeGeneration
         public const string TimerChannelInteruppt = "timerchannel_interrupt.c";
         public const string TimerInteruptHandler = "timer_interupt_handler.c";
         public const string TimerModeInitFile = "timer_mode_init.c";
+        public const string TimerInteruptCallBackDec = "timer_interupt_handler_dec.c";
 
         public static List<string> List
         {
@@ -39,7 +40,8 @@ namespace CodeWizard.Plugins.CodeGeneration
                         TimerChannelInitFuncCall,
                         TimerChannelInteruppt,
                         TimerInteruptHandler,
-                        TimerModeInitFile
+                        TimerModeInitFile,
+                        TimerInteruptCallBackDec
                     };
             }
         }

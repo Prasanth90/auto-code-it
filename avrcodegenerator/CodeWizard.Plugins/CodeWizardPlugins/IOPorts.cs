@@ -50,5 +50,6 @@ namespace CodeWizard.Plugins.CodeWizardPlugins
         {
            return _portPinPlugin.CodeGenerator();
         }
+
     }
 }

@@ -28,6 +28,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                 if (enabledModules.Contains(timer.TimerName))
                 {
                     _funcDeclarationBlock = new StringBuilder();
+                    _interruptHandlerBlock = new StringBuilder();
                     var codegenerationinfo = new CodeGenerationInfo(timer.TimerName);
                     codeGenerationInfos.Add(codegenerationinfo);
 
@@ -36,15 +37,28 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
 
                     codegenerationinfo.FunctionCallsBlock.Append(timer.TimerName + "_init();");
                     _funcDeclarationBlock.Append("void " + timer.TimerName + "_init();");
-
-                    codegenerationinfo.FunctionDeclarationBlock.Append(_funcDeclarationBlock);
-
-                    UpdateInteruptHandlerContents(timer.TimerSettings.OverFlowInterupt, "overflow");
+                    //UpdateInteruptHandlerContents(timer.TimerSettings.OverFlowInterupt, timer.TimerName+ "_overflow");
                     codegenerationinfo.InteruptHandlerBlock.Append(_interruptHandlerBlock);
+                    codegenerationinfo.FunctionDeclarationBlock.Append(_funcDeclarationBlock);
                 }
             }
             codeBlock.CodeGenerationInfos = codeGenerationInfos;
             return codeBlock;
+        }
+
+        public override List<string> GetAsfModuleIds(List<string> enabledModules)
+        {
+            foreach (Timer timer in _timerModel.Timers)
+            {
+                if (enabledModules.Contains(timer.TimerName))
+                {
+                    return new List<string>()
+                    {
+                        "xmega.drivers.tc"
+                    };
+                }
+            }
+            return new List<string>();
         }
 
         private string GetTimerSourceContents(Timer timer)
@@ -65,10 +79,17 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                                     {TimerConstants.SelectedClockSource,timer.TimerSettings.TimerClockSource },
                                     {TimerConstants.SelectedWaveFormMode,timer.TimerSettings.TimerMode },
                                     {TimerConstants.SelectedModeInit, GetTimerModeInit(timer) },
+                                    {TimerConstants.TimerOverflowInteruptinit,GetOverflowInteruptContents(timer)},
                                     {TimerConstants.TimerChannelsInitFunCall,GetTimerChInitFuncCall(timer) },
                                     {TimerConstants.TimerChannelsInitFunDefine,GetTimerChInitFuncDefines(timer) },
                                 };
             return replacementDict;
+        }
+
+        private string GetOverflowInteruptContents(Timer timer)
+        {
+            return GetTimerChInterruptInit(timer, timer.TimerSettings.OverFlowInterupt);
+            
         }
 
         private string GetTimerModeInit(Timer timer)
@@ -85,7 +106,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             StringBuilder code = new StringBuilder();
             var template =  FilesContentStore[FileNames.TimerChannelInitFuncCall];
             template = template.Replace(TimerConstants.TimerName, timer.TimerName);
-            if (timer.TimerSettings.CCAChannel.IsEnabled)
+            if (timer.TimerSettings.CCAChannel.IsAvailable && timer.TimerSettings.CCAChannel.IsEnabled)
             {
                 var contents = template.Replace(TimerConstants.SelectedTimerChannel, timer.TimerSettings.CCAChannel.Name); 
                 code.Append(contents);
@@ -93,7 +114,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                 _funcDeclarationBlock.AppendLine();
                 code.AppendLine();
             }
-            if (timer.TimerSettings.CCBChannel.IsEnabled)
+            if (timer.TimerSettings.CCBChannel.IsAvailable && timer.TimerSettings.CCBChannel.IsEnabled)
             {
                 var contents = template.Replace(TimerConstants.SelectedTimerChannel, timer.TimerSettings.CCBChannel.Name);
                 code.Append(contents);
@@ -101,15 +122,15 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                 _funcDeclarationBlock.AppendLine();
                 code.AppendLine();
             }
-            if (timer.TimerSettings.CCCChannel.IsEnabled)
+            if (timer.TimerSettings.CCCChannel.IsAvailable && timer.TimerSettings.CCCChannel.IsEnabled)
             {
-                var contents = template.Replace(TimerConstants.SelectedTimerChannel, timer.TimerSettings.CCDChannel.Name);
+                var contents = template.Replace(TimerConstants.SelectedTimerChannel, timer.TimerSettings.CCCChannel.Name);
                 code.Append(contents);
                 _funcDeclarationBlock.Append("void " + contents);
                 _funcDeclarationBlock.AppendLine();
                 code.AppendLine();
             }
-            if (timer.TimerSettings.CCDChannel.IsEnabled)
+            if (timer.TimerSettings.CCDChannel.IsAvailable && timer.TimerSettings.CCDChannel.IsEnabled)
             {
                 var contents = template.Replace(TimerConstants.SelectedTimerChannel, timer.TimerSettings.CCDChannel.Name);
                 code.Append(contents);
@@ -126,7 +147,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             StringBuilder code = new StringBuilder();
             var template = FilesContentStore[FileNames.TimerChannelInit];
             template = template.Replace(TimerConstants.TimerName, timer.TimerName);
-            if (timer.TimerSettings.CCAChannel.IsEnabled)
+            if (timer.TimerSettings.CCAChannel.IsAvailable && timer.TimerSettings.CCAChannel.IsEnabled)
             {
                 string contents = template;
                 var replacemntDict = GetReplacementDict_timerChInit(timer, timer.TimerSettings.CCAChannel);
@@ -134,7 +155,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                 code.Append(contents);
                 code.AppendLine();
             }
-            if (timer.TimerSettings.CCBChannel.IsEnabled)
+            if (timer.TimerSettings.CCBChannel.IsAvailable && timer.TimerSettings.CCBChannel.IsEnabled)
             {
                 string contents = template;
                 var replacemntDict = GetReplacementDict_timerChInit(timer, timer.TimerSettings.CCBChannel);
@@ -142,7 +163,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                 code.Append(contents);
                 code.AppendLine();
             }
-            if (timer.TimerSettings.CCCChannel.IsEnabled)
+            if (timer.TimerSettings.CCCChannel.IsAvailable && timer.TimerSettings.CCCChannel.IsEnabled)
             {
                 string contents = template;
                 var replacemntDict = GetReplacementDict_timerChInit(timer, timer.TimerSettings.CCCChannel);
@@ -150,7 +171,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                 code.Append(contents);
                 code.AppendLine();
             }
-            if (timer.TimerSettings.CCDChannel.IsEnabled)
+            if (timer.TimerSettings.CCDChannel.IsAvailable && timer.TimerSettings.CCDChannel.IsEnabled)
             {
                 string contents = template;
                 var replacemntDict = GetReplacementDict_timerChInit(timer, timer.TimerSettings.CCDChannel);
@@ -168,7 +189,7 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                                     {TimerConstants.TimerName, timer.TimerName},
                                     {TimerConstants.SelectedTimerChannel,timerChannel.Name },
                                     {TimerConstants.ChannelPeriod, timerChannel.ChannelValue.ToString() },
-                                    {TimerConstants.SelectedTimerChannelEnable,string.Format("{0}_{1}EN_bm",timer.TimerName,timerChannel.Name) },
+                                    {TimerConstants.SelectedTimerChannelEnable,string.Format("{0}EN",timerChannel.Name) },
                                     {TimerConstants.TimerChannelInterrupt,GetTimerChInterruptInit(timer,timerChannel) },
                                 };
             return replacementDict;
@@ -183,8 +204,25 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
                template = template.Replace(TimerConstants.TimerName, timer.TimerName);
                template = template.Replace(TimerConstants.InterruptName, timerChannel.ChannelInterupt.Name);
                template = template.Replace(TimerConstants.InteruptLevel, timerChannel.ChannelInterupt.Level);
-               template = template.Replace(TimerConstants.CallBackFunctionName,"callBack");
-               UpdateInteruptHandlerContents(timerChannel.ChannelInterupt,"callBack");
+
+               template = template.Replace(TimerConstants.CallBackFunctionName,timerChannel.ChannelInterupt.Callback);
+               UpdateInteruptHandlerContents(timerChannel.ChannelInterupt, timerChannel.ChannelInterupt.Callback);
+            }
+            return template;
+        }
+
+        private string GetTimerChInterruptInit(Timer timer, TimerInterupt timerInterupt)
+        {
+            string template = string.Empty;
+            if (timerInterupt.IsEnabled)
+            {
+                template = FilesContentStore[FileNames.TimerChannelInteruppt];
+                template = template.Replace(TimerConstants.TimerName, timer.TimerName);
+                template = template.Replace(TimerConstants.InterruptName, timerInterupt.Name);
+                template = template.Replace(TimerConstants.InteruptLevel, timerInterupt.Level);
+
+                template = template.Replace(TimerConstants.CallBackFunctionName, timerInterupt.Callback);
+                UpdateInteruptHandlerContents(timerInterupt, timerInterupt.Callback);
             }
             return template;
         }
@@ -194,9 +232,19 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             if (timerInterupt.IsEnabled)
             {
                 string template = FilesContentStore[FileNames.TimerInteruptHandler];
-                template = template.Replace(TimerConstants.CallBackFunctionName, callBackName);
+                template = template.Replace(TimerConstants.CallBackFunctionName, callBackName);             
                 _interruptHandlerBlock.Append(template);
+                _interruptHandlerBlock.AppendLine();
+                UpdateFunctionDecalrationBlock(callBackName);
             }  
+        }
+
+        private void UpdateFunctionDecalrationBlock(string callBackname)
+        {
+            var template = FilesContentStore[FileNames.TimerInteruptCallBackDec];
+            template = template.Replace(TimerConstants.CallBackFunctionName, callBackname);
+            _funcDeclarationBlock.Append(template);
+            _funcDeclarationBlock.AppendLine();
         }
     }
 }

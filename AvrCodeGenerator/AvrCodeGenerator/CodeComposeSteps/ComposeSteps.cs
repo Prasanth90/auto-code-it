@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CodeWizard.DataModel;
 using Company.AvrCodeGenerator.Actions;
+using Company.AvrCodeGenerator.ViewModel.CodeWizardViewModel;
 
 namespace Company.AvrCodeGenerator.CodeComposeSteps
 {
     public class ComposeSteps
     {
-        public ComposeSteps()
+        private readonly ProjectData _projectData;
+        private readonly CodeWizardViewModel _codeWizardViewModel;
+
+        public ComposeSteps(ProjectData projectData, CodeWizardViewModel codeWizardViewModel)
         {
-            
+            _projectData = projectData;
+            _codeWizardViewModel = codeWizardViewModel;
         }
 
         public void Run()
@@ -23,9 +29,8 @@ namespace Company.AvrCodeGenerator.CodeComposeSteps
                     codeGenerationAction.Run();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
                 //TODO: Log error somewhere
             }
 
@@ -34,9 +39,9 @@ namespace Company.AvrCodeGenerator.CodeComposeSteps
         private List<ICodeGenerationAction> GetCodeComposeSteps()
         {
             List<ICodeGenerationAction> actions = new List<ICodeGenerationAction>();
-            actions.Add(new ProjectCreator());
-            actions.Add(new AsfModuleAdder());
-            actions.Add(new FileUpdater());
+            actions.Add(new ProjectCreator(_projectData));
+            actions.Add(new AsfModuleAdder(_projectData,_codeWizardViewModel));
+            actions.Add(new FileUpdater(_projectData, _codeWizardViewModel));
             return actions;
         }
     }

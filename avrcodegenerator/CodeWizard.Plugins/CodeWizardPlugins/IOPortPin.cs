@@ -67,5 +67,6 @@ namespace CodeWizard.Plugins.CodeWizardPlugins
             new CreateRawInput(filesContentStore).LoadResourceFile();
             return new PortCodeGenerator(_ioPortModel, filesContentStore);
         }
+
     }
 }

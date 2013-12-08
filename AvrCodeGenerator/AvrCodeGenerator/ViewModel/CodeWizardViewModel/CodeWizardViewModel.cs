@@ -200,36 +200,16 @@ namespace Company.AvrCodeGenerator.ViewModel.CodeWizardViewModel
             return null;
         }
 
-        private List<string> GetEnabledModules()
-        {
-            var enabledModules = new List<string>();
-            if (this.McuPeripheralsViewModel != null && McuPeripheralsViewModel.PeripheralViewModels != null)
-            {
-                var phViewModel = this.McuPeripheralsViewModel.PeripheralViewModels;
-                foreach (var peripheralViewModel in phViewModel)
-                {
-                    foreach (var childrenPeripheral in peripheralViewModel.ChildrenPeripherals)
-                    {
-                        if (childrenPeripheral.IsModuleEnabled)
-                        {
-                            enabledModules.Add(childrenPeripheral.Name);
-                        }
-                    }
-                }
-            }
-            return enabledModules;
-        }
-
         private void GenerateCodeClickedHandler()
         {
-            var codegen = new CodeGenerator();
-            var enabledModules = GetEnabledModules();
-            string generatedCode = codegen.GetGeneratedCode(enabledModules);
-            using (var streamWriter = new StreamWriter(@"E:\testt.txt"))
+            var projectData = new ProjectData()
             {
-                streamWriter.Write(generatedCode);
-            }
-            Code = generatedCode;
+                Device = this.SelectedDevice,
+                Name = "TestProject",
+                Path = @"K:\project"
+            };
+            var codeCompose = new CodeComposeSteps.ComposeSteps(projectData,this);
+            codeCompose.Run();
         }
 
         private void Initialize()

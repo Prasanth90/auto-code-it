@@ -54,6 +54,21 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             return codeBlock;
         }
 
+        public override List<string> GetAsfModuleIds(List<string> enabledModules)
+        {
+            foreach (var usartModel in _usartModel.Usarts)
+            {
+                if (enabledModules.Contains(usartModel.UsartName))
+                {
+                    return new List<string>()
+                    {
+                        "common.services.basic.serial"
+                    };
+                }
+            }
+            return new List<string>();
+        }
+
         private string GetselectedDemoAppTemplate(Usart usartModel)
         {
             return string.Empty;

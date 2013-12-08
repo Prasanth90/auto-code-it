@@ -46,6 +46,24 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             return codeBlock;
         }
 
+        public override List<string> GetAsfModuleIds(List<string> enabledModules)
+        {
+            foreach (var spiModel in _spiModel.Spis)
+            {
+                if (enabledModules.Contains(spiModel.SpiName))
+                {
+                    return new List<string>()
+                    {
+                        "common.services.basic.spi_master",
+                        "xmega.drivers.spi",
+                        "common.services.ioport",
+                        "common.services.basic.gpio"
+                    };
+                }
+            }
+            return new List<string>();
+        }
+
         private string GetFunctionDeclarationBlock(Spi spiModel)
         {
             return string.Format("void {0}_init(void);", spiModel.SpiName);   

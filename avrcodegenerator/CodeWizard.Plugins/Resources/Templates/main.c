@@ -4,7 +4,12 @@
 $FunctionDeclarations$
 int main (void)
 {
-$FunctionCalls$
+	board_init();
+	$FunctionCalls$
+	while(1)
+	{
+
+	}
 }
 
 $FunctionDefines$

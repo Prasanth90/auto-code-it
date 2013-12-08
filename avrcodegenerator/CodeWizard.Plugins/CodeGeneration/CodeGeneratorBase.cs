@@ -16,7 +16,8 @@ namespace CodeWizard.Plugins.CodeGeneration
         }
 
         public abstract CodeBlock GetCode(List<string> enabledModules);
-        
+        public abstract List<string> GetAsfModuleIds(List<string> enabledModules);
+
 
         protected StringBuilder GetCommentSection(string message)
         {

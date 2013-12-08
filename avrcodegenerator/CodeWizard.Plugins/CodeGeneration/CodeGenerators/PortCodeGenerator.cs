@@ -49,6 +49,22 @@ namespace CodeWizard.Plugins.CodeGeneration.CodeGenerators
             return codeBlock;
         }
 
+        public override List<string> GetAsfModuleIds(List<string> enabledModules)
+        {
+            foreach (Port port in _ioPortModel.Ports)
+            {
+                if (enabledModules.Contains(port.PortName))
+                {
+                    return new List<string>()
+                    {
+                        "common.services.ioport",
+                        "common.services.basic.gpio"
+                    };
+                }
+            }
+            return new List<string>();
+        }
+
         private StringBuilder GetPinConfigCodeBlock(Port port, Pin pin)
         {
             var codeblock = new StringBuilder();

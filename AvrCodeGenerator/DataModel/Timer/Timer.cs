@@ -5,7 +5,7 @@
         public Timer(string timerName)
         {
             TimerName = timerName;
-            TimerSettings = new TimerSettings();
+            TimerSettings = new TimerSettings(timerName);
             if (timerName.EndsWith("1"))
             {
                 TimerSettings.CCCChannel.IsAvailable = false;

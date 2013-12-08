@@ -42,5 +42,6 @@ namespace CodeWizard.Plugins.CodeWizardPlugins
             new CreateRawInput(filesContentStore).LoadResourceFile();
             return new SpiCodeGenerator(_spiModel, filesContentStore);
         }
+
     }
 }

@@ -5,7 +5,7 @@ namespace CodeWizard.DataModel.Timer
 {
     public class TimerSettings
     {
-        public TimerSettings()
+        public TimerSettings(string timerName)
         {
             ClockSources = McuModel.PeripheralInfoProvider.GetTimerClockSources();
             TimerModes = McuModel.PeripheralInfoProvider.GetTimerModes();
@@ -16,11 +16,11 @@ namespace CodeWizard.DataModel.Timer
             TimerMode = TimerModes.FirstOrDefault();
             Count = 0;
             PeriodValue = 0;
-            CCAChannel = new TimerChannel("TC_CCA","cca");
-            CCBChannel = new TimerChannel("TC_CCB", "ccb");
-            CCCChannel = new TimerChannel("TC_CCC", "ccc");
-            CCDChannel = new TimerChannel("TC_CCD", "ccd");
-            OverFlowInterupt = new TimerInterupt("overflow");
+            CCAChannel = new TimerChannel("TC_CCA","cca",string.Format("{0}_{1}_callback",timerName,"TC_CCA"));
+            CCBChannel = new TimerChannel("TC_CCB", "ccb", string.Format("{0}_{1}_callback", timerName, "TC_CCB"));
+            CCCChannel = new TimerChannel("TC_CCC", "ccc", string.Format("{0}_{1}_callback", timerName, "TC_CCC"));
+            CCDChannel = new TimerChannel("TC_CCD", "ccd", string.Format("{0}_{1}_callback", timerName, "TC_CCD"));
+            OverFlowInterupt = new TimerInterupt("overflow", string.Format("{0}_{1}_callback", timerName, "overflow"));
             SelectedEventAction = EventActions.FirstOrDefault();
             SelectedEventSource = EventSources.FirstOrDefault();
         }
@@ -48,9 +48,10 @@ namespace CodeWizard.DataModel.Timer
     }
     public class TimerInterupt
     {
-        public TimerInterupt(string name)
+        public TimerInterupt(string name, string interuptCallback)
         {
             Name = name;
+            Callback = interuptCallback;
             Level = McuModel.PeripheralInfoProvider.GetTimerInteruptLevels()[1];
         }
 
@@ -61,10 +62,10 @@ namespace CodeWizard.DataModel.Timer
     }
     public class TimerChannel
     {
-        public TimerChannel(string name, string interruptName)
+        public TimerChannel(string name, string interruptName,string interuptCallback)
         {
             Name = name;
-            ChannelInterupt = new TimerInterupt(interruptName);
+            ChannelInterupt = new TimerInterupt(interruptName, interuptCallback);
             IsEnabled = true;
             IsAvailable = true;
             ChannelValue = 0;

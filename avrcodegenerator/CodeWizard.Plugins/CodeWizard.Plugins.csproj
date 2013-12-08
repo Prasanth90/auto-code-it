@@ -187,6 +187,7 @@
     <Resource Include="Resources\help.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Templates\timer_interupt_handler_dec.c" />
     <EmbeddedResource Include="Resources\Templates\timer_mode_init.c" />
     <EmbeddedResource Include="Resources\Templates\timer_interupt_handler.c" />
     <EmbeddedResource Include="Resources\Templates\timerchannel_interrupt.c" />
