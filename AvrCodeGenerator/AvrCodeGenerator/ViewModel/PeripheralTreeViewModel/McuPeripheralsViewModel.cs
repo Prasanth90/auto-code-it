@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CodeWizard.DataModel.PeripheralInfo;
 
@@ -9,14 +10,15 @@ namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
         private readonly Action<PeripheralViewModel> _treeViewSelectionCahnged;
         private ObservableCollection<PeripheralViewModel> _peripheralViewModels = new ObservableCollection<PeripheralViewModel>();
 
-        public McuPeripheralsViewModel(ObservableCollection<Peripheral> peripherals, Action<PeripheralViewModel> treeViewSelectionCahnged)
-        {
-
-            
+        public McuPeripheralsViewModel(IEnumerable<Peripheral> peripherals, Action<PeripheralViewModel> treeViewSelectionCahnged)
+        {        
             _treeViewSelectionCahnged = treeViewSelectionCahnged;
             foreach (var peripheral in peripherals)
             {
-                PeripheralViewModels.Add(new PeripheralViewModel(peripheral,null,SelectionChanged)); 
+                if (peripheral.ChildPeripherals.Count > 0)
+                {
+                    PeripheralViewModels.Add(new PeripheralViewModel(peripheral, null, SelectionChanged));
+                }
             }
         }
 

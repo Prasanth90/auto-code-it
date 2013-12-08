@@ -4,16 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:peripheralDisplay="clr-namespace:Company.AvrCodeGenerator.View.PeripheralDisplay"
-             mc:Ignorable="d"  Loaded="CodeWizardControl_OnLoaded">
+             mc:Ignorable="d"  >
     <UserControl.Resources>
         <ResourceDictionary>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MahApps.Metro;component/Styles/Colours.xaml" />
                 <ResourceDictionary Source="/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.xaml" /> 
-                <ResourceDictionary Source="/MahApps.Metro;component/Styles/Accents/Blue.xaml" /> 
+                <ResourceDictionary Source="/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ComboBox.xaml" />
                 <ResourceDictionary Source="/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" /> 
-                <ResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />    
+                <ResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -22,8 +25,8 @@
                 <DockPanel  Height="30">
                 <Image DockPanel.Dock="Left"  Source="../../Resources/AtmelStudio.png"></Image>
                 <Label Margin="5,0,0,0" DockPanel.Dock="Left" Content="Device"></Label>
-                <ComboBox DockPanel.Dock="Left" HorizontalAlignment="Left" Width="150" ItemsSource="{Binding Path=Devices,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedDevice,UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-                
+                <ComboBox ToolTip="Please Select a device to configure its peripherals" IsEditable="True" DockPanel.Dock="Left" HorizontalAlignment="Left" Width="150" ItemsSource="{Binding Path=Devices,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedDevice,UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                <Button   Margin="5,0,0,0" Content="generate" HorizontalAlignment="Left" Command="{Binding Path=GenerateCode,UpdateSourceTrigger=PropertyChanged}" />
             </DockPanel>
         </DockPanel>
          <Grid DockPanel.Dock="Top" Height="Auto" Margin="5">
@@ -52,7 +55,7 @@
                 <DockPanel>
                         <DockPanel DockPanel.Dock="Top" Height="30" Grid.Row="0" Background="SteelBlue" Margin="0,0,0,0">
                             <Label  Content="Configuration" HorizontalContentAlignment="Center" FontWeight="Normal"  FontFamily="Segoe UI Symbol" FontSize="14" Foreground="WhiteSmoke"></Label>
-                            <Button Content="Generate" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Click="Button_Click_1" />
+                           
                             <!--<Image  Source="..\..\Images1\software_chips.jpg" Height="153" Width="240"></Image>-->
                         </DockPanel>
                         <TabControl  >
@@ -81,7 +84,7 @@
                         <!--<Image  Source="..\..\Images1\software_chips.jpg" Height="153" Width="240"></Image>-->
                     </StackPanel>
                     <Border Grid.Row="1" BorderThickness="0" Margin="0,5,0,0">
-                        <TextBox Name="CodeContainer" BorderBrush="Gray" HorizontalAlignment="Stretch" TextWrapping="NoWrap"></TextBox>
+                        <TextBox Name="CodeContainer" BorderBrush="Gray" HorizontalAlignment="Stretch" Text="{Binding Path=Code,UpdateSourceTrigger=PropertyChanged}" TextWrapping="NoWrap"></TextBox>
                     </Border>
                 </Grid>
             </Border>
