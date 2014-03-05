@@ -120,6 +120,7 @@
     <Compile Include="Actions\AsfModuleAdder.cs" />
     <Compile Include="Actions\FileUpdater.cs" />
     <Compile Include="Actions\ICodeGenerationAction.cs" />
+    <Compile Include="Actions\MainFileContentCreator.cs" />
     <Compile Include="Actions\ProjectCreator.cs" />
     <Compile Include="CodeComposeSteps\ComposeSteps.cs" />
     <Compile Include="Globals.cs" />
@@ -209,7 +210,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\VSSDK\Microsoft.VsSDK.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /s /i /c /y "$(TargetDir)*.*"  "C:\Users\Pradeep AJ\AppData\Local\Atmel\AtmelStudio\6.1\Extensions\Company\AvrCodeGenerator\1.0"</PostBuildEvent>
+    <PostBuildEvent>xcopy /s /i /c /y "$(TargetDir)*.*"  "C:\Users\prasanth.aj\AppData\Local\Atmel\AtmelStudio\6.2\Extensions\Company\AvrCodeGenerator\1.0"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -48,6 +48,30 @@ namespace Company.AvrCodeGenerator.CodeComposeSteps
 
         }
 
+        public void RunMainContents()
+        {
+            try
+            {
+
+                IEnumerable<ICodeGenerationAction> steps = GetCodeComposeStepsMainFile();
+                _total = (uint)steps.Count();
+                _current = 0;
+                System.Threading.Tasks.Task.Factory.StartNew(ShowProgress);
+                foreach (var codeGenerationAction in steps)
+                {
+                    _statusMessage = codeGenerationAction.StatusMessage();
+                    ++_current;
+                    codeGenerationAction.Run();
+                }
+            }
+            catch (Exception e)
+            {
+                _current = _total;
+                //TODO: Log error somewhere
+            }
+
+        }
+
         private void ShowProgress()
         {
             IVsStatusbar statusBar =(IVsStatusbar)Package.GetGlobalService(typeof(SVsStatusbar));
@@ -72,6 +96,13 @@ namespace Company.AvrCodeGenerator.CodeComposeSteps
             actions.Add(new ProjectCreator(_projectData));
             actions.Add(new AsfModuleAdder(_projectData,_codeWizardViewModel));
             actions.Add(new FileUpdater(_projectData, _codeWizardViewModel));
+            return actions;
+        }
+
+        private List<ICodeGenerationAction> GetCodeComposeStepsMainFile()
+        {
+            List<ICodeGenerationAction> actions = new List<ICodeGenerationAction>();
+            actions.Add(new MainFileContentCreator(_projectData, _codeWizardViewModel));
             return actions;
         }
     }

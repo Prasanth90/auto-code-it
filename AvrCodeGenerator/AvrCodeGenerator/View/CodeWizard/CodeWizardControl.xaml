@@ -26,14 +26,16 @@
                 <Image DockPanel.Dock="Left"  Source="../../Resources/AtmelStudio.png"></Image>
                 <Label Margin="5,0,0,0" DockPanel.Dock="Left" Content="Device"></Label>
                 <ComboBox ToolTip="Please Select a device to configure its peripherals" IsEditable="True" DockPanel.Dock="Left" HorizontalAlignment="Left" Width="150" ItemsSource="{Binding Path=Devices,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedDevice,UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-                <Button   Margin="5,0,0,0" Content="generate" HorizontalAlignment="Left" Command="{Binding Path=GenerateCode,UpdateSourceTrigger=PropertyChanged}" />
+                <Button   Margin="5,0,0,0" Content="generate main Code" HorizontalAlignment="Left" Command="{Binding Path=GenerateMainCode,UpdateSourceTrigger=PropertyChanged}" />
+                <Button   Margin="25,0,0,0" Content="generate Atmel Studio Project" HorizontalAlignment="Left" Command="{Binding Path=GenerateCode,UpdateSourceTrigger=PropertyChanged}" />
+                
             </DockPanel>
         </DockPanel>
          <Grid DockPanel.Dock="Top" Height="Auto" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="190" />
-                <ColumnDefinition Width="430*" />
-                <ColumnDefinition Width="240*" />
+                <ColumnDefinition Width="400*" />
+                <ColumnDefinition Width="250*" />
                 
             </Grid.ColumnDefinitions>
             <Border Margin="5" BorderBrush="Black" BorderThickness="0">

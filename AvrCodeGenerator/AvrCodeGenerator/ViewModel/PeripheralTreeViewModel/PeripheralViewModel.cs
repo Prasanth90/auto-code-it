@@ -60,6 +60,10 @@ namespace Company.AvrCodeGenerator.ViewModel.PeripheralTreeViewModel
 
         }
 
+
+
+
+
         public string Name
         {
             get { return _peripheral.Name; }

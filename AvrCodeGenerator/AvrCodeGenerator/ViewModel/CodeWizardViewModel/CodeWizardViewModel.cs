@@ -29,11 +29,13 @@ namespace Company.AvrCodeGenerator.ViewModel.CodeWizardViewModel
         private List<ICodeWizardPlugin> _plugins;
         private string _code;
         private ICommand _generateCode;
+        private ICommand _generateMainCode;
 
         public CodeWizardViewModel()
         {
             Devices = new ObservableCollection<string>();
             GenerateCode = new RelayCommand(GenerateCodeClickedHandler, CanExecute);
+            GenerateMainCode = new RelayCommand(GenerateMainCodeClickedHandler, CanExecute);
             Task.Factory.StartNew(LoadDevices);
         }
 
@@ -63,6 +65,16 @@ namespace Company.AvrCodeGenerator.ViewModel.CodeWizardViewModel
             {
                 _generateCode = value;
                 this.OnPropertyChanged("GenerateCode");
+            }
+        }
+
+        public ICommand GenerateMainCode
+        {
+            get { return _generateMainCode; }
+            set
+            {
+                _generateMainCode = value;
+                this.OnPropertyChanged("GenerateMainCode");
             }
         }
 
@@ -202,14 +214,52 @@ namespace Company.AvrCodeGenerator.ViewModel.CodeWizardViewModel
 
         private void GenerateCodeClickedHandler()
         {
+            var projectName = GetProjectName();
+            var projectData = new ProjectData()
+            {
+                Device = this.SelectedDevice,
+                Name = projectName,
+                Path = Path.Combine(Path.GetTempPath(), "AsfPrototype",projectName)
+            };
+            var codeCompose = new CodeComposeSteps.ComposeSteps(projectData,this);
+            codeCompose.Run();
+        }
+
+
+        private string GetProjectName()
+        {
+            int variable = 0;
+            const string defaultProjectName = "TestProject";
+
+            var projectName = defaultProjectName + variable.ToString();
+            var projectParentDir = Path.Combine(Path.GetTempPath(), "AsfPrototype");
+            
+            var projectPath = Path.Combine(projectParentDir, projectName);
+
+            while (true)
+            {
+                projectPath = Path.Combine(projectParentDir, projectName);
+                if(!Directory.Exists(projectPath))
+                {
+                    break;
+                }
+                variable++;
+                projectName = defaultProjectName + variable.ToString();
+            }
+
+            return projectName;
+
+        }
+        private void GenerateMainCodeClickedHandler()
+        {
             var projectData = new ProjectData()
             {
                 Device = this.SelectedDevice,
                 Name = "TestProject",
-                Path = @"K:\project"
+                Path = @"D:\project"
             };
-            var codeCompose = new CodeComposeSteps.ComposeSteps(projectData,this);
-            codeCompose.Run();
+            var codeCompose = new CodeComposeSteps.ComposeSteps(projectData, this);
+            codeCompose.RunMainContents();
         }
 
         private void Initialize()
