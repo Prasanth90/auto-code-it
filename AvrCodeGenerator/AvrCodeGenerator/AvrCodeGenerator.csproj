@@ -34,8 +34,18 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Atmel.Studio.Services.Interfaces, Version=6.1.0.0, Culture=neutral, PublicKeyToken=d264112969646cc9, processorArchitecture=MSIL" />
-    <Reference Include="Atmel.Studio.Toolchain.Library, Version=6.1.0.0, Culture=neutral, PublicKeyToken=d264112969646cc9, processorArchitecture=MSIL" />
+    <Reference Include="Atmel.Studio.Services.Interfaces, Version=6.1.0.0, Culture=neutral, PublicKeyToken=d264112969646cc9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AVRStudioSDK\5.0\SDKAssemblies\Atmel.Studio.Services.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Atmel.Studio.Toolchain.Interfaces, Version=6.1.0.0, Culture=neutral, PublicKeyToken=d264112969646cc9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AVRStudioSDK\5.0\SDKAssemblies\Atmel.Studio.Toolchain.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Atmel.Studio.Toolchain.Library, Version=6.1.0.0, Culture=neutral, PublicKeyToken=d264112969646cc9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AVRStudioSDK\5.0\SDKAssemblies\Atmel.Studio.Toolchain.Library.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=0.10.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop" />
